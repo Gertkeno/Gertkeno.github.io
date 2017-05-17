@@ -1,0 +1,83 @@
+[html
+[head
+	[title Gert!]
+	[meta{charset="utf-8"}])
+	[link{rel="stylesheet" type="text/css" href="nbasic.css"}])
+	[link{rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"}])
+]
+[body
+[div#main
+	[h1 Welcome!]
+	[p Hey, this is Gert. Welcome to my website.]
+	[p If you're here for business you're probably looking for my [a@resume.htm resume].]
+	[p If you want me to program something, practically anything, Email me at [a@mailto:gthkeno@gmail.com gthkeno@gmail.com]]
+	[div
+		[h3 Social Links]
+		[div.social
+			[a@https://steamcommunity.com/id/gertman
+				[i{class="fa fa-steam" aria-hidden="true"}]]
+			[a@https://twitter.com/gertkeno
+				[i{class="fa fa-twitter" aria-hidden="true"}]]
+			[a@https://bitbucket.org/Gertkeno/
+				[i{class="fa fa-bitbucket" aria-hidden="true"}]]
+			[a@https://github.com/Gertkeno
+				[i{class="fa fa-github" aria-hidden="true"}]]
+			[a@https://www.twitch.tv/gert_h
+				[i{class="fa fa-twitch" aria-hidden="true"}]]
+			[a@https://www.youtube.com/channel/UCUn0pkTYwJ-KK5uePPhJ3cg
+				[i{class="fa fa-youtube" aria-hidden="true"}]]
+			[a@http://gamejolt.com/@gertkeno/games
+				[i{class="fa fa-bolt" aria-hidden="true"}]]
+		]
+	]
+	[div.sect
+		[h3 Programming Resources]
+		[ul
+			[li [a@http://caniuse.com/ caniuse.com/]]
+			[li [a@https://www.campaignmonitor.com/css/ www.campaignmonitor.com/css/]]
+			[li [a@http://lazyfoo.net/tutorials/SDL/index.php#Hello%20SDL Lazy Foo SDL Tutorials]]
+			[li [a@https://wiki.libsdl.org/FrontPage SDL2 Documentation]]
+			[li [a@http://enet.bespin.org/usergroup0.html ENet Documentation]]
+			[li [a@https://open.gl/ open.gl/]]
+			[li [a@http://docs.gl/ docs.gl/]]
+			[li [a@http://www.dyn4j.org/2010/01/sat/ Separating Axis Theorem (Collision Detection)]]
+			[li [a@http://mosra.cz/blog/magnum-doc/getting-started.html Magnum Documentation]]
+			[li [a@http://www.sdltutorials.com/sdl-tip-sdl-surface-to-opengl-texture SDL Surface to GL Texture Tip]]
+			[li [a@https://github.com/RandyGaul/qu3e qu3e Physics Engine]]
+			[li [a@http://lazyfoo.net/tutorials/OpenGL/index.php#Hello%20GLSL Lazy Foo OpenGL Tutorials]]
+			[li [a@http://ogldev.atspace.co.uk/ ogldev OpenGL Tutorials]]
+			[li [a@http://www.tutorialspoint.com/lua/lua_basic_syntax.htm Lua Basic Syntax]]
+			[li [a@http://csl.name/post/lua-and-cpp/ Including Lua in C++]]
+			[li [a@https://www.khronos.org/opengl/wiki/Skeletal_Animation OpenGL Skeletal Animation]]
+			[li [a@http://stackoverflow.com/a/4865249 GCC Static Resources]]
+			[li [a@ftp://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html ld Options]]
+		]
+	]
+	[div.sect
+		[h3 Image Resources]
+		[ul
+			[li [a@http://www.synfig.org/ Synfig Studio]]
+			[li [a@https://inkscape.org/en/ Inkscape]]
+			[li [a@https://www.gimp.org/ GIMP]]
+			[li [a@https://www.gimp.org/docs/python/ GIMP Python Documentation]]
+			[li [a@http://fontawesome.io/icons/ Font Awesome]]
+			[li [a@http://www.custommapmakers.org/skyboxes.php Skyboxes for download]]
+		]
+	]
+	[div.sect
+		[h3 Sound Resources]
+		[ul
+			[li [a@https://openmpt.org/ OpenMPT]]
+			[li [a@http://www.audacityteam.org/ Audacity]]
+			[li [a@http://www.gamesbyscott.com/midijam.htm MIDIJam]]
+		]
+	]
+	[div.sect
+		[h3 Bitcoin [i{class="fa fa-bitcoin" aria-hidden="true"}]]
+		[p In case you want to give some dosh, I'm only accepting meme currency]
+		[p bitcoin:36oDnikhrhfrTC2vSrB2K5EzEqeYoSmAMt]
+		[img$bitc.png ])
+	]
+]
+]
+]
