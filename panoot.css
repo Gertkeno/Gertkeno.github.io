@@ -30,7 +30,7 @@ hr {
 }
 
 /* SOCIAL LINKS BIG MODE */
-@media screen and ( min-width: 901px ) {
+@media ( min-width: 901px ) {
 	#links {
 		display: none;
 	}
