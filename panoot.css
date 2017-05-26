@@ -53,14 +53,14 @@ hr {
 		color: #000;
 	}
 
-	#legend h1 {
+	#legend h2 {
 		margin: 0;
 		padding: 0.5em;
 		border-radius: 0.5em;
 		text-align: right;
 	}
 
-	#legend h1:hover {
+	#legend h2:hover {
 		background-color: #79A8FF;
 	}
 
