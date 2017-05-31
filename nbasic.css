@@ -27,6 +27,7 @@ h1 {
 	#main {
 		margin-left: 20%;
 		margin-right: 20%;
+		box-shadow: 0 0 7px 7px #fff;
 	}
 
 	.sect {
