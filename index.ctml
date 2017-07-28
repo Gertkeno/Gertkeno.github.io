@@ -17,26 +17,26 @@
 		[h3 Social Links]
 		[div.social
 			[a@https://steamcommunity.com/id/gertman
-				[i{class="fa fa-steam" aria-hidden="true"}]]
+				[i{aria-hidden="true"}.fa.fa-steam]]
 			[a@https://twitter.com/gertkeno
-				[i{class="fa fa-twitter" aria-hidden="true"}]]
+				[i{aria-hidden="true"}.fa.fa-twitter]]
 			[a@https://bitbucket.org/Gertkeno/
-				[i{class="fa fa-bitbucket" aria-hidden="true"}]]
+				[i{aria-hidden="true"}.fa.fa-bitbucket]]
 			[a@https://github.com/Gertkeno
-				[i{class="fa fa-github" aria-hidden="true"}]]
+				[i{aria-hidden="true"}.fa.fa-github]]
 			[a@https://www.twitch.tv/gert_h
-				[i{class="fa fa-twitch" aria-hidden="true"}]]
+				[i{aria-hidden="true"}.fa.fa-twitch]]
 			[a@https://www.youtube.com/channel/UCUn0pkTYwJ-KK5uePPhJ3cg
-				[i{class="fa fa-youtube" aria-hidden="true"}]]
+				[i{aria-hidden="true"}.fa.fa-youtube]]
 			[a@http://gamejolt.com/@gertkeno/games
-				[i{class="fa fa-bolt" aria-hidden="true"}]]
+				[i{aria-hidden="true"}.fa.fa-bolt]]
 		]
 	]
 	[div.sect
 		[h3 Programming Resources]
 		[ul
 			[li [a@http://caniuse.com/ caniuse.com/]]
-			[li [a@https://www.campaignmonitor.com/css/ www.campaignmonitor.com/css/]]
+			[li [a@https://www.campaignmonitor.com/css/ Email CSS compatibility list]]
 			[li [a@http://lazyfoo.net/tutorials/SDL/index.php#Hello%20SDL Lazy Foo SDL Tutorials]]
 			[li [a@https://wiki.libsdl.org/FrontPage SDL2 Documentation]]
 			[li [a@http://enet.bespin.org/usergroup0.html ENet Documentation]]
@@ -76,13 +76,12 @@
 		]
 	]
 	[div.sect
-		[h3 Bitcoin [i{class="fa fa-bitcoin" aria-hidden="true"}]]
-		[p In case you want to give some dosh, I'm only accepting meme currency]
-		[p bitcoin:36oDnikhrhfrTC2vSrB2K5EzEqeYoSmAMt]
-		[img$bitc.png ])
-	]
-	[div
-		[p [a@panoot.html Panoots fanmade page]]
+		[h3 My Projects]
+		[ul
+			[li [a@panoot.html Panoots fan page]]
+			[li html, css, and javascript from [a@http://reecefish.com Reece's website]]
+			[li yet another markup language [a@https://github.com/Gertkeno/gert-ctml gert-ctml on github]]
+		]
 	]
 ]
 ]
