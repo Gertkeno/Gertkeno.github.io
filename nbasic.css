@@ -21,7 +21,8 @@ h1 {
 
 @media screen and ( min-width: 1280px ) {
 	body { 
-		/*background-color: #dde;*/
+		background-color: #77F;
+		background: -moz-linear-gradient(bottom right, #77F, #7FF );
 		background: linear-gradient( to bottom right, #77F, #7FF );
 	}
 
