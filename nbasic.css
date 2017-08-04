@@ -13,7 +13,7 @@ h1 {
 }
 
 #main {
-	background-color: #fff;
+	background-color: #FFF;
 	min-height: 90vh;
 	padding: 1em;
 	border-radius: 1em;
@@ -21,13 +21,14 @@ h1 {
 
 @media screen and ( min-width: 1280px ) {
 	body { 
-		background-color: #dde;
+		/*background-color: #dde;*/
+		background: linear-gradient( to bottom right, #77F, #7FF );
 	}
 
 	#main {
 		margin-left: 20%;
 		margin-right: 20%;
-		box-shadow: 0 0 7px 7px #fff;
+		box-shadow: 0 0 7px 7px #FFF;
 	}
 
 	.sect {
