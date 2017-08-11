@@ -53,7 +53,7 @@
 			[li [a@http://www.tutorialspoint.com/lua/lua_basic_syntax.htm Lua Basic Syntax]]
 			[li [a@http://csl.name/post/lua-and-cpp/ Including Lua in C++]]
 			[li [a@https://www.khronos.org/opengl/wiki/Skeletal_Animation OpenGL Skeletal Animation]]
-			[li [a@http://stackoverflow.com/a/4865249 GCC Static Resources]]
+			[li [a@http://stackoverflow.com/a/4865249 Linking Static Resources]]
 			[li [a@https://css-tricks.com/examples/hrs/ Simple hr styles]]
 			[li [a@https://stackoverflow.com/a/11814544 Use xxd -i to compile images]]
 		]
