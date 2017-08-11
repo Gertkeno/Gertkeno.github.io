@@ -12,7 +12,7 @@
 	[p If you're here for business you're probably looking for my [a@resume.htm resume].]
 	[p If you want me to program something, practically anything, Email me at [a@mailto:gthkeno@gmail.com gthkeno@gmail.com]]
 	[p Currently I'm working on [a@https://bitbucket.org/Gertkeno/meme-game-23d Meme Game 2: 3D], I need 3D meshes though, as I'm no artist.]
-	[p Side project is [a@https://bitbucket.org/Gertkeno/dropkick-billionaire Dropkick Billionaire], close to abandoning it since fighting games are hard.]
+	*[p Side project is [a@https://bitbucket.org/Gertkeno/dropkick-billionaire Dropkick Billionaire], close to abandoning it since fighting games are hard.]
 	[div
 		[h3 Social Links]
 		[div.social
@@ -77,7 +77,7 @@
 		]
 	]
 	[div.sect
-		[h3 My Projects]
+		[h3 My Good Projects]
 		[ul
 			[li [a@panoot.html Panoots fan page]]
 			[li html, css, and javascript from [a@http://reecefish.com Reece's website]]
