@@ -37,7 +37,7 @@
 	[div.sect
 		[h3 Blogged Projects]
 		[ul
-			[li yet another markup language [a@project/gert-ctml.html gert-ctml]]
+			[li another markup language [a@project/gert-ctml.html gert-ctml]]
 		]
 	]
 	[div.sect

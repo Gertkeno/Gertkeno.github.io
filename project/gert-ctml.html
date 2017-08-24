@@ -44,11 +44,11 @@
 		&#60;p&#62;My inspiration for this project was &#60;a href="http://haml.info/"&#62;HAML&#60;/a&#62;, I liked the automatic end tags and generally cleaner looking code.&#60;/p&#62;
 	&#60;/div&#62;
 		</div>
-		<p>With the CSS staples out of the way I went to actually test my mess of code <sup>it's all one file save me</sup>.</p>
+		<p>When the CSS staples were out of the way I went to actually test my mess of code <sup>it's all one file save me</sup>.</p>
 		<p>I found that I couldn't add links, or image sources, the possibilities were stunted. As far as I know HAML didn't have a quick href/src solution so I had to make up my own.</p>
 		<p>Without straying far from the single special character syntax, I decided on <b>@</b> and <b>$</b> since @ makes me think of emails and that's kind of href related. $ looks like s, so $rc.</p>
 		<p>Initially this didn't work, as I used the same code from classes and ids which only parsed alphabetical characters</p>
-		<p>I'll dial back the recursion for this example, with this old code the first paragraph's <b>[a@</b> tag looks like this</p>
+		<p>I'll dial back the recursion for this example, with this broken code the first paragraph's <b>[a@</b> tag would look like this</p>
 		<div class="code">
 	[a@http://haml.info/ HAML]
 		</div>
@@ -95,6 +95,13 @@
 		</div>
 		<p>This document, and it's examples couldn't be possible without HTML symbol entities. However I still decided to include character escapes by \</p>
 		<p>It's like most any character escape, ignores the first \ and prints the second character.</p>
+		<div class="code">
+	\[p My inspiration for this project was \[a@http://haml.info/ HAML\], I liked the automatic end tags and generally cleaner looking code.\]
+		</div>
+		<div class="code">
+	[p My inspiration for this project was [a@http://haml.info/ HAML], I liked the automatic end tags and generally cleaner looking code.]
+		</div>
+		<p>This is kind of difficult to show off, but if you really want to look through character escapes check the links below.</p>
 
 		<br>
 		<h2 id="This">This Page &amp; Downloads</h2>
