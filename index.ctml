@@ -35,6 +35,12 @@
 		]
 	]
 	[div.sect
+		[h3 Blogged Projects]
+		[ul
+			[li yet another markup language [a@project/gert-ctml.html gert-ctml]]
+		]
+	]
+	[div.sect
 		[h3 Programming Resources]
 		[ul
 			[li [a@http://caniuse.com/ caniuse.com/]]
@@ -79,11 +85,10 @@
 		]
 	]
 	[div.sect
-		[h3 My Good Projects]
+		[h3 Good Projects]
 		[ul
 			[li [a@panoot.html Panoots fan page]]
 			[li html, css, and javascript from [a@http://reecefish.com Reece's website]]
-			[li yet another markup language [a@https://github.com/Gertkeno/gert-ctml gert-ctml on github]]
 			[li [a@https://bitbucket.org/Gertkeno/notepad3d/downloads/ Notepad in 3D] and also worse]
 		]
 	]
