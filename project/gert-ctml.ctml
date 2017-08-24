@@ -11,7 +11,7 @@
 			[li [a@#Simple A Simple Html Converter]]
 			[li [a@#Quick-Attributes Quick Attributes]]
 			[li [a@#Comments Comments]]
-			[li [a@#This This Page]]
+			[li [a@#This This Page &amp; Downloads]]
 		]
 		[h2#Simple A Simple Html Converter]
 		[p My inspiration for this project was [a@http://haml.info/ HAML], I liked the automatic end tags and generally cleaner looking code.]
@@ -95,7 +95,8 @@
 		[p It's like most any character escape, ignores the first \\ and prints the second character.]
 
 		[br])
-		[h2#This This Page]
+		[h2#This This Page &amp; Downloads]
 		[p If you want to see the gert-ctml code for this page [a@gert-ctml.ctml click here]]
+		[p The git repo for this project is located [a@https://github.com/Gertkeno/gert-ctml on GitHub]]
 	]
 ]
