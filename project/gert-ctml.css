@@ -1,0 +1,18 @@
+body {
+	background-color: #ddf;
+}
+
+.code {
+	font-family: monospace;
+	background-color: #eee;
+	white-space: pre;
+}
+
+td .code {
+	overflow-x: scroll;
+	overflow-y: scroll;
+}
+
+table {
+	width: 200px;
+}
