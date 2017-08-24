@@ -22,8 +22,7 @@
 		[p As an example my first paragraph converts like so:]
 		[div.code
 	\[p My inspiration for this project was \[a@http://haml.info/ HAML\], I liked the automatic end tags and generally cleaner looking code.\]
-		]
-		[div.code
+
 	&#60;p&#62;My inspiration for this project was &#60;a href="http://haml.info/"&#62;HAML&#60;/a&#62;, I liked the automatic end tags and generally cleaner looking code.&#60;/p&#62;
 		]
 		[p What happened with the [b \[a@...] tag though? I guess this requires a expertly crafted transitional question.]
@@ -36,8 +35,7 @@
 	\[div.code
 		\[p My inspiration for this project was \[a@http://haml.info/ HAML\], I liked the automatic end tags and generally cleaner looking code.\]
 	\]
-		]
-		[div.code
+
 	&#60;div class="code"&#62;
 		&#60;p&#62;My inspiration for this project was &#60;a href="http://haml.info/"&#62;HAML&#60;/a&#62;, I liked the automatic end tags and generally cleaner looking code.&#60;/p&#62;
 	&#60;/div&#62;
@@ -49,8 +47,7 @@
 		[p I'll dial back the recursion for this example, with this broken code the first paragraph's [b \[a@] tag would look like this]
 		[div.code
 	\[a@http://haml.info/ HAML\]
-		]
-		[div.code
+
 	&#60;a href="http" class="info"&#62;HAML&#60;/a&#62;
 		]
 		[p Luckily this meant I could link to a local file named 'http' so it wasn't completely useless.]
@@ -58,16 +55,14 @@
 		[p Class &plus; href doesn't come up a lot, and I'm pretty sure most people don't recommend classed anchor tags. That means I had to make my own example of how this syntax works.]
 		[div.code
 	\[img.pepsi-dog$http://i.imgur.com/BKCGCeK.jpg \])
-		]
-		[div.code
+
 	&#60;img class="pepsi-dog" src="http://i.imgur.com/BKCGCeK.jpg"&#62;
 		]
 		[p Now I know what you've been thinking, probably from the start "All these attribute shortcuts are fantastic, but you can't seriously have one for every attribute! There are only 26 special characters left on my keyboard!"]
 		[p You're right, and I don't, However I have included a way to add any attribute you want.]
 		[div.code
 	\[meta{charset="utf-8"}\])
-		]
-		[div.code
+
 	&#60;meta charset="utf-8"&#62;
 		]
 		[p Anything inside the curly brackets is inserted plain text into the tag. You can still mix and match quick attributes with this so it doesn't hinder the system I strive to build.]
@@ -80,23 +75,20 @@
 		[p Sadly I don't care about multi-line comments in HTML, nor do I care about parsing comments so it's contents is in HTML.]
 		[div.code
 	\*\[p this is sample text, please ignore me\]
-		]
-		[div.code
+
 	&#60;!--\[p this is sample text, please ignore me\]--&#62;
 		]
 		[p I do however, care about multiple comments on one line. Adding another [b \*] to a commented line will stop the comment, or start commenting again.]
 		[div.code
 	\*this\*is\*going\*to\*be\*a\*wild\*ride\*my\*dudes
-		]
-		[div.code
+
 	&#60;!--this--&#62;is&#60;!--going--&#62;to&#60;!--be--&#62;a&#60;!--wild--&#62;ride&#60;!--my--&#62;dudes
 		]
 		[p This document, and it's examples couldn't be possible without HTML symbol entities. I still decided to include character escapes by \\]
 		[p It's like most any character escape, ignores the first \\ and prints the second character.]
 		[div.code
 	\\\[p My inspiration for this project was \\\[a@http://haml.info/ HAML\\\], I liked the automatic end tags and generally cleaner looking code.\\\]
-		]
-		[div.code
+
 	\[p My inspiration for this project was \[a@http://haml.info/ HAML\], I liked the automatic end tags and generally cleaner looking code.\]
 		]
 		[p This is kind of difficult to show off, but if you really want to look through character escapes check the links below.]
