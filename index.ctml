@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 [html
 [head
 	[title Gert!]
@@ -38,6 +39,7 @@
 		[h3 Blogged Projects]
 		[ul
 			[li another markup language [a@project/gert-ctml.html gert-ctml]]
+			[li [a@project/notepad3d.html Notepad but in 3D] and also worse]
 		]
 	]
 	[div.sect
@@ -89,7 +91,6 @@
 		[ul
 			[li [a@panoot.html Panoots fan page]]
 			[li html, css, and javascript from [a@http://reecefish.com Reece's website]]
-			[li [a@https://bitbucket.org/Gertkeno/notepad3d/downloads/ Notepad in 3D] and also worse]
 		]
 	]
 ]*div#main
