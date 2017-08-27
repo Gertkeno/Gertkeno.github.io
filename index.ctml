@@ -17,6 +17,8 @@
 	[div
 		[h3 Social Links]
 		[div.social
+			[a@mailto:gthkeno@gmail.com
+				[i{aria-hidden="true"}.fa.fa-envelope]]
 			[a@https://steamcommunity.com/id/gertman
 				[i{aria-hidden="true"}.fa.fa-steam]]
 			[a@https://twitter.com/gertkeno
