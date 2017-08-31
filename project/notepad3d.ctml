@@ -17,7 +17,7 @@
 		[h2#Preamble The Illegible Text Editor]
 		[p Let's just start this one with an example.]
 		[iframe{width="560" height="315" src="https://www.youtube.com/embed/2uXGnX5MTKs?rel=0" frameborder="0" allowfullscreen}]
-		[p Jumping right in you might ask for my motivation, and I do have half a good reason for doing this. Good half: there's a great streamer on twitch called [a@https://www.twitch.tv/kitboga Kitboga], they call tech support scammers and attempts to waste their time.]
+		[p You might ask for my motivation, and I do have half a good reason for doing this. Good half: there's a great streamer on twitch called [a@https://www.twitch.tv/kitboga Kitboga], they call tech support scammers and attempts to waste their time.]
 		[p On good days the scammers will attempt to use some of windows pre-packaged programs to lock up Kitboga's computer.]
 		[iframe{src="https://clips.twitch.tv/embed?clip=ClumsySpookyLardOMGScoots&autoplay=false&tt_medium=clips_embed" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen="true"}]
 		[p Now if you have a keen eye, good knowledge of how self destructive windows is, and watched the above clip you'll see the [a@https://en.wikipedia.org/wiki/Syskey#Malicious_use syskey] program was intentionally replaced with a gag program.]
@@ -61,7 +61,7 @@
 		std::cerr << "\[Manager\] Up to document " << ACTIVE_COUNT << std::endl;
 	}
 		]
-		[p The first statement, [span.code if( (SDL_GetModState() &amp; KMOD_LCTRL) != KMOD_LCTRL ) break;] checks if the left control key [span.code KMOD_LCTRL] is held down via bitwise operators and the [span.code SDL_GetModState()] function. If said key isn't held down it won't execute the code below, since it's all breakable from the switch statement above. If you want more context here's a link to this [a@https://bitbucket.org/Gertkeno/notepad3d/src/014215017445572e9f2f53b5d4b0d84dd40e86c9/src/Manager.cpp?at=master&fileviewer=file-view-default#Manager.cpp-56 line in the file src/Manager.cpp]]
+		[p The first if statement checks if the left control key [span.code KMOD_LCTRL] is held down via bitwise operators and the [span.code SDL_GetModState()] function. If said key isn't held down it won't execute the code below, since it's all breakable from the switch statement above. If you want more context here's a link to this [a@https://bitbucket.org/Gertkeno/notepad3d/src/014215017445572e9f2f53b5d4b0d84dd40e86c9/src/Manager.cpp?at=master&fileviewer=file-view-default#Manager.cpp-56 line in the file src/Manager.cpp]]
 		[p Majority of these special control hotkeys aren't useful, at least not for text editing. The Ctrl-P hotkey just prints the current document to cout, really helpful when I was debugging, at best you can pipe this to a file for writing. Ctrl-Q quits, very nice if you're using [a@https://i3wm.org/ i3-wm] don't have the X to close. Then there's the document management hotkeys, these would be useful if I added saving directly to file.]
 		[p Now if I tried to add file saving I'd have to make some kind of temporary text to get a filename, which would only be difficult due to adding a "Document write" mode and a "Filename write" mode. I'd have to split my draw function, and text capture function into two parts.]
 		[p Modal programming isn't always hard, this case wouldn't be either, but I know I'd try to make a more robust system than is needed for a intentionally bad project. I still had to make all the 3D models and render them, so I felt like focusing on getting that done.]
