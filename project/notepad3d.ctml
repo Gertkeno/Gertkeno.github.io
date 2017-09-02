@@ -83,7 +83,7 @@
 		[br])
 		[h2#Downloads Downloads &amp; Plans]
 		[p [a@https://bitbucket.org/Gertkeno/notepad3d/downloads/ Downloads hosted on BitBucket]]
-		[strike [p If you intend to actually use this to edit and save files wait for major release 1. More likely if you just want to view a file in the worst way possible go ahead and pick the highest release candidate, marked notepad3d_rc#.zip]]
+		[p [s If you intend to actually use this to edit and save files wait for major release 1. More likely if you just want to view a file in the worst way possible go ahead and pick the highest release candidate, marked notepad3d_rc#.zip]]
 		[p Major 1 is out, saving and opening files is here.]
 
 		[p Intended features for major 1 are as follow]
