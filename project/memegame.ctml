@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+[html
+	[head
+		[title Project Page: Meme Game]
+		[link{rel="stylesheet" type="text/css"}@project.css ]
+		[meta{charset="utf-8"}])
+	]
+	[body
+		[h1 Meme Game]
+		[h2 Legend]
+		[ul
+		]
+		[h2#Motivation Stupid Concepts, 100% Effort]
+		[p
+			From the start of my SDL2 career I've started projects themed around things I find silly, like both the overtly edgy games I made [a@https://gamejolt.com/games/minion-killer/79776 killing minions] or [a@https://gamejolt.com/games/dad-slayer-six/166188 a wave-based dad shooter].
+			I used these themes to build tests I would be satisfied with, rather than trying to make some sort of magnum opus while learning SDL2's features or a new C++ concept.
+			I do genuinely like what I've made from a programming perspective, but I can't say I'm proud of these projects thematically.
+		]
+		[p
+			When I attempted a serious project title to be determined, I was, and still am re-writing so much code due to style or fundamentals being wrong it's tough to keep going.
+			Where in a test/stupid project I'd just drop it at that point, take what I learned and attempt to apply it better next time.
+			Making it a miracle I uploaded [a@http://gamejolt.com/@gertkeno/games four games].
+		]
+		[p Anyways on to Meme Game specifically.]
+
+		[br])
+		[h2#Goals The Plan And Why]
+		[p
+			I wanted to make a boss fight centered game, it seemed like a good genre to code a lot of specific, odd, and unique actions.
+			I knew from my previous project, title to be determined, making art for games sucks. I wanted to do 90% code, 10% art.
+			Doing so little of my own art would be tough for an original and creative project, at least without hiring a dedicated artist.
+		]
+		[p
+			Luckily I'm part of a community full of artists that to some degree appreciate specific memes, instead of paying them what little money I don't have, I could just pull stuff from the internet.
+			By pandering to this community I'm almost guaranteed some kind of audience, thus two problems solved in one decision.
+			So now we have a genre I really enjoy, the best possible theme for a silly game, and an audience I love.
+		]
+		[p
+			I start making the game with Asteroids/LUFTRAUSERS movement and a basic hit/hurt circle system. Simple sine of angle and radius checks, tried and true stuff.
+		]
+	]
+]
+*https://twitter.com/MakinBaconBot
