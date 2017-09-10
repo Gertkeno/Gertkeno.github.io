@@ -10,7 +10,8 @@
 [div#main
 	[h1 Welcome!]
 	[p Hey, this is Gert. Welcome to my website.]
-	[p If you're here for business you're probably looking for my [a@resume.htm resume].]
+	*[p If you're here for business you're probably looking for my [a@resume.htm resume].]
+	[p If you're here on business you should probably check out my blogged projects below.]
 	[p If you want me to program something, practically anything, Email me at [a@mailto:gthkeno@gmail.com gthkeno@gmail.com]]
 	[p Currently I'm working on [a@https://bitbucket.org/Gertkeno/meme-game-23d Meme Game 2: 3D], I need 3D meshes though, as I'm no artist.]
 	*[p Side project is [a@https://bitbucket.org/Gertkeno/dropkick-billionaire Dropkick Billionaire], close to abandoning it since fighting games are hard.]
