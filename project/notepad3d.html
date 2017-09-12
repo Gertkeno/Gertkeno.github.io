@@ -18,11 +18,11 @@
 		<h2 id="Preamble">The Illegible Text Editor</h2>
 		<p>Let's just start this one with an example.</p>
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/2uXGnX5MTKs?rel=0" frameborder="0" allowfullscreen></iframe>
-		<p>You might ask for my motivation, and I do have half a good reason for doing this. Good half: there's a great streamer on twitch called <a href="https://www.twitch.tv/kitboga">Kitboga</a>, they call tech support scammers and attempts to waste their time.</p>
+		<p>You might ask for my motivation, and I do have half a good reason for doing this. There's a great streamer on twitch called <a href="https://www.twitch.tv/kitboga">Kitboga</a>, they call tech support scammers and attempts to waste their time.</p>
 		<p>On good days the scammers will attempt to use some of windows pre-packaged programs to lock up Kitboga's computer.</p>
 		<iframe src="https://clips.twitch.tv/embed?clip=ClumsySpookyLardOMGScoots&autoplay=false&tt_medium=clips_embed" width="640" height="360" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
 		<p>Now if you have a keen eye, good knowledge of how self destructive windows is, and watched the above clip you'll see the <a href="https://en.wikipedia.org/wiki/Syskey#Malicious_use">syskey</a> program was intentionally replaced with a gag program.</p>
-		<p>What I set out to do was create a <i>"reasonable"</i> replacement for the notorious Windows text editor. For the bad half: Shortly into the project I found out his virtual machine doesn't support my favorite OpenGL 3.2</p>
+		<p>What I set out to do was create a <i>"reasonable"</i> replacement for the notorious Windows text editor. Shortly into the project I found out his virtual machine doesn't support my favorite OpenGL 3.2</p>
 		<p>Pushing forward I decided it would still be a good test of compiling all my assets into the executable. Normally I'd use the <b>xxd -i</b> command to convert the binary data of a file to a C compile-able form, but if all my 3D files are in <a href="https://en.wikipedia.org/wiki/Wavefront_.obj_file#File_format">Wavefront Obj</a> format I figure making a specialized program would help.</p>
 		<p>Thus my second gert prefixed project was born <a href="https://github.com/Gertkeno/gert-wavefrontc">gert-wavefrontc</a>, this skipped the run-time file parsing part of loading a 3D mesh. Basics of how it works is Wavefront happens to already be a close to compilable data format, just replace <b>v</b> with <b>float vertex[]</b>, <b>vt</b> with <b>float textureUV[]</b>, etc. It's very close to simple character swaps.</p>
 		<br>
