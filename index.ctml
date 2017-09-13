@@ -41,6 +41,7 @@
 	[div.sect
 		[h3 Blogged Projects]
 		[ul
+			[li [a@project/memegame.html Meme Game]]
 			[li another markup language [a@project/gert-ctml.html gert-ctml]]
 			[li [a@project/notepad3d.html Notepad but in 3D] and also worse]
 		]
