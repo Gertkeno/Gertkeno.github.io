@@ -68,6 +68,7 @@
 			[li [a@https://css-tricks.com/examples/hrs/ Simple hr styles]]
 			[li [a@https://stackoverflow.com/a/11814544 Use xxd -i to compile images]]
 			[li [a@http://magnum.graphics/ magnum graphics library]]
+			[li [a@https://tools.ietf.org/html/rfc2616 HTTP rfc]]
 		]
 	]
 	[div.sect
