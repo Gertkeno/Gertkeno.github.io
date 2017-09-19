@@ -41,9 +41,9 @@
 	[div.sect
 		[h3 Blogged Projects]
 		[ul
-			[li [a@project/memegame.html Meme Game]]
-			[li another markup language [a@project/gert-ctml.html gert-ctml]]
-			[li [a@project/notepad3d.html Notepad but in 3D] and also worse]
+			[li [a@project/memegame/ Meme Game]]
+			[li another markup language [a@project/gert-ctml/ gert-ctml]]
+			[li [a@project/notepad3D/ Notepad but in 3D] and also worse]
 		]
 	]
 	[div.sect
@@ -95,7 +95,8 @@
 	[div.sect
 		[h3 Good Projects]
 		[ul
-			[li [a@panoot.html Panoots fan page]]
+			[li [a@https://github.com/masonhale/Starfighter-Gosu-Tutorial Gosu Star fighter game], Dad helped make this when I was 12]
+			[li [a@panoot Panoots fan page]]
 			[li html, css, and javascript from [a@http://reecefish.com Reece's website]]
 		]
 	]

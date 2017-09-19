@@ -2,7 +2,7 @@
 [html
 	[head
 		[title Project Page: gert-ctml]
-		[link{rel="stylesheet" type="text/css"}@project.css ]
+		[link{rel="stylesheet" type="text/css"}@../project.css ]
 		[meta{charset="utf-8"}])
 	]
 	[body

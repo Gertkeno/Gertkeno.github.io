@@ -1,29 +1,24 @@
-<!-- Made with gert-ctml version#0.4.8 -->
-<!DOCTYPE html>
+<!-- Made with gert-ctml version#1.0.0 -->
 <html>
 	<head>
 		<title>Panoots</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="panoot.css">
-		<link rel="icon" href="picon.png">
+		<link href="panoot.css" rel="stylesheet" type="text/css">
+		<link href="picon.png" rel="icon">
 	</head>
 	<body onload="full_draw()"><!--could do onresize="full()" here but that draws too much-->
 		<div id="banner">
 			<canvas id="bancan"></canvas>
-			<center><img onclick="full_draw()" src="panootBanner.png"></center>
+			<center><img src="panootBanner.png" onclick="full_draw()"></center>
 		</div>
 		<div id="social">
 			<div id="legend">
-				<a target="socdis" href="https://www.youtube.com/embed/videoseries?list=PLRb3svdIuEUYnKQREt4yQFMa1fVlr4hkO">
+				<a href="https://www.youtube.com/embed/videoseries?list=PLRb3svdIuEUYnKQREt4yQFMa1fVlr4hkO" target="socdis">
 					<h2>Youtube <span>&rarr;</span></h2></a>
-				<a target="socdis" href="https://player.twitch.tv/?channel=mikepanoots">
+				<a href="https://player.twitch.tv/?channel=mikepanoots" target="socdis">
 					<h2>Twitch <span>&rarr;</span></h2></a>
-				<a target="socdis" href="http://panoots.tumblr.com/">
+				<a href="http://panoots.tumblr.com/" target="socdis">
 					<h2>Tumblr <span>&rarr;</span></h2></a>
-				<a target="socdis" href="panoot.html">
-					<h2>Website <span>&rarr;</span></h2></a>
-				<a target="socdis" href="gallery.html">
-					<h2>Gallery <span>&rarr;</span></h2></a>
 				<hr>
 				<a href="https://twitter.com/MikePanoots">
 					<h2>Twitter <span>&#x1f517;</span></h2></a>
@@ -39,7 +34,7 @@
 					<h2>Tumblr <span>&#x1f517;</span></h2></a>
 			</div>
 			<div id="display">
-				<iframe name="socdis" src="https://www.youtube.com/embed/videoseries?list=PLRb3svdIuEUYnKQREt4yQFMa1fVlr4hkO"></iframe>
+				<iframe src="https://www.youtube.com/embed/videoseries?list=PLRb3svdIuEUYnKQREt4yQFMa1fVlr4hkO" name="socdis"></iframe>
 			</div>
 		</div>
 

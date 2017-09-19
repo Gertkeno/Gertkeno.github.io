@@ -18,10 +18,6 @@
 					[h2 Twitch [span &rarr;]]]
 				[a{target="socdis"}@http://panoots.tumblr.com/ 
 					[h2 Tumblr [span &rarr;]]]
-				[a{target="socdis"}@panoot.html
-					[h2 Website [span &rarr;]]]
-				[a{target="socdis"}@gallery.html
-					[h2 Gallery [span &rarr;]]]
 				[hr])
 				[a@https://twitter.com/MikePanoots
 					[h2 Twitter [span &#x1f517;]]]
