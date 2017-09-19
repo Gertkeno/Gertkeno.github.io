@@ -41,8 +41,8 @@
 	[div.sect
 		[h3 Blogged Projects]
 		[ul
-			[li another markup language [a@project/gert-ctml.html gert-ctml]]
-			[li [a@project/notepad3d.html Notepad but in 3D] and also worse]
+			[li another markup language [a@project/gert-ctml/ gert-ctml]]
+			[li [a@project/notepad3D/ Notepad but in 3D] and also worse]
 		]
 	]
 	[div.sect
