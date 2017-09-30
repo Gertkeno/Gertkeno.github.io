@@ -55,7 +55,11 @@
 	bulletFunction::basicShot( this );
 		</div>
 		<p>
-			By passing the projectile's <span class="code">this</span> pointer I give the ability function way more power than it needs, practically complete control over the bullet.
+			A lot of this code can be done better on a very direct level, all the timing math is a bit obtuse.
+			Literally the only useful part in showing this is the function pointer <span class="code">ability</span> takes a <span class="code">Bullet</span> pointer.
+		</p>
+		<p>
+			By passing the projectile as <span class="code">this</span> I give the ability's function way more power than it needs, practically complete control over the bullet.
 			This projectile feature was more robust than I was going to use, and made it annoying to initialize en masse.
 			Now I would rather make an enum list of different abilities and union any specific variables needed for said enum list's contents.
 		</p>
