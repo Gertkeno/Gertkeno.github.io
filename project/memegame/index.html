@@ -10,35 +10,64 @@
 		<h1>Meme Game</h1>
 		<h2>Legend</h2>
 		<ul>
+			<li><a href="#Goals">A Plan and Why</a></li>
+			<li><a href="#Boss">Boss Design</a></li>
+			<li><a href="#Final">Final Product</a></li>
 		</ul>
-		<h2 id="Motivation">Stupid Concepts, 100% Effort</h2>
-		<p>
-			From the start of my SDL2 career I've started projects themed around things I find silly, like both the overtly edgy games I made <a href="https://gamejolt.com/games/minion-killer/79776">killing minions</a> or <a href="https://gamejolt.com/games/dad-slayer-six/166188">a wave-based dad shooter</a>.
-			I used these themes to build tests I would be satisfied with, rather than trying to make some sort of magnum opus while learning SDL2's features or a new C++ concept.
-			I do genuinely like what I've made from a programming perspective, but I can't say I'm proud of these projects thematically.
-		</p>
-		<p>
-			When I attempted a serious project title to be determined, I was, and still am re-writing so much code due to style or fundamentals being wrong it's tough to keep going.
-			Where in a test/stupid project I'd just drop it at that point, take what I learned and attempt to apply it better next time.
-			Making it a miracle I uploaded <a href="http://gamejolt.com/@gertkeno/games">four games</a>.
-		</p>
-		<p>Anyways on to Meme Game specifically.</p>
-
 		<br>
-		<h2 id="Goals">The Plan And Why</h2>
+		<h2 id="Goals">A Plan and Why</h2>
 		<p>
 			I wanted to make a boss fight centered game, it seemed like a good genre to code a lot of specific, odd, and unique actions.
-			I knew from my previous project, title to be determined, making art for games sucks. I wanted to do 90% code, 10% art.
+			I knew from my previous projects making art sucks. I wanted to do 90% code, 10% art.
 			Doing so little of my own art would be tough for an original and creative project, at least without hiring a dedicated artist.
 		</p>
 		<p>
-			Luckily I'm part of a community full of artists that to some degree appreciate specific memes, instead of paying them what little money I don't have, I could just pull stuff from the internet.
+			Luckily I'm part of a community that to some degree appreciates memes, instead of art I could just pull stuff from the internet or streams.
 			By pandering to this community I'm almost guaranteed some kind of audience, thus two problems solved in one decision.
 			So now we have a genre I really enjoy, the best possible theme for a silly game, and an audience I love.
 		</p>
 		<p>
-			I start making the game with Asteroids/LUFTRAUSERS movement and a basic hit/hurt circle system. Simple sine of angle and radius checks, tried and true stuff.
+			This seemed like a good project to attempt a basic cut-scene system, add some personality and or jokes to the bosses.
+			I made my own syntax for the cut-scene actions, other than those sentinels it was just plain text files read in-game.
 		</p>
+		<p>I wrote some basic Asteroids/LUFTRAUSERS movement, filled a test intro.txt with the opening of 2003's Daredevil, and made the demo video below.</p>
+		<iframe src="https://www.youtube.com/embed/5HffS-9dZHU?rel=0&amp;showinfo=0" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+		<p>
+			I sent this video to a member of the previously mentioned community, name of <a href="https://twitter.com/MakinBaconBot">Makin Bacon Bot</a>, in attempt to start collaborating with them.
+			Thankfully Makin agreed to write the cut scenes for the game, and design the boss made after him.
+		</p>
+
+		<br>
+		<h2 id="Boss">Boss Design</h2>
+		<p>
+			I started out with FrankerZ (Dog Face no space), this boss was made to test projectiles and hurt/hit circles.
+			Movement was very basic for this boss, just a set speed in a set direction, sometimes changing either variable.
+			At this point in the project I just had a background, temporary player, and an emote from twitch, being FrankerZ.
+			I made projectiles call a function pointer every time an ability variable was timed out, with FrankerZ I used this to add LilZ bullets that spurt out six more.
+		</p>
+		<div class="code">
+	double ctTime = ( totalTime / totalAbilityCount );
+	if( ability != nullptr && ( _lifeTime - ( _abilityCount * ctTime ) > ctTime || totalAbilityCount == 0 ) )
+	{
+		ability( this );
+		_abilityCount += 1;
+	}
+	bulletFunction::basicShot( this );
+		</div>
+		<p>
+			A lot of this code can be done better on a very direct level, all the timing math is a bit obtuse.
+			Literally the only useful part in showing this is the function pointer <span class="code">ability</span> takes a <span class="code">Bullet</span> pointer.
+		</p>
+		<p>
+			By passing the projectile as <span class="code">this</span> I give the ability's function way more power than it needs, practically complete control over the bullet.
+			This projectile feature was more robust than I was going to use, and made it annoying to initialize en masse.
+			Now I would rather make an enum list of different abilities and union any specific variables needed for said enum list's contents.
+		</p>
+
+
+		<br>
+		<h2 id="Final">Final Product</h2>
+		<p>Here's the video of the intended audience playing Meme Game.</p>
+		<iframe src="https://www.youtube.com/embed/Z1RxPUxIggQ?rel=0&amp;showinfo=0&amp;start=5925" width="560" height="315" frameborder="0" allowfullscreen></iframe>
 	</body>
 </html>
-<!--https://twitter.com/MakinBaconBot-->
