@@ -8,3 +8,19 @@ body {
 	white-space: pre;
 	overflow-x: auto;
 }
+
+.right {text-align:right;}
+
+table#lister {
+	counter-reset: rowN;
+}
+
+table#lister tr > td:first-child {
+	counter-increment: rowN;
+}
+
+table#lister tr td:first-child::before {
+	content: counter( rowN );
+	min-width: 1em;
+	margin-right: 1em;
+}

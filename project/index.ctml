@@ -6,10 +6,13 @@
 		[meta{charset="utf8"}])
 	]
 	[body
-		[h1 Projects Index]
-		[p This page might not be up to date, check [a@http://gert.us gert.us] for properly blogged projects.]
-		[h1 [a@memegame Meme Game] WIP]
-		[h1 [a@notepad3D Notepad 3D]]
-		[h1 [a@gert-ctml gert-ctml]]
+		[h1 Gert's Project Index]
+		[p Sorted by pride, last update is a rough estimate depending on how lazy I am.]
+		[table#lister
+			[tr [th Project] [th Last Update]]
+			[tr [td [a@memegame Meme Game] WIP] [td.right 10/02/2017]]
+			[tr [td [a@notepad3D Notepad 3D]] [td.right 9/19/2017]]
+			[tr [td [a@gert-ctml gert-ctml]] [td.right 10/01/2017]]
+		]
 	]
 ]

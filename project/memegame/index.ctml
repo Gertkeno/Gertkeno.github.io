@@ -16,18 +16,19 @@
 		[br])
 		[h2#Goals A Plan and Why]
 		[p
+			I followed the majority of [a@http://lazyfoo.net/tutorials/SDL/index.php#Hello%20SDL Lazy Foo's SDL Tutorials] and wrote some basic classes to make SDL2 rendering easier for me.
+			After learning and building confidence with SDL2 I wanted to start one more game before switching to OpenGL.
+		]
+		[p
 			I wanted to make a boss fight centered game, it seemed like a good genre to code a lot of specific, odd, and unique actions.
 			I knew from my previous projects making art sucks. I wanted to do 90% code, 10% art.
 			Doing so little of my own art would be tough for an original and creative project, at least without hiring a dedicated artist.
-		]
-		[p
 			Luckily I'm part of a community that to some degree appreciates memes, instead of art I could just pull stuff from the internet or streams.
 			By pandering to this community I'm almost guaranteed some kind of audience, thus two problems solved in one decision.
-			So now we have a genre I really enjoy, the best possible theme for a silly game, and an audience I love.
 		]
 		[p
-			This seemed like a good project to attempt a basic cut-scene system, add some personality and or jokes to the bosses.
-			I made my own syntax for the cut-scene actions, other than those sentinels it was just plain text files read in-game.
+			For some reason I always wanted to attempt a cut-scene system, with boss rush genre in mind it would add some personality and/or jokes to the bosses.
+			I made my own syntax for the cut-scene actions, other than specific sentinels it was just plain text files read in-game.
 		]
 		[p I wrote some basic Asteroids/LUFTRAUSERS movement, filled a test intro.txt with the opening of 2003's Daredevil, and made the demo video below.]
 		[iframe{width="560" height="315" frameborder="0" allowfullscreen}$https://www.youtube.com/embed/5HffS-9dZHU?rel=0&amp;showinfo=0 ]
@@ -60,7 +61,7 @@
 		[p
 			By passing the projectile as [span.code this] I give the ability's function way more power than it needs, practically complete control over the bullet.
 			This projectile feature was more robust than I was going to use, and made it annoying to initialize en masse.
-			Now I would rather make an enum list of different abilities and union any specific variables needed for said enum list's contents.
+			Current me would rather make an enumerated list of different abilities then union any specific variables needed for said enum list's contents.
 		]
 
 
