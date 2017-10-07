@@ -3,6 +3,7 @@
 	[head
 		[title Project Page: Meme Game]
 		[link{rel="stylesheet" type="text/css"}@../project.css ]
+		[link{rel="stylesheet" type="text/css"}@meme.css ]
 		[meta{charset="utf-8"}])
 	]
 	[body
@@ -45,25 +46,42 @@
 			At this point in the project I just had a background, temporary player, and an emote from twitch, being FrankerZ.
 			I made projectiles call a function pointer every time an ability variable was timed out, with FrankerZ I used this to add LilZ bullets that spurt out six more.
 		]
-		[div.code
-	double ctTime = ( totalTime / totalAbilityCount );
-	if( ability != nullptr && ( _lifeTime - ( _abilityCount \* ctTime ) > ctTime || totalAbilityCount == 0 ) )
-	{
-		ability( this );
-		_abilityCount += 1;
-	}
-	bulletFunction::basicShot( this );
-		]
 		[p
-			A lot of this code can be done better on a very direct level, all the timing math is a bit obtuse.
-			Literally the only useful part in showing this is the function pointer [span.code ability] takes a [span.code Bullet] pointer.
-		]
-		[p
-			By passing the projectile as [span.code this] I give the ability's function way more power than it needs, practically complete control over the bullet.
-			This projectile feature was more robust than I was going to use, and made it annoying to initialize en masse.
+			This projectile feature was robust in some ways, more limited in others, and made it annoying to initialize en masse.
 			Current me would rather make an enumerated list of different abilities then union any specific variables needed for said enum list's contents.
+			Sadly at the time I didn't know how to implement unions.
+			If I made projectile functions as an enumerated list I could've made trajectory changes and timing easier for the functions.
 		]
-
+		[p
+			The whale Lonny Linda is pretty much just a individual parts test, even though it's never implemented anywhere else.
+			Since I wasn't using OpenGL I didn't have a proper way to connect the body segments, when turning the whale would split and overlap at the neck.
+			Below is how I kept the tail connected in a rope like style.
+		]
+		[table
+			[tr
+				[td.code
+	_myPoints\[ 0 \] = { (int)_xBuffer, (int)_yBuffer };
+	for( uint16_t i = 0; i < LL_MAX_POINTS - 1; i++ )
+	{
+		[span.red float pointDist = collision::distance( _myPoints\[ i \], _myPoints\[ i+1 \] );]
+		[span.green if( pointDist > LL_RADIUS\*2 )]
+		{
+			[span.yellow float diffX, diffY;
+			collision::get_normal_diffXY( _myPoints\[ i \], _myPoints\[ i+1 \], &amp;diffX, &amp;diffY );
+			_myPoints\[ i+1 \].x += diffX \* ( pointDist - LL_RADIUS\*2 );
+			_myPoints\[ i+1 \].y += diffY \* ( pointDist - LL_RADIUS\*2 );]
+		}
+	}
+				]
+				[td
+					[ol
+						[li.red get the distance between point N and N+1]
+						[li.green if it's greater than the diameter of a body segment]
+						[li.yellow add the difference of distance to point N+1 normally]
+					]
+				]
+			]
+		]
 
 		[br])
 		[h2#Final Final Product]
