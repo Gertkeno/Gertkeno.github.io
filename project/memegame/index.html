@@ -1,4 +1,4 @@
-<!-- Made with gert-ctml version#1.0.0 -->
+<!-- Made with gert-ctml version#1.1.0 -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -75,14 +75,15 @@
 	}
 				</td>
 				<td>
-					<ol>
+					<ul>
 						<li class="red">get the distance between point N and N+1</li>
 						<li class="green">if it's greater than the diameter of a body segment</li>
 						<li class="yellow">add the difference of distance to point N+1 normally</li>
-					</ol>
+					</ul>
 				</td>
 			</tr>
 		</table>
+		<p>I didn't ever change the <span class="code">get_normal_diffXY</span> function to return a point, so it relies on reference/pointers being passed.</p>
 
 		<br>
 		<h2 id="Final">Final Product</h2>
