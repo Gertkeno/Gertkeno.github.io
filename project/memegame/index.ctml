@@ -75,7 +75,7 @@
 	}
 				]
 				[td
-					[ol
+					[ul
 						[li.red get the distance between point N and N+1]
 						[li.green if it's greater than the diameter of a body segment]
 						[li.yellow add the difference of distance to point N+1 normally]
