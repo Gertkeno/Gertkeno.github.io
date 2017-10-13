@@ -10,7 +10,7 @@
 		[p Sorted by pride, last update is a rough estimate depending on how lazy I am.]
 		[table#lister
 			[tr [th Project] [th Last Update]]
-			[tr [td [a@memegame Meme Game] WIP] [td.right 10/02/2017]]
+			[tr [td [a@memegame Meme Game]] [td.right 10/13/2017]]
 			[tr [td [a@notepad3D Notepad 3D]] [td.right 9/19/2017]]
 			[tr [td [a@gert-ctml gert-ctml]] [td.right 10/01/2017]]
 		]
