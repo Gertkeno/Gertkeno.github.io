@@ -6,13 +6,12 @@
 		[meta{charset="utf8"}])
 	]
 	[body
-		[h1 Gert's Project Index]
-		[p Sorted by pride, last update is a rough estimate depending on how lazy I am.]
-		[table#lister
-			[tr [th Project] [th Last Update]]
-			[tr [td [a@memegame Meme Game]] [td.right 10/13/2017]]
-			[tr [td [a@notepad3D Notepad 3D]] [td.right 9/19/2017]]
-			[tr [td [a@gert-ctml gert-ctml]] [td.right 10/01/2017]]
+		[h1 Gert's Blog Index]
+		[p This might not be up to date.]
+		[ul
+			[li [a@memegame Meme Game]]
+			[li [a@notepad3D Notepad 3D]]
+			[li [a@gert-ctml gert-ctml]]
 		]
 	]
 ]

@@ -39,7 +39,7 @@
 		]
 	]
 	[div.sect
-		[h3 Blogged Projects]
+		[h3 Blog]
 		[ul
 			[li [a@project/memegame/ Meme Game]]
 			[li another markup language [a@project/gert-ctml/ gert-ctml]]
@@ -59,6 +59,7 @@
 			[li [a@http://www.dyn4j.org/2010/01/sat/ Separating Axis Theorem (Collision Detection)]]
 			[li [a@http://mosra.cz/blog/magnum-doc/getting-started.html Magnum Documentation]]
 			[li [a@http://www.sdltutorials.com/sdl-tip-sdl-surface-to-opengl-texture SDL Surface to GL Texture Tip]]
+			[li [a@http://bulletphysics.org/wordpress/ bullet Physics library]]
 			[li [a@https://github.com/RandyGaul/qu3e qu3e Physics Engine]]
 			[li [a@http://lazyfoo.net/tutorials/OpenGL/index.php#Hello%20GLSL Lazy Foo OpenGL Tutorials]]
 			[li [a@http://ogldev.atspace.co.uk/ ogldev OpenGL Tutorials]]
@@ -67,7 +68,6 @@
 			[li [a@https://www.khronos.org/opengl/wiki/Skeletal_Animation OpenGL Skeletal Animation]]
 			[li [a@http://stackoverflow.com/a/4865249 Linking Static Resources]]
 			[li [a@https://css-tricks.com/examples/hrs/ Simple hr styles]]
-			[li [a@https://stackoverflow.com/a/11814544 Use xxd -i to compile images]]
 			[li [a@http://magnum.graphics/ magnum graphics library]]
 			[li [a@https://tools.ietf.org/html/rfc2616 HTTP rfc]]
 			[li [a@https://websitesetup.org/html5-cheat-sheet/ HTML5 cheat sheet]]
