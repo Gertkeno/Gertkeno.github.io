@@ -101,7 +101,7 @@
 		]
 		[p
 			The camera zoomed in/out directly based on distance from player to a special point the boss held.
-			The other half of this system would only move the camera if either the boss or player moved out of the view.
+			This system would only move the camera if either the boss or player moved out of the zoomed view.
 		]
 
 		[br])
