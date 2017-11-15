@@ -105,13 +105,15 @@
 		]
 		[p
 			Having a nice thruster effect wasn't straight forward with just SDL2, I knew how I would've liked to do it in GL but I didn't know how to implement GL at the time.
-			I eneded up adding these little red particles [img$https://bytebucket.org/Gertkeno/meme-game/raw/0e9049c93db96ef03d324961676a9b3a3cdac5a7/assets/ember.png ]) all over the ship when moving.
+			I ended up adding these little red particles [img$https://bytebucket.org/Gertkeno/meme-game/raw/0e9049c93db96ef03d324961676a9b3a3cdac5a7/assets/ember.png ]) all over the ship when moving.
 			I liked this system enough to give Makin the same sort draw effect, but with a crazy twist by making it blue instead of red.
 		]
 
 		[br])
 		[h2#Final Final Product]
 		[p Here's the video of the intended audience playing Meme Game.]
+		[p I'm happy with how it turned out front-end. I've started the sequel since writing this, obviously with projects like these learning is the main goal so I'm much happier with part 2's code so far.]
+		[p It was great to make a game for and with a community, even if they just wrote their name in the credits I'm happy they're a part of it.]
 		[iframe{width="560" height="315" frameborder="0" allowfullscreen}$https://www.youtube.com/embed/Z1RxPUxIggQ?rel=0&amp;showinfo=0&amp;start=5925 ]
 		[p And here the [a@https://gamejolt.com/games/meme-game/163369 link to the game on GameJolt.]]
 	]
