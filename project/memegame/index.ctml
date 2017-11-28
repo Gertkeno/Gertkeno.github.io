@@ -12,8 +12,8 @@
 		[ul
 			[li [a@#Goals A Plan and Why]]
 			[li [a@#Boss Boss Design]]
-			[li [a@#Final Final Product]]
 			[li [a@#Player Making The Ship]]
+			[li [a@#Final Final Product]]
 		]
 		[br])
 		[h2#Goals A Plan and Why]
@@ -105,7 +105,7 @@
 		]
 		[p
 			Having a nice thruster effect wasn't straight forward with just SDL2, I knew how I would've liked to do it in GL but I didn't know how to implement GL at the time.
-			I ended up adding these little red particles [img$https://bytebucket.org/Gertkeno/meme-game/raw/0e9049c93db96ef03d324961676a9b3a3cdac5a7/assets/ember.png ]) all over the ship when moving.
+			I ended up adding these little red particles [img{style="height:1em;"}$https://bytebucket.org/Gertkeno/meme-game/raw/0e9049c93db96ef03d324961676a9b3a3cdac5a7/assets/ember.png ]) all over the ship when moving.
 			I liked this system enough to give Makin the same sort draw effect, but with a crazy twist by making it blue instead of red.
 		]
 
