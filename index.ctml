@@ -18,24 +18,15 @@
 	[div
 		[h3 Social Links]
 		[div.social
-			[a@mailto:gthkeno@gmail.com
-				[i{aria-hidden="true"}.fa.fa-envelope]]
-			[a@https://steamcommunity.com/id/gertman
-				[i{aria-hidden="true"}.fa.fa-steam]]
-			[a@https://twitter.com/gertkeno
-				[i{aria-hidden="true"}.fa.fa-twitter]]
-			[a@https://bitbucket.org/Gertkeno/
-				[i{aria-hidden="true"}.fa.fa-bitbucket]]
-			[a@https://github.com/Gertkeno
-				[i{aria-hidden="true"}.fa.fa-github]]
-			[a@https://www.twitch.tv/gert_h
-				[i{aria-hidden="true"}.fa.fa-twitch]]
-			[a@https://www.youtube.com/user/cptgthkeno/videos
-				[i{aria-hidden="true"}.fa.fa-youtube]]
-			[a@http://gamejolt.com/@gertkeno/games
-				[i{aria-hidden="true"}.fa.fa-bolt]]
-			[a@https://www.linkedin.com/in/garrett-hale-43b907b9/
-				[i{aria-hidden="true"}.fa.fa-linkedin]]
+			[a@mailto:gthkeno@gmail.com [i{aria-hidden="true"}.fa.fa-envelope]]
+			[a@https://steamcommunity.com/id/gertman [i{aria-hidden="true"}.fa.fa-steam]]
+			[a@https://twitter.com/gertkeno [i{aria-hidden="true"}.fa.fa-twitter]]
+			[a@https://bitbucket.org/Gertkeno/ [i{aria-hidden="true"}.fa.fa-bitbucket]]
+			[a@https://github.com/Gertkeno [i{aria-hidden="true"}.fa.fa-github]]
+			[a@https://www.twitch.tv/gert_h [i{aria-hidden="true"}.fa.fa-twitch]]
+			[a@https://www.youtube.com/user/cptgthkeno/videos [i{aria-hidden="true"}.fa.fa-youtube]]
+			[a@http://gamejolt.com/@gertkeno/games [i{aria-hidden="true"}.fa.fa-bolt]]
+			[a@https://www.linkedin.com/in/garrett-hale-43b907b9/ [i{aria-hidden="true"}.fa.fa-linkedin]]
 		]
 	]
 	[div.sect
@@ -73,6 +64,7 @@
 			[li [a@https://websitesetup.org/html5-cheat-sheet/ HTML5 cheat sheet]]
 			[li [a@https://www.jetbrains.com/help/clion/quick-cmake-tutorial.html Quick CMake Tutorial]]
 			[li [a@https://google.github.io/styleguide/cppguide.html Google C++ Style Guide]]
+			[li [a@http://think-async.com/Asio/asio-1.10.6/doc/index.html Asio Docs]]
 		]
 	]
 	[div.sect
