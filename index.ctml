@@ -10,8 +10,8 @@
 [div#main
 	[h1 Welcome!]
 	[p Hey, this is Gert. Welcome to my website.]
-	*[p If you're here for business you're probably looking for my [a@resume.htm resume].]
-	[p If you're here on business you should probably check out my [a@project/ blogged projects] below, and my [a@resume.htm resume.]]
+	*[p If you're here for business you're probably looking for my [a@resume/ resume].]
+	[p If you're here on business you should probably check out my [a@project/ blogged projects] below, and my [a@resume/ resume.]]
 	[p If you want me to program something, practically anything, Email me at [a@mailto:gthkeno@gmail.com gthkeno@gmail.com]]
 	[p Kind of making a game, [a@https://bitbucket.org/Gertkeno/snowgame17 Title to be determined], probably about descending into crevasses. I don't like making levels though.]
 	[p Currently I'm working on [a@https://bitbucket.org/Gertkeno/meme-game-23d Meme Game 2: 3D], I need 3D meshes though, as I'm no artist.]
