@@ -35,6 +35,7 @@ h1 {
 	.sect {
 		display: inline-table;
 		margin-right: 1em;
+		width: calc(50% - 2em);
 	}
 
 	.social i {
