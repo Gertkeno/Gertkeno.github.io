@@ -5,18 +5,14 @@
 		[link{rel="stylesheet" type="text/css"}@../project.css ]
 		[link{rel="stylesheet" type="text/css"}@meme.css ]
 		[meta{charset="utf-8"}])
+		[script$../legendary.js ]
 	]
-	[body
+	[body{onload="add_legend_entries()"}
 		[h1 Meme Game]
 		[h2 Legend]
-		[ul
-			[li [a@#Goals A Plan and Why]]
-			[li [a@#Boss Boss Design]]
-			[li [a@#Player Making The Ship]]
-			[li [a@#Final Final Product]]
-		]
+		[ul#legend ]
 		[br])
-		[h2#Goals A Plan and Why]
+		[h2.chapter#Goals A Plan and Why]
 		[p
 			I followed the majority of [a@http://lazyfoo.net/tutorials/SDL/index.php#Hello%20SDL Lazy Foo's SDL Tutorials] and wrote some basic classes to make SDL2 rendering easier for me.
 			After learning and building confidence with SDL2 I wanted to start one more game before switching to OpenGL.
@@ -40,7 +36,7 @@
 		]
 
 		[br])
-		[h2#Boss Boss Design]
+		[h2.chapter#Boss Boss Design]
 		[p
 			I started out with FrankerZ (Dog Face no space), this boss was made to test projectiles and hurt/hit circles.
 			Movement was very basic for this boss, just a set speed in a set direction, sometimes changing either variable.
@@ -89,7 +85,7 @@
 		]
 
 		[br])
-		[h2#Player Making The Ship]
+		[h2.chapter#Player Making The Ship]
 		[p
 			I wanted to copy LUFTRAUSERS' movement, so I did but without the gravity part.
 			It ended up drifting around a lot more than I'd like so I added a system for special actions, with that a hard stop action.
@@ -110,7 +106,7 @@
 		]
 
 		[br])
-		[h2#Final Final Product]
+		[h2.chapter#Final Final Product]
 		[p Here's the video of the intended audience playing Meme Game.]
 		[p I'm happy with how it turned out front-end. I've started the sequel since writing this, obviously with projects like these learning is the main goal so I'm much happier with part 2's code so far.]
 		[p It was great to make a game for and with a community, even if they just wrote their name in the credits I'm happy they're a part of it.]

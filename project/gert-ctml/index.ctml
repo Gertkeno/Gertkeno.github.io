@@ -4,17 +4,13 @@
 		[title Project Page: gert-ctml]
 		[link{rel="stylesheet" type="text/css"}@../project.css ]
 		[meta{charset="utf-8"}])
+		[script$../legendary.js ]
 	]
-	[body
+	[body{onload="add_legend_entries()"}
 		[h1 gert-ctml]
 		[h2 Legend]
-		[ul
-			[li [a@#Simple A Simple Html Converter]]
-			[li [a@#Quick-Attributes Quick Attributes]]
-			[li [a@#Comments Comments]]
-			[li [a@#This This Page &amp; Downloads]]
-		]
-		[h2#Simple A Simple Html Converter]
+		[ul#legend ]
+		[h2.chapter#Simple A Simple Html Converter]
 		[p My inspiration for this project was [a@http://haml.info/ HAML], I liked the automatic end tags and generally cleaner looking code.]
 		[p Unfortunately all the ruby related features didn't appeal to me, and simply adding odd attributes was harder than just using HTML.]
 		[p I just wanted to make static websites easier to code. So I started with redefining tags.]
@@ -29,7 +25,7 @@
 		[p What happened with the [b \[a@...] tag though? I guess this requires a expertly crafted transitional question.]
 
 		[br])
-		[h2#Quick-Attributes Quick Attributes]
+		[h2.chapter#Quick-Attributes Quick Attributes]
 		[p With tags in place I needed a way to add attributes, starting with the obvious classes and ids I copied straight from HAML. If you added a dot or octothorpe it will append the specified class or id attribute.]
 		[p Take the previous example as an example.]
 		[div.code
@@ -70,7 +66,7 @@
 		[p That's probably more than enough about these five shortcuts and their interactions, so I'll move on to less useful, more back-end stuff.]
 
 		[br])
-		[h2#Comments Comments]
+		[h2.chapter#Comments Comments]
 		[p Pretty basic stuff for this, I just check for a [b \*] and append the usual HTML comment syntax &#60;!-- and then the rest of the line --&#62;]
 		[p I initially didn't include the comments in the final HTML file since HTML comments could be written directly. It's now a command line argument, if you want gert-ctml comments removed include -s when running]
 		[p Sadly I don't care about multi-line comments in HTML, nor do I care about parsing comments so it's contents is in HTML.]
@@ -95,7 +91,7 @@
 		[p This is kind of difficult to show off, but if you really want to look through character escapes check the links below.]
 
 		[br])
-		[h2#This This Page &amp; Downloads]
+		[h2.chapter#This This Page &amp; Downloads]
 		[p If you want to see the gert-ctml code for this page [a@gert-ctml.ctml click here]]
 		[p The git repo for this project is located [a@https://github.com/Gertkeno/gert-ctml on GitHub], building it requires your typical C++ compiler.]
 	]

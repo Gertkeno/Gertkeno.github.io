@@ -6,18 +6,14 @@
 		<link href="../project.css" rel="stylesheet" type="text/css"></link>
 		<link href="meme.css" rel="stylesheet" type="text/css"></link>
 		<meta charset="utf-8">
+		<script src="../legendary.js"></script>
 	</head>
-	<body>
+	<body onload="add_legend_entries()">
 		<h1>Meme Game</h1>
 		<h2>Legend</h2>
-		<ul>
-			<li><a href="#Goals">A Plan and Why</a></li>
-			<li><a href="#Boss">Boss Design</a></li>
-			<li><a href="#Player">Making The Ship</a></li>
-			<li><a href="#Final">Final Product</a></li>
-		</ul>
+		<ul id="legend"></ul>
 		<br>
-		<h2 id="Goals">A Plan and Why</h2>
+		<h2 id="Goals" class="chapter">A Plan and Why</h2>
 		<p>
 			I followed the majority of <a href="http://lazyfoo.net/tutorials/SDL/index.php#Hello%20SDL">Lazy Foo's SDL Tutorials</a> and wrote some basic classes to make SDL2 rendering easier for me.
 			After learning and building confidence with SDL2 I wanted to start one more game before switching to OpenGL.
@@ -41,7 +37,7 @@
 		</p>
 
 		<br>
-		<h2 id="Boss">Boss Design</h2>
+		<h2 id="Boss" class="chapter">Boss Design</h2>
 		<p>
 			I started out with FrankerZ (Dog Face no space), this boss was made to test projectiles and hurt/hit circles.
 			Movement was very basic for this boss, just a set speed in a set direction, sometimes changing either variable.
@@ -90,7 +86,7 @@
 		</p>
 
 		<br>
-		<h2 id="Player">Making The Ship</h2>
+		<h2 id="Player" class="chapter">Making The Ship</h2>
 		<p>
 			I wanted to copy LUFTRAUSERS' movement, so I did but without the gravity part.
 			It ended up drifting around a lot more than I'd like so I added a system for special actions, with that a hard stop action.
@@ -111,7 +107,7 @@
 		</p>
 
 		<br>
-		<h2 id="Final">Final Product</h2>
+		<h2 id="Final" class="chapter">Final Product</h2>
 		<p>Here's the video of the intended audience playing Meme Game.</p>
 		<p>I'm happy with how it turned out front-end. I've started the sequel since writing this, obviously with projects like these learning is the main goal so I'm much happier with part 2's code so far.</p>
 		<p>It was great to make a game for and with a community, even if they just wrote their name in the credits I'm happy they're a part of it.</p>

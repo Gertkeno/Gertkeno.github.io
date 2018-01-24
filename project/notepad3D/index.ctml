@@ -4,17 +4,13 @@
 		[title Project Page: Notepad 3D]
 		[link{rel="stylesheet" type="text/css"}@../project.css ])
 		[meta{charset="utf-8"}])
+		[script$../legendary.js ]
 	]
-	[body
+	[body{onload="add_legend_entries()"}
 		[h1 Notepad 3D]
 		[h2 Legend]
-		[ul
-			[li [a@#Preamble The Illegible Text Editor]]
-			[li [a@#Making-of Making A Text Editor]]
-			[li [a@#Meshes The Alphabet 3D]]
-			[li [a@#Downloads Downloads &amp; Plans]]
-		]
-		[h2#Preamble The Illegible Text Editor]
+		[ul#legend ]
+		[h2.chapter#Preamble The Illegible Text Editor]
 		[p Let's just start this one with an example.]
 		[iframe{width="560" height="315" src="https://www.youtube.com/embed/2uXGnX5MTKs?rel=0" frameborder="0" allowfullscreen}]
 		[p You might ask for my motivation, and I do have half a good reason for doing this. There's a great streamer on twitch called [a@https://www.twitch.tv/kitboga Kitboga], they call tech support scammers and attempts to waste their time.]
@@ -25,7 +21,7 @@
 		[p Pushing forward I decided it would still be a good test of compiling all my assets into the executable. Normally I'd use the [b xxd -i] command to convert the binary data of a file to a C compile-able form, but if all my 3D files are in [a@https://en.wikipedia.org/wiki/Wavefront_.obj_file#File_format Wavefront Obj] format I figure making a specialized program would help.]
 		[p Thus my second gert prefixed project was born [a@https://github.com/Gertkeno/gert-wavefrontc gert-wavefrontc], this skipped the run-time file parsing part of loading a 3D mesh. Basics of how it works is Wavefront happens to already be a close to compilable data format, just replace [b v] with [b float vertex\[\]], [b vt] with [b float textureUV\[\]], etc. It's very close to simple character swaps.]
 		[br])
-		[h2#Making-of Making A Text Editor]
+		[h2.chapter#Making-of Making A Text Editor]
 		[p Turns out making notepad isn't too hard to do in two days. I started out with a single [span.code std::string] for each document and just loaded them with data from command line argument specified files.]
 		[p After loading files SDL2 makes it easy to append and remove text. The union SDL_Event allows for simple code like [span.code document += event.text.text] where [span.code document] is a std::string and [span.code event] is of type SDL_Event.]
 		[p Absolute basics are covered: append text, delete text, all you literally [i need] right? However I wanted to make some odd function calls available on the keyboard, SDL2 once again coming to the rescue lets this long, expandable chain of if statements do what ever I'd like them to.]
@@ -66,7 +62,7 @@
 		[p Now if I tried to add file saving I'd have to make some kind of temporary text to get a filename, which would only be difficult due to adding a "Document write" mode and a "Filename write" mode. I'd have to split my draw function, and text capture function into two parts.]
 		[p Modal programming isn't always hard, this case wouldn't be either, but I know I'd try to make a more robust system than is needed for a intentionally bad project. I still had to make all the 3D models and render them, so I felt like focusing on getting that done.]
 		[br])
-		[h2#Meshes The Alphabet 3D]
+		[h2.chapter#Meshes The Alphabet 3D]
 		[table
 			[tr
 				[td [iframe{width="270" height="415" src="https://www.youtube.com/embed/64JDEpR1RyA?rel=0" frameborder="0" allowfullscreen}]]
@@ -81,7 +77,7 @@
 		[p Since I need more data to do 3D characters I switch from [span.code std::string] per document to a [span.code std::vector] of my custom class. The custom character class just needs variables to make it spin. Giving it two floats for animation timing and animation speed, and a vector axis to spin on.]
 		[p Eventually I turned the background white to match classic notepad with the regular [span.code glClearColor()] and [span.code glClear()] functions.]
 		[br])
-		[h2#Downloads Downloads &amp; Plans]
+		[h2.chapter#Downloads Downloads &amp; Plans]
 		[p [a@https://bitbucket.org/Gertkeno/notepad3d/downloads/ Downloads hosted on BitBucket]]
 		[p [s If you intend to actually use this to edit and save files wait for major release 1. More likely if you just want to view a file in the worst way possible go ahead and pick the highest release candidate, marked notepad3d_rc#.zip]]
 		[p Major 1 is out, saving and opening files is here.]

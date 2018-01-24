@@ -5,17 +5,13 @@
 		<title>Project Page: gert-ctml</title>
 		<link href="../project.css" rel="stylesheet" type="text/css"></link>
 		<meta charset="utf-8">
+		<script src="../legendary.js"></script>
 	</head>
-	<body>
+	<body onload="add_legend_entries()">
 		<h1>gert-ctml</h1>
 		<h2>Legend</h2>
-		<ul>
-			<li><a href="#Simple">A Simple Html Converter</a></li>
-			<li><a href="#Quick-Attributes">Quick Attributes</a></li>
-			<li><a href="#Comments">Comments</a></li>
-			<li><a href="#This">This Page &amp; Downloads</a></li>
-		</ul>
-		<h2 id="Simple">A Simple Html Converter</h2>
+		<ul id="legend"></ul>
+		<h2 id="Simple" class="chapter">A Simple Html Converter</h2>
 		<p>My inspiration for this project was <a href="http://haml.info/">HAML</a>, I liked the automatic end tags and generally cleaner looking code.</p>
 		<p>Unfortunately all the ruby related features didn't appeal to me, and simply adding odd attributes was harder than just using HTML.</p>
 		<p>I just wanted to make static websites easier to code. So I started with redefining tags.</p>
@@ -30,7 +26,7 @@
 		<p>What happened with the <b>[a@...</b> tag though? I guess this requires a expertly crafted transitional question.</p>
 
 		<br>
-		<h2 id="Quick-Attributes">Quick Attributes</h2>
+		<h2 id="Quick-Attributes" class="chapter">Quick Attributes</h2>
 		<p>With tags in place I needed a way to add attributes, starting with the obvious classes and ids I copied straight from HAML. If you added a dot or octothorpe it will append the specified class or id attribute.</p>
 		<p>Take the previous example as an example.</p>
 		<div class="code">
@@ -71,7 +67,7 @@
 		<p>That's probably more than enough about these five shortcuts and their interactions, so I'll move on to less useful, more back-end stuff.</p>
 
 		<br>
-		<h2 id="Comments">Comments</h2>
+		<h2 id="Comments" class="chapter">Comments</h2>
 		<p>Pretty basic stuff for this, I just check for a <b>*</b> and append the usual HTML comment syntax &#60;!-- and then the rest of the line --&#62;</p>
 		<p>I initially didn't include the comments in the final HTML file since HTML comments could be written directly. It's now a command line argument, if you want gert-ctml comments removed include -s when running</p>
 		<p>Sadly I don't care about multi-line comments in HTML, nor do I care about parsing comments so it's contents is in HTML.</p>
@@ -96,7 +92,7 @@
 		<p>This is kind of difficult to show off, but if you really want to look through character escapes check the links below.</p>
 
 		<br>
-		<h2 id="This">This Page &amp; Downloads</h2>
+		<h2 id="This" class="chapter">This Page &amp; Downloads</h2>
 		<p>If you want to see the gert-ctml code for this page <a href="gert-ctml.ctml">click here</a></p>
 		<p>The git repo for this project is located <a href="https://github.com/Gertkeno/gert-ctml">on GitHub</a>, building it requires your typical C++ compiler.</p>
 	</body>
