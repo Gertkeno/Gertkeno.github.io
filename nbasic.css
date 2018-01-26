@@ -32,10 +32,14 @@ h1 {
 		box-shadow: 0 0 7px 7px #FFF;
 	}
 
-	.sect {
-		display: inline-table;
-		margin-right: 1em;
-		width: calc(50% - 2em);
+	div#sections {
+		display: flex;
+		flex-flow: column wrap;
+		height: 100vh;
+	}
+
+	#sections > div {
+		max-width: 50%;
 	}
 
 	.social i {
