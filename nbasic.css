@@ -33,13 +33,12 @@ h1 {
 	}
 
 	div#sections {
-		display: flex;
-		flex-flow: column wrap;
-		height: 100vh;
+		column-count: 2;
 	}
 
-	#sections > div {
-		max-width: 50%;
+	div#sections > div {
+		display: inline-block;
+		width: 100%;
 	}
 
 	.social i {
