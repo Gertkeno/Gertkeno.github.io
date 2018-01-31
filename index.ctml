@@ -7,7 +7,6 @@
 	[link{rel="stylesheet"}@https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ])
 ]
 [body
-[div#main
 	[h1 Welcome!]
 	[p Hey, this is Gert. Welcome to my website.]
 	[p If you're here on business you should probably check out my [a@project/ blogged projects] below, and my [a@resume/ resume.]]
@@ -99,6 +98,5 @@
 			]
 		]
 	]
-]*div#main
 ]*body
 ]*html

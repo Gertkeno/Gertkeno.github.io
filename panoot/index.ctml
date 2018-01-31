@@ -16,7 +16,7 @@
 					[h2 Youtube [span &rarr;]]]
 				[a{target="socdis"}@https://player.twitch.tv/?channel=mikepanoots
 					[h2 Twitch [span &rarr;]]]
-				[a{target="socdis"}@http://panoots.tumblr.com/ 
+				[a{target="socdis"}@http://panoots.tumblr.com/
 					[h2 Tumblr [span &rarr;]]]
 				[hr])
 				[a@https://twitter.com/MikePanoots
