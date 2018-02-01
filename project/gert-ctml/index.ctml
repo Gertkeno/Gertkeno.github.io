@@ -92,7 +92,7 @@
 
 		[br])
 		[h2.chapter#This This Page &amp; Downloads]
-		[p If you want to see the gert-ctml code for this page [a@gert-ctml.ctml click here]]
+		[p If you want to see the gert-ctml code for this page [a@index.ctml click here]]
 		[p The git repo for this project is located [a@https://github.com/Gertkeno/gert-ctml on GitHub], building it requires your typical C++ compiler.]
 	]
 ]
