@@ -4,7 +4,7 @@
 	[title Gert!]
 	[meta{charset="utf-8"}])
 	[link{rel="stylesheet" type="text/css"}@nbasic.css ])
-	[link{rel="stylesheet"}@https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ])
+	[script{defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"} ]
 ]
 [body
 	[h1 Welcome!]
@@ -17,14 +17,14 @@
 		[h3 Social Links]
 		[div.social
 			[a@mailto:gthkeno@gmail.com [i{aria-hidden="true"}.fa.fa-envelope]]
-			[a@https://steamcommunity.com/id/gertman [i{aria-hidden="true"}.fa.fa-steam]]
-			[a@https://twitter.com/gertkeno [i{aria-hidden="true"}.fa.fa-twitter]]
-			[a@https://bitbucket.org/Gertkeno/ [i{aria-hidden="true"}.fa.fa-bitbucket]]
-			[a@https://github.com/Gertkeno [i{aria-hidden="true"}.fa.fa-github]]
-			[a@https://www.twitch.tv/gert_h [i{aria-hidden="true"}.fa.fa-twitch]]
-			[a@https://www.youtube.com/user/cptgthkeno/videos [i{aria-hidden="true"}.fa.fa-youtube]]
+			[a@https://steamcommunity.com/id/gertman [i{aria-hidden="true"}.fab.fa-steam]]
+			[a@https://twitter.com/gertkeno [i{aria-hidden="true"}.fab.fa-twitter]]
+			[a@https://bitbucket.org/Gertkeno/ [i{aria-hidden="true"}.fab.fa-bitbucket]]
+			[a@https://github.com/Gertkeno [i{aria-hidden="true"}.fab.fa-github]]
+			[a@https://www.twitch.tv/gert_h [i{aria-hidden="true"}.fab.fa-twitch]]
+			[a@https://www.youtube.com/user/cptgthkeno/videos [i{aria-hidden="true"}.fab.fa-youtube]]
 			[a@http://gamejolt.com/@gertkeno/games [i{aria-hidden="true"}.fa.fa-bolt]]
-			[a@https://www.linkedin.com/in/garrett-hale-43b907b9/ [i{aria-hidden="true"}.fa.fa-linkedin]]
+			[a@https://www.linkedin.com/in/garrett-hale-43b907b9/ [i{aria-hidden="true"}.fab.fa-linkedin]]
 		]
 	]
 	[div#sections
