@@ -8,12 +8,13 @@ h1 {
 	margin-right: 1em;
 }
 
-.social i {
+.social svg {
 	font-size: 4em;
 }
 
-.social i:hover {
-	text-shadow: 2px 2px lightblue;
+.social svg:hover {
+	filter: drop-shadow(2px 2px lightblue);
+	/* box-shadow: 2px 2px lightblue; */
 }
 
 @media screen and ( min-width: 1280px ) {
@@ -36,7 +37,7 @@ h1 {
 		width: 100%;
 	}
 
-	.social i {
+	.social svg {
 		font-size: 2em;
 	}
 }
