@@ -11,20 +11,30 @@
 	[p Hey, this is Gert. Welcome to my website.]
 	[p If you're here on business you should probably check out my [a@project/ blogged projects] below, and my [a@resume/ resume.]]
 	[p If you want me to program something, practically anything, Email me at [a@mailto:g@gert.us g@gert.us].]
-	*[p Kind of making a game, [a@https://bitbucket.org/Gertkeno/snowgame17 Title to be determined], probably about descending into crevasses. I don't like making levels though.]
 	[p Currently I'm working on [a@https://bitbucket.org/Gertkeno/meme-game-23d Meme Game 2: 3D], I need 3D meshes though, as I'm no artist.]
 	[div
 		[h3 Social Links]
 		[div.social
-			[a@mailto:g@gert.us [i{aria-hidden="true"}.fa.fa-envelope]]
-			[a@https://steamcommunity.com/id/gertman [i{aria-hidden="true"}.fab.fa-steam]]
-			[a@https://twitter.com/gertkeno [i{aria-hidden="true"}.fab.fa-twitter]]
-			[a@https://bitbucket.org/Gertkeno/ [i{aria-hidden="true"}.fab.fa-bitbucket]]
-			[a@https://github.com/Gertkeno [i{aria-hidden="true"}.fab.fa-github]]
-			[a@https://www.twitch.tv/gert_h [i{aria-hidden="true"}.fab.fa-twitch]]
-			[a@https://www.youtube.com/user/cptgthkeno/videos [i{aria-hidden="true"}.fab.fa-youtube]]
-			[a@http://gamejolt.com/@gertkeno/games [i{aria-hidden="true"}.fa.fa-bolt]]
-			[a@https://www.linkedin.com/in/garrett-hale-43b907b9/ [i{aria-hidden="true"}.fab.fa-linkedin]]
+			[a@mailto:g@gert.us
+				[i{aria-hidden="true" title="Mail"}.fa.fa-envelope]]
+			[a@https://steamcommunity.com/id/gertman
+				[i{aria-hidden="true" title="Steam"}.fab.fa-steam]]
+			[a@https://twitter.com/gertkeno
+				[i{aria-hidden="true" title="Twitter"}.fab.fa-twitter]]
+			[a@discord.txt
+				[i{aria-hidden="true" title="Gert#1320"}.fab.fa-discord]]
+			[a@https://bitbucket.org/Gertkeno/
+				[i{aria-hidden="true" title="Bitbucket"}.fab.fa-bitbucket]]
+			[a@https://github.com/Gertkeno
+				[i{aria-hidden="true" title="Github"}.fab.fa-github]]
+			[a@https://www.twitch.tv/gert_h
+				[i{aria-hidden="true" title="Twitch"}.fab.fa-twitch]]
+			[a@https://www.youtube.com/user/cptgthkeno/videos
+				[i{aria-hidden="true" title="Youtube"}.fab.fa-youtube]]
+			[a@http://gamejolt.com/@gertkeno/games
+				[i{aria-hidden="true" title="GameJolt"}.fa.fa-bolt]]
+			[a@https://www.linkedin.com/in/garrett-hale-43b907b9/
+				[i{aria-hidden="true" title="LinkedIn"}.fab.fa-linkedin]]
 		]
 	]
 	[div#sections
@@ -34,6 +44,7 @@
 				[li [a@project/memegame/ Meme Game]]
 				[li another markup language [a@project/gert-ctml/ gert-ctml]]
 				[li [a@project/notepad3D/ Notepad but in 3D] and also worse]
+				[li [a@project/HTTPServer A HTTP Server built in C++]]
 			]
 		]
 		[div
