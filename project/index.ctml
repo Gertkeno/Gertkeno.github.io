@@ -12,6 +12,7 @@
 			[li [a@memegame Meme Game]]
 			[li [a@notepad3D Notepad 3D]]
 			[li [a@gert-ctml gert-ctml]]
+			[li [a@HTTPServer A C++ HTTP Server]]
 		]
 	]
 ]

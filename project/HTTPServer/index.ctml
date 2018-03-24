@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+[html
+	[head
+		[title Project Page: HTTP Server]
+		[link{rel="stylesheet" type="text/css"}@../project.css ]
+		[script$../legendary.js ]
+		[meta{charset="utf-8"}])
+	]
+	[body{onload="add_legend_entries()"}
+		[h1 ASIO HTTP Server]
+		[h2 Legend]
+		[ul#legend ]
+		[h2.chapter#Intro An Introduction]
+		[p Hi I'm Garrett Hale, and I'm apparently a web developer. I didn't intend for it to be this way. I always stuck to my compiled languages assuming it would be too difficult to write and maintain a web site from just C++.]
+		[p However, a lovely library called [a@https://think-async.com/ ASIO] hit all the marks for me. It's amazingly open-ended with expertly crafted asynchronous socket control. Sockets were always a bit too low-level for me to bother, and with ASIO filling that gap I'm unstoppable.]
+		[p My intent was just to make a site to host any client submitted links, no fancy databases or logins.]
+
+		[br])
+		[h2.chapter#Making Making of]
+		[p
+			All the internet is really just a bunch of string parsing, I don't remember who I heard that from, but it was the most helpful part of starting this project.
+			The majority of my initial research was checking [span.code curl -v] headers from other sites and throwing [span.code telnet] packets at my app.
+			When it got more complicated I found [a@https://developer.mozilla.org/en-US/docs/Web/HTTP MDN Web Docs] quite useful for things like Cookie and Cache headers.
+		]
+		[p
+			The link managment part was easy in a synchronous environment, sadly I never made a multi-threaded application.
+			I wasn't used to mutexs, however I was familiar with the [a@https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization resource allocation is initialization] idiom.
+			GCC had some sort of naming error with [span.code std::shared_mutex], causing an awful week for me. Since I was building this on my raspberrypi, with a similar distro I could just use C++17 without worrying about build dependencies not being available or hard to install, like my game development experience with Windows.
+		]
+
+		[br])
+		[h2.chapter#Run The World Wide Web]
+		[p Just a lot of hackers really.]
+		[p
+			Besides promoted tests, all traffic to my site was from myself, or bots trying php admin requests.
+			The good news is that no one is trying to hack MY specific web server, just the most popular web servers.
+			However my server was incredibly brittle at many points, so much so that case sensitivity on headers would crash it.
+		]
+	]
+]
