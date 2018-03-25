@@ -21,7 +21,7 @@
 				[i{aria-hidden="true" title="Steam"}.fab.fa-steam]]
 			[a@https://twitter.com/gertkeno
 				[i{aria-hidden="true" title="Twitter"}.fab.fa-twitter]]
-			[a@discord.txt
+			[a@friend_code.txt
 				[i{aria-hidden="true" title="Gert#1320"}.fab.fa-discord]]
 			[a@https://bitbucket.org/Gertkeno/
 				[i{aria-hidden="true" title="Bitbucket"}.fab.fa-bitbucket]]
@@ -35,6 +35,8 @@
 				[i{aria-hidden="true" title="GameJolt"}.fa.fa-bolt]]
 			[a@https://www.linkedin.com/in/garrett-hale-43b907b9/
 				[i{aria-hidden="true" title="LinkedIn"}.fab.fa-linkedin]]
+			[a@friend_code.txt
+				[i{aria-hidden="true" title="SW-5439-4751-0117"}.fab.fa-nintendo-switch ]]
 		]
 	]
 	[div#sections
