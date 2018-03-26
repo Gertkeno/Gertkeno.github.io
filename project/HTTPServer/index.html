@@ -26,7 +26,7 @@
 		<p>
 			The link managment part was easy in a synchronous environment, sadly I never made a multi-threaded application.
 			I wasn't used to mutexs, however I was familiar with the <a href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">resource allocation is initialization</a> idiom.
-			GCC had some sort of naming error with <span class="code">std::shared_mutex</span>, causing an awful week for me. Since I was building this on my raspberrypi, with a similar distro I could just use C++17 without worrying about build dependencies not being available or hard to install, like my game development experience with Windows.
+			GCC had some sort of naming error with <span class="code">std::shared_mutex</span>, causing an awful week for me. Since I was building this on my raspberrypi, with a similar distro I could just use C++17 without worrying about build dependencies not being available or hard to install, this helped solve GCC's <span class="code">std::shared_mutex</span> issue.
 		</p>
 
 		<br>
