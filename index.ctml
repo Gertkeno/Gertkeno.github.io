@@ -80,6 +80,7 @@
 				[li [a@https://www.jetbrains.com/help/clion/quick-cmake-tutorial.html Quick CMake Tutorial]]
 				[li [a@https://google.github.io/styleguide/cppguide.html Google C++ Style Guide]]
 				[li [a@http://think-async.com/Asio/asio-1.10.6/doc/index.html Asio Docs]]
+				[li [a@https://github.com/ogre3d/clean-project OGRE base project cmake files]]
 			]
 		]
 		[div
