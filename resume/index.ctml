@@ -31,12 +31,16 @@
 	Currently I'm working in OpenGL for 3D graphics in other short games.
 	My [a@https://www.youtube.com/user/cptgthkeno/videos Youtube Channel] has some videos of the games I've made, mostly when in progress.
 ]
-[p I've built a web server with C++ and [a@https://think-async.com/ ASIO]'s networking I/O. It's a basic link aggregate site, hopefully up at [a@http://gerthouse.com gerthouse.com].]
+[p I've built a web server with C++ and [a@https://think-async.com/ ASIO]'s networking I/O. It's a basic link aggregate site, hopefully live at [a@http://gerthouse.com gerthouse.com].]
 [p I'm trying to write more in-depth [a@http://gert.us/project/ blog posts on my projects], and my thoughts through out making them, on my [a@http://gert.us/ Website, Gert.us].]
 
 [h4 Employment]
 [ul
-	[li Automatic Test Engineer at [a@http://www.venforma.com/ Venforma]]
+	[li Full Stack Consultant at [a@http://www.venforma.com/ Venforma]]
+	[ul
+		[li Million Mile Secrets NodeJS]
+		[li TCG Django, Python]
+	]
 	[li Volunteer Teacher at [a@http://www.code2college.org/ Code2College]]
 ]
 

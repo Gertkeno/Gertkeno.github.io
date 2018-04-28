@@ -2,9 +2,13 @@ body {
 	background-color: #ddf;
 }
 
-.code {
+pre, code, .code {
 	font-family: monospace;
 	background-color: #eee;
+	border-radius: 0.5em;
+}
+
+.code {
 	white-space: pre;
 	overflow-x: auto;
 }
