@@ -44,6 +44,17 @@
 	]
 	[div#sections
 		[div
+			[h3 Games by Me]
+			[ul
+				[li [a@https://bitbucket.org/Gertkeno/meme-game-23d/downloads/ Meme Game 2: 3D]]
+				[li [a@https://bitbucket.org/Gertkeno/notepad3d/downloads/ Notepad 3D]]
+				[li [a@https://gamejolt.com/games/dad-slayer-six/166188 Dad Slayer Six]]
+				[li [a@https://gamejolt.com/games/meme-game/163369 Meme Game]]
+				[li [a@https://gamejolt.com/games/snowman-frogger/115638 Snowman Frogger]]
+				[li [a@https://gamejolt.com/games/minion-killer/79776 Minion Killer]]
+			]
+		]
+		[div
 			[h3 Blog]
 			[ul
 				[li [a@project/memegame/ Meme Game]]
