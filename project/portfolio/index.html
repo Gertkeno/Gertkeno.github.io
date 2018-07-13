@@ -11,7 +11,7 @@
 		<h2>Legend</h2>
 		<ul id="legend"></ul>
 		<br>
-		<h2 id="Videos" class="chapter">Video Evidence of Stuff I've Done</h2>
+		<h2 id="Videos" class="chapter">Video Evidence of Games I've Done</h2>
 		<p>The following is usually in-dev video games, since that's when I usually end up making videos.</p>
 		<p>
 			This is a sample of <a href="https://bitbucket.org/Gertkeno/dadslayersix/downloads/">"Dad Slayer Six"</a> a wave-based twin stick shooter with power ups and a turret thing.
@@ -66,9 +66,9 @@ vn 0.000000 -1.000000 0.000000
 vn -0.000000 0.161600 0.986800
 vn 1.000000 0.000000 0.000000
 ...
-f 14/66/20 18/67/20 10/60/20
-f 38/33/44 16/24/44 37/75/44
-f 7/56/47 10/60/47 8/57/47
+f 2/1/1 3/2/1 4/3/1
+f 7/4/2 6/5/2 31/6/2
+f 15/7/3 9/8/3 11/9/3
 </pre>
 		<p>To:</p>
 		<pre>
@@ -85,11 +85,12 @@ const unsigned int test_len = 216;
 		</p>
 
 		<h2 id="Sample" class="chapter">Code Snippets</h2>
-		<p>It's always tough to choose good bits of code. Two weeks from now I'll learn some new pattern or library that make previously awesome code redundant or overcomplicated.</p>
+		<p>It's always tough to choose good bits of code. Two weeks from now I'll learn some new pattern or library that make previously awesome code redundant or overcomplicated. Here's some code I am, or was proud of.</p>
 		<p>
 			This is some controller code that reads from SDL2's event queue to set 0.0 - 1.0 for each input configured in <code>_controls</code>.
 			The main reason I like this code is the use of function pointers and standardizing joysticks, keyboard, and mouse inputs to one class.
 		</p>
+		<p><a href="https://bitbucket.org/Gertkeno/goat-tested-colosseum/src/master/src/Controller.cpp#lines-39">source</a>, <a href="https://bitbucket.org/Gertkeno/goat-tested-colosseum/src/master/include/Controller.hpp">header</a>. (subject to change)</p>
 		<pre>
 template&lt;typename Func&gt;
 void _search_input( Input::type_t t, int id, Func&& x )
@@ -164,6 +165,8 @@ void Controller::manage_inputs( const SDL_Event* e )
     }
 }
 </pre>
-	<p>I don't like the two switch statements with almost the same filters, though I couldn't find a way to collapse the two without repeating a few other statements.</p>
+	<p>
+		I don't like the two switch statements with almost the same filters, though I couldn't find a way to collapse the two without repeating a few other statements.
+	</p>
 	</body>
 </html>
