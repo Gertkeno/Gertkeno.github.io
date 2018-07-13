@@ -2,8 +2,8 @@
 [html
 	[head
 		[title Project Page: Meme Game]
-		[link{rel="stylesheet" type="text/css"}@../project.css ]
-		[link{rel="stylesheet" type="text/css"}@meme.css ]
+		[link{rel="stylesheet" type="text/css"}@../project.css ])
+		[link{rel="stylesheet" type="text/css"}@meme.css ])
 		[meta{charset="utf-8"}])
 		[script$../legendary.js ]
 	]
