@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 [html
 [head
-	[meta{charset="utf-8"}])
+	[meta{charset="utf-8"} ])
 	[title Garrett Hale's Resume]
 	[style{type="text/css"}
 		h2{ text-align: center; }
@@ -16,8 +16,8 @@
 ]
 [body
 [h2 Garrett Hale]
-[div{id="contact"}
-	[p Email: [a@mailto:gthkeno@gmail.com gthkeno@gmail.com]]
+[div#contact
+	[p Email: [a@mailto:garrett@gert.us garrett@gert.us]]
 ]
 [hr])
 [p
@@ -32,7 +32,7 @@
 	My [a@https://www.youtube.com/user/cptgthkeno/videos Youtube Channel] has some videos of the games I've made, mostly when in progress.
 ]
 [p I've built a web server with C++ and [a@https://think-async.com/ ASIO]'s networking I/O. It's a basic link aggregate site, hopefully live at [a@http://gerthouse.com gerthouse.com].]
-[p I'm trying to write more in-depth [a@http://gert.us/project/ blog posts on my projects], and my thoughts through out making them, on my [a@http://gert.us/ Website, Gert.us].]
+[p I made a [a@http://gert.us/project/portfolio/ portfolio] of my work on my website, [a@http://gert.us/ gert.us].]
 
 [h4 Employment]
 [ul
@@ -46,6 +46,9 @@
 
 [h4 References]
 [ul
+	[li [a@mailto:sean@venforma.com Sean Kesler], Venforma CEO]
+	[li [a@mailto:cmmorrow@gmail.com Chris Morrow], Code2College Teacher]
+	[li [a@mailto:aakanser@gmail.com Alper Akanser], Code2College Teacher]
 	[li [a@mailto:Matt@code2college.org Matt Stephenson], Code2College Executive Director]
 ]
 ]
