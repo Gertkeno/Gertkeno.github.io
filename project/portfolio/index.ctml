@@ -80,90 +80,89 @@ const unsigned int test_len = 216;
 ]
 		[p
 			[code test_vertices] is much more consumeable for OpenGL buffers, and easily compileable. Like how [code xxd -i] works except specifically for Wavefront files.
-			Sadly Wavefront files suck so this little app isn't useful for most devs, and myself if I get the courage to use COLLADA instead.
+			Sadly Wavefront files are very limited for 3D animation so this little app isn't useful for most devs.
 		]
 
 		[h2.chapter#Sample Code Samples]
 		[p It's always tough to choose good bits of code. Two weeks from now I'll learn some new pattern or library that make previously awesome code redundant or overcomplicated. Here's some code I am, or was proud of.]
 		[p
 			This is some controller code that reads from SDL2's event queue to set 0.0 - 1.0 for each input configured in [code _controls].
-			The main reason I like this code is the use of function pointers and standardizing joysticks, keyboard, and mouse inputs to one class.
+			The main reason I like this code is the use of function pointers and standardizing joysticks, keyboard, and mouse inputs to one struct.
 		]
 		[p [a@https://bitbucket.org/Gertkeno/goat-tested-colosseum/src/master/src/Controller.cpp#lines-39 source], [a@https://bitbucket.org/Gertkeno/goat-tested-colosseum/src/master/include/Controller.hpp header]. (subject to change)]
 		[pre
 template&lt;typename Func&gt;
-void _search_input( Input::type_t t, int id, Func&& x )
+void _search_input (Input::type_t t, int id, Func&& x)
 {
-    for( auto & input: _controls )
+    for (auto & input: _controls)
     {
-        if( input.myType != t ) continue;
-        if( input.button != id ) continue;
+        if (input.myType != t or input.button != id)
+			continue;
 
-        x( &input );
+        x (&amp;input);
     }
 }
 
-void digital_press(Input\* t)
+constexpr void digital_press (Input\* t)
 {
-    if( t-&gt;held &lt; 1.0f )
+    if (t-&gt;held &lt; 1.0f)
         t-&gt;framePress = true;
     t-&gt;held = 1.0f;
 }
 
-void digital_release(Input\* t)
+constexpr void digital_release (Input\* t)
 {
     t-&gt;held = 0.0f;
 }
 
-void Controller::manage_inputs( const SDL_Event\* e )
+void Controller::manage_inputs (const SDL_Event\* e)
 {
-    auto stateDigital{ digital_release };
-    //get press/release, if axis apply and return
-    switch( e-&gt;type )
-    {
-    case SDL_JOYBUTTONDOWN:
-    case SDL_KEYDOWN:
-    case SDL_MOUSEBUTTONDOWN:
-        stateDigital = digital_press;
-        break;
-    case SDL_JOYAXISMOTION:
-        _search_input( Input::type_t::JOYAXIS, e-&gt;jaxis.axis, \[e\](Input\* t)
-        {
-            t-&gt;held = static_cast&lt;float&gt;(e-&gt;jaxis.value) / t-&gt;axisMax;
-            if( t-&gt;held &lt; AXIS_DEAD_ZONE )
-                t-&gt;held = 0.0f;
-            else if( t-&gt;held &gt; 1.0f )
-                t-&gt;held = 1.0f;
+	auto digital_get {digital_press};
+	switch (e-&gt;type)
+	{
+	case SDL_JOYBUTTONDOWN:
+		digital_get = digital_release;
+	case SDL_JOYBUTTONUP:
+		// only joysticks need to be tested, return if not tracked
+		if (not _tracked_joystick (e-&gt;jbutton.which))
+			break;
+		_search_input (Input::type_t::JOYBUTTON, e-&gt;jbutton.button, digital_get);
 
-            if( t-&gt;axisPass and t-&gt;held &lt; AXIS_RESET_THRESHOLD )
-                t-&gt;axisPass = false;
-            else if( not t-&gt;axisPass and t-&gt;held &gt; AXIS_PRESS_THRESHOLD )
-            {
-                t-&gt;framePress = true;
-                t-&gt;axisPass = true;
-            }
-        });
-        return;
-    }
+	case SDL_KEYDOWN:
+		digital_get = digital_release;
+	case SDL_KEYUP:
+		_search_input (Input::type_t::KEYBOARD, e-&gt;key.keysym.sym, digital_get);
+		break;
 
-    //apply digital press/release
-    switch( e-&gt;type )
-    {
-    case SDL_KEYUP:
-    case SDL_KEYDOWN:
-        _search_input( Input::type_t::KEYBOARD, e-&gt;key.keysym.sym, stateDigital );
-        break;
-    case SDL_MOUSEBUTTONUP:
-    case SDL_MOUSEBUTTONDOWN:
-        _search_input( Input::type_t::MOUSE, e-&gt;button.button, stateDigital );
-        break;
-    case SDL_JOYBUTTONUP:
-    case SDL_JOYBUTTONDOWN:
-        _search_input( Input::type_t::JOYBUTTON, e-&gt;jbutton.button, stateDigital );
-        break;
-    }
+	case SDL_MOUSEBUTTONDOWN:
+		digital_get = digital_release;
+	case SDL_MOUSEBUTTONUP:
+		_search_input (Input::type_t::MOUSE, e-&gt;button.button, digital_get);
+		break;
+
+	// axis
+	case SDL_JOYAXISMOTION:
+		if (not _tracked_joystick (e-&gt;jaxis.which))
+			break;
+		_search_input (Input::type_t::JOYAXIS, e-&gt;jaxis.axis, \[e\](Input\* t)
+		{
+			t-&gt;held = static_cast&lt;float&gt;(e-&gt;jaxis.value) / t-&gt;axisMax;
+			if (t-&gt;held &lt; AXIS_DEAD_ZONE)
+				t-&gt;held = 0.0f;
+			else if (t-&gt;held &gt; 1.0f)
+				t-&gt;held = 1.0f;
+
+			if (t-&gt;axisPass and t-&gt;held &lt; AXIS_RESET_THRESHOLD)
+				t-&gt;axisPass = false;
+			else if (not t-&gt;axisPass and t-&gt;held &gt; AXIS_PRESS_THRESHOLD)
+			{
+				t-&gt;framePress = true;
+				t-&gt;axisPass = true;
+			}
+		});
+		break;
+	}
 }
 ]
-		[p I don't like the two switch statements with almost the same filters, though I couldn't find a way to collapse the two without repeating a few other statements.]
 	]*body
 ]*html
