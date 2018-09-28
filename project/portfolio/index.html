@@ -118,11 +118,11 @@ constexpr void digital_release (Input* t)
 
 void Controller::manage_inputs (const SDL_Event* e)
 {
-	auto digital_get {digital_press};
+	auto digital_get {digital_release};
 	switch (e-&gt;type)
 	{
 	case SDL_JOYBUTTONDOWN:
-		digital_get = digital_release;
+		digital_get = digital_press;
 	case SDL_JOYBUTTONUP:
 		// only joysticks need to be tested, return if not tracked
 		if (not _tracked_joystick (e-&gt;jbutton.which))
@@ -130,13 +130,13 @@ void Controller::manage_inputs (const SDL_Event* e)
 		_search_input (Input::type_t::JOYBUTTON, e-&gt;jbutton.button, digital_get);
 
 	case SDL_KEYDOWN:
-		digital_get = digital_release;
+		digital_get = digital_press;
 	case SDL_KEYUP:
 		_search_input (Input::type_t::KEYBOARD, e-&gt;key.keysym.sym, digital_get);
 		break;
 
 	case SDL_MOUSEBUTTONDOWN:
-		digital_get = digital_release;
+		digital_get = digital_press;
 	case SDL_MOUSEBUTTONUP:
 		_search_input (Input::type_t::MOUSE, e-&gt;button.button, digital_get);
 		break;
