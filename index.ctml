@@ -67,7 +67,6 @@
 			[h3 Programming Resources]
 			[ul
 				[li [a@http://gameprogrammingpatterns.com/ Game Programming Patterns, good book]]
-				[li [a@https://github.com/ogre3d/clean-project OGRE base project cmake files]]
 				[li [a@http://think-async.com/Asio/asio-1.10.6/doc/index.html Asio Docs]]
 				[li [a@https://google.github.io/styleguide/cppguide.html Google C++ Style Guide]]
 				[li [a@https://www.jetbrains.com/help/clion/quick-cmake-tutorial.html Quick CMake Tutorial]]
@@ -92,6 +91,8 @@
 				[li [a@http://lazyfoo.net/tutorials/SDL/index.php#Hello%20SDL Lazy Foo SDL Tutorials]]
 				[li [a@https://www.campaignmonitor.com/css/ Email CSS compatibility list]]
 				[li [a@http://caniuse.com/ caniuse.com/]]
+				[li [a@https://engineering.riotgames.com/ Riot Docs]]
+				[li [a@http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html Bash if]]
 			]
 		]
 		[div
