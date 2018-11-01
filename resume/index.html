@@ -1,56 +1,101 @@
-<!-- Made with gert-ctml version#1.0.0 -->
-<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Garrett Hale's Resume</title>
-	<style type="text/css">
-		h2{ text-align: center; }
-		h4{ text-align: left; }
-		p{ margin-left: 1%; margin-right: 1%; text-indent: 1em; }
-		#contact p{ text-align: center; margin-top: -1em; }
-		@media print
-		{
-			a{ text-decoration: none; }
-		}
+	<style>
+	.inline-fat {display: flex; justify-content: space-between;}
+	.inline {display: flex; justify-content: start;}
+	.inline div {padding-right: 1em;}
 	</style>
 </head>
 <body>
-<h2>Garrett Hale</h2>
-<div id="contact">
-	<p>Email: <a href="mailto:garrett@gert.us">garrett@gert.us</a></p>
-</div>
-<hr>
-<p>
-	I've been coding for as long as I can remember, my father taught me Ruby early on and I've been studying more languages.
-	After learning Ruby I found many different languages on the Internet and learned as much as I could about HTML, Python, C++, C#, JavaScript and Lua.
-	I rather enjoyed C++ and went deeper into that by making short text based games.
-</p>
-<p>
-	I took several programming classes at ACC with the majority focusing on C++ and game development.
-	Using SDL2 I made several <a href="http://gamejolt.com/@gertkeno/games">games on Gamejolt</a> most of which are <a href="https://bitbucket.org/Gertkeno/">open source on Bitbucket</a>.
-	Currently I'm working in OpenGL for 3D graphics in other short games.
-	My <a href="https://www.youtube.com/user/cptgthkeno/videos">Youtube Channel</a> has some videos of the games I've made, mostly when in progress.
-</p>
-<p>I've built a web server with C++ and <a href="https://think-async.com/">ASIO</a>'s networking I/O. It's a basic link aggregate site, hopefully live at <a href="http://gerthouse.com">gerthouse.com</a>.</p>
-<p>I made a <a href="/project/portfolio/">portfolio</a> of my work on my website, <a href="/">gert.us</a>.</p>
+	<div class="inline-fat">
+		<div>
+			<h1>Garrett Hale</h1>
+			<h1>Software Engineer</h1>
+		</div>
+		<div>
+			<h3><a href="mailto:garrett@gert.us">garrett@gert.us</a></h3>
+			<h3>512-914-9558</h3>
+		</div>
+	</div>
 
-<h4>Employment</h4>
-<ul>
-	<li>Full Stack Consultant at <a href="http://www.venforma.com/">Venforma</a></li>
+	<h1>Summary</h1>
+	<p>Aspiring game developer, have worked in multiple languages. Have experience with modern websites and UX automation testing via Selenium Webdriver. Have been programming games in various languages from an early age, starting learning through game development.</p>
+
+	<h1>Proficiency</h1>
+	<div class="inline">
+		<div>
+			<h3>Languages</h3>
+			<p>C++, Python, C#, Ruby, Lua</p>
+		</div>
+		<div>
+			<h3>Operating Systems</h3>
+			<p>Linux/Unix, Windows, MacOS</p>
+		</div>
+		<div>
+			<h3>Tools</h3>
+			<p>Git, Valgrind, GDB, SDL2, Boost</p>
+		</div>
+	</div>
+
+	<h1>Experience</h1>
+	<div class="inline-fat">
+		<h3>Independent Game Developer</h3>
+		<h3>Hobby</h3>
+	</div>
 	<ul>
-		<li>Million Mile Secrets NodeJS</li>
-		<li>TCG Django, Python</li>
+		<li>Various command line text adventures when learning languages (C++, Ruby, Python)</li>
+		<li>Used SDL2 for several 2D games, <a href="https://gamejolt.com/games/meme-game/163369">Meme Game</a>, <a href="https://gamejolt.com/games/dad-slayer-six/166188">Dad Slayer Six</a> (GCC, C++, CMake, Git)</li>
+		<li>Made an asynchronous HTTP server, <a href="http://gerthouse.com/">gerthouse.com</a> (C++, Boost)</li>
+		<li>OpenGL 3D rendering, <a href="https://youtu.be/ZObwwNiPOq4">Meme Game 2</a> (OpenGL, C++, GLEW)</li>
 	</ul>
-	<li>Volunteer Teacher at <a href="http://www.code2college.org/">Code2College</a></li>
-</ul>
 
-<h4>References</h4>
-<ul>
-	<li><a href="mailto:sean@venforma.com">Sean Kesler</a>, Venforma CEO</li>
-	<li><a href="mailto:cmmorrow@gmail.com">Chris Morrow</a>, Code2College Teacher</li>
-	<li><a href="mailto:aakanser@gmail.com">Alper Akanser</a>, Code2College Teacher</li>
-	<li><a href="mailto:Matt@code2college.org">Matt Stephenson</a>, Code2College Executive Director</li>
-</ul>
+	<div class="inline-fat">
+		<h3>Instructor - Code2College</h3>
+		<h3>September 2017 to May 2018</h3>
+	</div>
+	<ul>
+		<li>Taught data analysis and web development at Pflugerville High School (Git, Python, R)</li>
+	</ul>
+
+	<div class="inline-fat">
+		<h3>Automation Engineer, MillionMileSecrets.com - VenForma</h3>
+		<h3>June 2017 to January 2018</h3>
+	</div>
+	<ul>
+		<li>Maintained suite of UX tests to cover functional testing of the website for a CICD workflow (Selenium, Nightwatch.js)</li>
+		<li>Identified and fixed bugs found during testing (MEANjs, Angular)</li>
+		<li>Learned Agile Methodology, TDD, BDD, virtualization (Vagrant, Docker)</li>
+	</ul>
+
+	<div class="inline-fat">
+		<h3>Automation Engineer, TCG - VenForma</h3>
+		<h3>February 2018 to May 2018</h3>
+	</div>
+	<ul>
+		<li>Made a web application and tests for it (Python, Django, Selenium)</li>
+		<li>Worked with SOAP, JSON, and XML formats (Python)</li>
+	</ul>
+
+	<h1>Education</h1>
+	<ul>
+		<li>Austin Community College</li>
+		<li><a href="https://ocw.mit.edu/courses/find-by-topic/">MIT Open Course Ware</a></li>
+	</ul>
+
+	<h1>Websites and More Info</h1>
+	<ul>
+		<li><a href="http://gert.us/">http://gert.us/</a></li>
+		<li><a href="http://gert.us/project/portfolio/">http://gert.us/project/portfolio/</a></li>
+		<li><a href="https://bitbucket.org/Gertkeno/">https://bitbucket.org/Gertkeno/</a></li>
+		<li><a href="https://github.com/Gertkeno">https://github.com/Gertkeno</a></li>
+	</ul>
+
+	<h1>References</h1>
+	<ul>
+		<li><a href="mailto:sean@venforma.com">Sean Kesler</a>, Venforma CEO</li>
+		<li><a href="mailto:cmmorrow@gmail.com">Chris Morrow</a>, Code2College Teacher</li>
+		<li><a href="mailto:aakanser@gmail.com">Alper Akanser</a>, Code2College Teacher</li>
+		<!--<li><a href="mailto:Matt@code2college.org">Matt Stephenson</a>, Code2College Executive Director</li>-->
+	</ul>
 </body>
 </html>
