@@ -10,14 +10,14 @@
 		[h2 Legend]
 		[ul#legend]
 		[h2.chapter#Videos Video Evidence of Games I've Done]
-		[p The following is usually in-dev video games, since that's when I usually end up making videos.]
+		[p The following is in-dev video games, since that's when I usually end up making videos.]
 		[p
 			This is a sample of [a@https://bitbucket.org/Gertkeno/dadslayersix/downloads/ "Dad Slayer Six"] a wave-based twin stick shooter with power ups and a turret thing.
 			I made this for a co-worker who hated Panera. I later had my friend do audio, music, and some art.
 		]
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/0rdo_x2oDKE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		[p
-			My goodbye project for SDL2 was [a@https://bitbucket.org/Gertkeno/meme-game/downloads/ "Meme Game"] made for a specific community, of which I even got some story and art help from!
+			My last 2D project before digging into 3D was [a@https://bitbucket.org/Gertkeno/meme-game/downloads/ "Meme Game"] made for a specific community, of which I even got some story and art help from!
 			It's a astroid ship doing boss fights, and boss fights are fun to program.
 			The project was straight forward since I didn't have to do anything but code.
 		]
@@ -26,7 +26,7 @@
 		[p And this is the intended streamer playing the finished game.]
 		[iframe{width="560" height="315" frameborder="0" allowfullscreen}$https://www.youtube.com/embed/Z1RxPUxIggQ?rel=0&amp;showinfo=0&amp;start=5925 ]
 		[p
-			After all this 2D SDL2 stuff I had an itch for OpenGL since I knew it would not only allow 3D but more complex, fun rendering in general.
+			After all this flat stuff I had an itch for OpenGL since I knew it would not only allow 3D but more complex, fun rendering in general.
 			I started with a sequel to "Meme Game" aptly called [a@https://bitbucket.org/Gertkeno/meme-game-23d/downloads/ "Meme Game 2: 3D"], I'm happy with the front-end result, but a lot of the rendering code is terrible.
 			I did everythine except the music and cut scene backgrounds.
 		]
