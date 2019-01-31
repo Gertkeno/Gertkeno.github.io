@@ -45,6 +45,7 @@
 		[div
 			[h3 Games by Me]
 			[ul
+				[li [a@https://globalgamejam.org/2019/games/traditions Traditions (Global Game Jam 2019)]]
 				[li [a@https://bitbucket.org/Gertkeno/meme-game-23d/downloads/ Meme Game 2: 3D]]
 				[li [a@https://bitbucket.org/Gertkeno/notepad3d/downloads/ Notepad 3D]]
 				[li [a@https://gamejolt.com/games/dad-slayer-six/166188 Dad Slayer Six]]
