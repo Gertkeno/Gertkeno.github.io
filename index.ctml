@@ -58,7 +58,7 @@
 			[h3 Blog]
 			[ul
 				[li [a@project/memegame/ Meme Game]]
-				[li another markup language [a@project/gert-ctml/ gert-ctml]]
+				*[li another markup language [a@project/gert-ctml/ gert-ctml]]
 				[li [a@project/notepad3D/ Notepad but in 3D] and also worse]
 				[li [a@project/HTTPServer A HTTP Server built in C++]]
 			]
