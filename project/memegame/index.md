@@ -15,19 +15,13 @@ Doing so little of my own art would be tough for an original and creative projec
 Luckily my target audience to some degree appreciates memes, instead of art I could pull stuff from the internet or streams.
 By pandering to this community I'm almost guaranteed some kind of audience, thus two problems solved.
 
-For some reason I always wanted to attempt a cut-scene system, with boss
-rush genre in mind it would add some personality and/or jokes to the
-bosses. I made my own syntax for the cut-scene actions, other than
-specific sentinels it was plain text files read to an in-game system.
+I wanted to a cut-scene system, with boss rush genre it would add some personality and/or jokes to the bosses.
+I had experience parsing text so I ended up with a custom runtime text parser for dialogue.
 
-I wrote some basic Asteroids/LUFTRAUSERS movement, filled a test
-intro.txt with the opening of 2003's Daredevil, and made the demo video
-below.
+I wrote some basic Asteroids/LUFTRAUSERS movement, filled a test intro.txt with the opening of 2003's Daredevil, and made the demo video below.
 
-I sent this video to a member of the previously mentioned community,
-name of [Makin Bacon Bot](https://twitter.com/MakinBaconBot), in attempt
-to start collaborating with them. Thankfully Makin agreed to write the
-cut scenes for the game, and design the boss made after him.
+I sent this video to a member of the previously mentioned community, name of [Makin Bacon Bot](https://twitter.com/MakinBaconBot), in attempt to start collaborating with them.
+Thankfully Makin agreed to write the cut scenes for the game, and design the boss made for him.  
 
 ## Boss Design
 
@@ -40,14 +34,11 @@ This function pointer projectile feature was more robust than needed and made it
 Though I learned a lot about function pointers and C++'s `std::function` container.
 I rarely called the function pointer so I should've used `std::function`, but I've always been overly worried about performance.
 
-The whale Lonny Linda is solely an individual parts test. Since I
-wasn't using OpenGL I didn't have a proper way to connect the body
-segments, when turning the whale would split and overlap at the neck.
+The whale, Lonny Linda is solely an individual parts test.
+Since I wasn't using OpenGL I didn't have a proper way to connect the body segments, when turning the whale would split and overlap at the neck.
 Below is how I kept the tail connected in a rope like style.
 
-Continuing beyond those two I tried to make unique and interesting
-bosses with four moves each, a theme, movement for the boss, and a
-reason for the player to move. The best example of this would be Mona, and the worst being Hibby.
+Continuing beyond those two I tried to make unique and interesting bosses with four moves each, a theme, and a reason for the player to move.
 
 ## Making The Ship
 
