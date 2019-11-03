@@ -1,41 +1,29 @@
-Meme Game
-=========
+# Meme Game
 
-A Plan and Why
---------------
+---
 
-After followed the majority of [Lazy Foo's SDL
-Tutorials](http://lazyfoo.net/tutorials/SDL/index.php#Hello%20SDL) and
-wrote some basic classes to make a SDL2 pipeline. After
-learning and building confidence with SDL2 I wanted to start one more
-game before switching to OpenGL.
+## A Plan and Why
 
-I wanted to make a boss fight centered game, it seemed like a good genre
-to code a lot of specific, odd, and unique actions. I knew from my
-previous projects making art sucks. I wanted to do 90% code, 10% art.
-Doing so little of my own art would be tough for an original and
-creative project, at least without hiring a dedicated artist. Luckily
-I'm part of a community that to some degree appreciates memes, instead
-of art I could pull stuff from the internet or streams. By pandering to
-this community I'm almost guaranteed some kind of audience, thus two
-problems solved in one decision.
+To set the scene I've worked on a quite few small 2D games with SDL2, including platformers, multiplayer games, and management simulators.
+I wanted to start making 3D games and followed a brief tutorial at [open.gl](https://open.gl), it's a quick walk through and I was stumbling a fair amount while chasing more complex systems than presented in the tutorial.
+However seeing as I didn't have a grand fully finished 2D game under my belt I decided to first create a in-joke of a game for a lovely online community I found myself a part of.
 
-For some reason I always wanted to attempt a cut-scene system, with boss
-rush genre in mind it would add some personality and/or jokes to the
-bosses. I made my own syntax for the cut-scene actions, other than
-specific sentinels it was plain text files read to an in-game system.
+I wanted to make a boss fight centered game, it seemed like a good genre to code a lot of specific, odd, and unique actions.
+I knew from my previous projects making art sucks.
+I wanted to do 90% code, 10% art.
+Doing so little of my own art would be tough for an original and creative project, at least without hiring a dedicated artist.
+Luckily my target audience to some degree appreciates memes, instead of art I could pull stuff from the internet or streams.
+By pandering to this community I'm almost guaranteed some kind of audience, thus two problems solved.
 
-I wrote some basic Asteroids/LUFTRAUSERS movement, filled a test
-intro.txt with the opening of 2003's Daredevil, and made the demo video
-below.
+I wanted to a cut-scene system, with boss rush genre it would add some personality and/or jokes to the bosses.
+I had experience parsing text so I ended up with a custom runtime text parser for dialogue.
 
-I sent this video to a member of the previously mentioned community,
-name of [Makin Bacon Bot](https://twitter.com/MakinBaconBot), in attempt
-to start collaborating with them. Thankfully Makin agreed to write the
-cut scenes for the game, and design the boss made after him.
+I wrote some basic Asteroids/LUFTRAUSERS movement, filled a test intro.txt with the opening of 2003's Daredevil, and made the demo video below.
 
-Boss Design
------------
+I sent this video to a member of the previously mentioned community, name of [Makin Bacon Bot](https://twitter.com/MakinBaconBot), in attempt to start collaborating with them.
+Thankfully Makin agreed to write the cut scenes for the game, and design the boss made for him.  
+
+## Boss Design
 
 I started out with FrankerZ (Dog Face no space), this boss was made to test projectiles and hurt/hit circles.
 Movement was minimal for this boss, just a set speed in a altering direction.
@@ -46,17 +34,13 @@ This function pointer projectile feature was more robust than needed and made it
 Though I learned a lot about function pointers and C++'s `std::function` container.
 I rarely called the function pointer so I should've used `std::function`, but I've always been overly worried about performance.
 
-The whale Lonny Linda is solely an individual parts test. Since I
-wasn't using OpenGL I didn't have a proper way to connect the body
-segments, when turning the whale would split and overlap at the neck.
+The whale, Lonny Linda is solely an individual parts test.
+Since I wasn't using OpenGL I didn't have a proper way to connect the body segments, when turning the whale would split and overlap at the neck.
 Below is how I kept the tail connected in a rope like style.
 
-Continuing beyond those two I tried to make unique and interesting
-bosses with four moves each, a theme, movement for the boss, and a
-reason for the player to move. The best example of this would be Mona, and the worst being Hibby.
+Continuing beyond those two I tried to make unique and interesting bosses with four moves each, a theme, and a reason for the player to move.
 
-Making The Ship
----------------
+## Making The Ship
 
 I wanted to copy LUFTRAUSERS' movement, so I did but without the
 gravity part. It ended up drifting around a lot more than I'd like so I
@@ -81,8 +65,7 @@ all over the ship when moving. I liked this system enough to give Makin
 the same sort draw effect, but with a crazy twist by making it blue
 instead of red.
 
-Final Product
--------------
+## Final Product
 
 Here's the video of the intended audience playing Meme Game.
 
