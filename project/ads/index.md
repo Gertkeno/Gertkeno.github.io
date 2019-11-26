@@ -36,4 +36,4 @@ scene and handling special triggers received from the dialogue system.
 
 ## File Structure
 
-Airlock Dialogue files follow a line-based mutation of markdown.
+Airlock Dialogue files follow a line-based format, initially based on markdown.
