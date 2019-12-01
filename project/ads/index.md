@@ -1,4 +1,9 @@
-# Airlock
+---
+pagetitle: Airlock Dialogue System
+author: Garrett Hale
+---
+
+# AIRLOCK
 
 [AIRLOCK](https://github.com/gertkeno/airlock) is a story focused game I helped
 create for the [HOFT Game Development Lab](https://www.gamedevelopmentlab.com/)
@@ -37,3 +42,36 @@ scene and handling special triggers received from the dialogue system.
 ## File Structure
 
 Airlock Dialogue files follow a line-based format, initially based on markdown.
+
+Dialogue is broken up into "Pages", basically start points for sections of text.
+We reference these pages in the text files for player choice results, and functionally linked dialogue.
+When dialogue is started through in-game interactions we specify a page name to start.
+
+Every line of dialogue can optionally have functions following it.
+These functions operate when the line of dialogue is said in-game.
+
+Our system structures every non-blank line in a linked list, some are dialogue, some functions.
+Reading through this linked list is a lot like reading null-terminated cstrings.
+The system knows to stop and display text if the next node is of type `SAID_TEXT` or `nullptr`.
+
+```bash
+"I've Been expecting you" --> NAME=RAKESH --> "Please share your report" --> LINK_TO=AsEsme_Choices --> nullptr
+```
+
+In this example "I've been expecting you" will be displayed and the current talking character is set to Rakesh.
+The player advances and "Please share your report" is displayed, the next page `#AsEsme_Choices` is queued.
+Again the player advances and the queued page is loaded and read the same way.
+If a page isn't queued then dialogue ends.
+The last page loaded is sent to UE4 blueprints and special functions may apply.
+
+Here's the file version of the example.
+The page's name is `Start_AsEsme`
+
+```markdown
+# Start_AsEsme
+
+I've been expecting you.
+	~name: Rakesh
+Please share your report.
+	~linkto: AsEsme_Choices
+```
