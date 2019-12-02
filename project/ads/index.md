@@ -16,8 +16,6 @@ together in a simple text file format.
 
 # The Airlock Dialogue System
 
-## Story Overview
-
 AIRLOCK uses dialogue with branching paths, variables in and out of dialogue,
 conditional statements, and cosmetic information about said dialogue.
 As we were using Unreal Engine 4 we could've done dialogue in blueprints.
@@ -39,7 +37,7 @@ didn't check if variables were unused; I made sure to automatically check if
 variables were unused or unknown. Blueprints were still used for resetting the
 scene and handling special triggers received from the dialogue system.
 
-## File Structure
+# File Structure
 
 Airlock Dialogue files follow a line-based format, initially based on markdown.
 
@@ -50,12 +48,42 @@ When dialogue is started through in-game interactions we specify a page name to 
 Every line of dialogue can optionally have functions following it.
 These functions operate when the line of dialogue is said in-game.
 
+We send some data to UE4 Blueprints, all variables set in text files are accessible and mutable.
+Most dialogue related blueprints is executed with the hook "on exchange end".
+Usually blueprints just use dialogue to trigger a stage-reset.
+
+# Data Structure
+
 Our system structures every non-blank line in a linked list, some are dialogue, some functions.
 Reading through this linked list is a lot like reading null-terminated cstrings.
 The system knows to stop and display text if the next node is of type `SAID_TEXT` or `nullptr`.
 
+```cpp
+// Structure for each line in text file
+
+struct Line
+{
+	FString function_input;
+	enum function_t
+	{
+		// Shortened list of function types
+		SAID_TEXT,
+		CHOICE_TEXT,
+		NAME,
+
+		CONDITIONAL,
+		SET,
+		UNSET,
+
+		LINK_TO,
+	} function;
+
+	Line *next;
+};
+```
+
 ```bash
-"I've Been expecting you" --> NAME=RAKESH --> "Please share your report" --> LINK_TO=AsEsme_Choices --> nullptr
+SAID_TEXT, "I've Been expecting you" --> NAME, "Rakesh" --> SAID_TEXT, "Please share your report" --> LINK_TO, "AsEsme_Choices" --> nullptr
 ```
 
 In this example "I've been expecting you" will be displayed and the current talking character is set to Rakesh.
@@ -75,3 +103,6 @@ I've been expecting you.
 Please share your report.
 	~linkto: AsEsme_Choices
 ```
+
+Pages, or linked list heads are stored in a `TMap <FString, Line *>`, a hash table, so we can effectively use strings in a key, value pair.
+
