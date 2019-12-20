@@ -3,7 +3,8 @@ pagetitle: Airlock Dialogue System
 author: Garrett Hale
 ---
 
-# AIRLOCK
+AIRLOCK
+=======
 
 [AIRLOCK](https://github.com/gertkeno/airlock) is a story focused game I helped
 create for the [HOFT Game Development Lab](https://www.gamedevelopmentlab.com/)
@@ -14,7 +15,8 @@ Unreal Engine for designers to easily add dialogue and functionality into the ga
 The "Airlock Dialogue System" was used to package story data and functionality
 together in a simple text file format.
 
-# The Airlock Dialogue System
+The Airlock Dialogue System
+===========================
 
 AIRLOCK uses dialogue with branching paths, variables in and out of dialogue,
 conditional statements, and cosmetic information about said dialogue.
@@ -31,13 +33,24 @@ but this divided content creation heavily; dialogue written in `.adf` files were
 invisibly acted upon by blueprint variables, and blueprints where haphazardly
 reliant on `.adf` files being correct with little to no error checking possible.
 
-Adding variables and conditionals to `.adf` files pushed a good amount of the
-remaining blueprint functionality onto the dialogue system. Oddly, UE4 blueprints
-didn't check if variables were unused; I made sure to automatically check if
-variables were unused or unknown. Blueprints were still used for resetting the
-scene and handling special triggers received from the dialogue system.
+Adding variables and conditionals to `.adf` files pushed a majority of blueprint's functionality onto the dialogue system.
+This drastically improved our ability to produce and edit dialogue content.
+I made sure to automatically check if variables were unused or unknown.
+Blueprints were still used for resetting the scene and handling special triggers received from the dialogue system.
 
-# File Structure
+I was strongly against the initial implementation to separate variables from dialogue files.
+A high-level system like this removes a lot of freedom from developers; I was transparent about that.
+The design team thought they would need that freedom more than they would benefit.
+Instead of arguing the benefits I pressed that the extra freedom wasn't needed; in the end I made the blueprint-oriented system and it was a mess.
+We did learn more about what features we would and wouldn't be using, when back at the drawing board we honed in that ratio of freedom to ease of use.
+
+I'd argue legibility's importance would be aided in this system, but much of our group was not comfortable writing plain text documents.
+I believe the `.adf` files are easier to read than a pure blueprint system as linear text does not apply in 2D node-graph space.
+Though the functionality within these files gets difficult to track, I tried to create rules and warnings to aid.
+Such as forcing per-file scoping unless explicitly disabled; variables are guaranteed to be set and used within a file, controlling sprawling dependency lists.
+
+File Structure
+==============
 
 Airlock Dialogue files follow a line-based format, initially based on markdown.
 
@@ -50,9 +63,10 @@ These functions operate when the line of dialogue is said in-game.
 
 We send some data to UE4 Blueprints, all variables set in text files are accessible and mutable.
 Most dialogue related blueprints is executed with the hook "on exchange end".
-Usually blueprints just use dialogue to trigger a stage-reset.
+Usually blueprints just use dialogue to trigger a stage-reset when the player dies through dialogue.
 
-# Data Structure
+Data Structure
+==============
 
 Our system structures every non-blank line in a linked list, some are dialogue, some functions.
 Reading through this linked list is a lot like reading null-terminated cstrings.
