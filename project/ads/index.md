@@ -45,8 +45,8 @@ Instead of arguing the benefits I pressed that the extra freedom wasn't needed; 
 We did learn more about what features we would and wouldn't be using, when back at the drawing board we honed in that ratio of freedom to ease of use.
 
 I'd argue legibility's importance would be aided in this system, but much of our group was not comfortable writing plain text documents.
-I believe the `.adf` files are easier to read than a pure blueprint system as linear text does not apply in 2D node-graph space.
-Though the functionality within these files gets difficult to track, I tried to create rules and warnings to aid.
+A node-graph editor like [Twinery](https://twinery.org/) certainly helps with organizing text and linking, I would've liked to make a node-viewer tool if time permitted.
+Functionality within these files gets difficult to track, but I tried to create rules and warnings to aid.
 Such as forcing per-file scoping unless explicitly disabled; variables are guaranteed to be set and used within a file, controlling sprawling dependency lists.
 
 File Structure
