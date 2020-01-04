@@ -165,6 +165,8 @@ sr0                    11:0    1   4.3G  0 rom</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Once the logical volumes are set and you have both a root, and a unencrypted <code>/boot</code> partition you shouldn’t have any errors finalizing this partition scheme, and progressing the rest of the installation.</p>
+<p>Once the logical volumes are set and you have both a root, and a unencrypted <code>/boot</code> partition you shouldn’t have any errors finalizing this partition scheme.</p>
+<h2 id="free-space">FREE SPACE</h2>
+<p>I don’t believe any installer partitioner comes with NTFS, you can leave the space unallocated for Windows or <code>apt install ntfs-3g</code> to partition the shared section. You will have to install <code>ntfs-3g</code> to read the partition on Debian.</p>
 </body>
 </html>

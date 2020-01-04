@@ -72,5 +72,10 @@ You can change the partition type of `tmp` and `var` to any file system; setting
 |	tmp		|	ext4		|	/tmp	|
 |	swap_1	|	swap space	|	N/A		|
 
-Once the logical volumes are set and you have both a root, and a unencrypted `/boot` partition you shouldn't have any errors finalizing this partition scheme,
-and progressing the rest of the installation.
+Once the logical volumes are set and you have both a root, and a unencrypted `/boot` partition you shouldn't have any errors finalizing this partition scheme.
+
+FREE SPACE
+----------
+
+I don't believe any installer partitioner comes with NTFS, you can leave the space unallocated for Windows or `apt install ntfs-3g` to partition the shared section.
+You will have to install `ntfs-3g` to read the partition on Debian.
