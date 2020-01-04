@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Garrett Hale" />
+  <title>Debian single dm-crypt partition</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<h1 id="setup">Setup</h1>
+<p>For my tests I am using <a href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/10.2.0+nonfree/">Debian 10.2+nonfree firmware</a>; specifically the <a href="https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/10.2.0+nonfree/amd64/iso-cd/">net-installer iso</a>. To get a wholly free (as in freedom) version of Debian I’d still recommend the net-installer labelled under <a href="https://www.debian.org/distrib/netinst">Small CDs or USB sticks here</a>.</p>
+<p>As we’re just going over the partitioner I’m confident nearly any version will work.</p>
+<p>This half-crypto setup can work on BIOS or UEFI boot modes, but I recommend confirming your bootable media boots UEFI. If you’re having trouble creating a UEFI bootable media you can easily overwrite a USB by first finding it by disk size with <code>lsblk</code> and then overwriting it and it’s partitions where <code>sde</code> in <code>/dev/sde</code> is replaced with the found drive in this command</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">dd</span> if=debian-10.2.0-amd64-netinst.iso of=/dev/sde bs=4M</a></code></pre></div>
+<p>Note; appending <code>bs=4M</code> will load more of the in file into ram, the only reason not to use this is if you don’t have 4M of ram to spare. Afterwards <code>lsblk</code> might look as if the drive has 2 partitions like so</p>
+<pre><code>NAME                  MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda                     8:0    0 465.8G  0 disk
+[TRUNCATED]
+sde                     8:64   1    15G  0 disk
+├─sde1                  8:65   1   376M  0 part
+└─sde2                  8:66   1   2.8M  0 part
+sr0                    11:0    1   4.3G  0 rom</code></pre>
+<p>That’s enough setup, I’m sure you’ve got this among the sea of better tutorials on bootable USBs.</p>
+<h1 id="installing">Installing</h1>
+<p>Make sure you’re booting via UEFI, motherboards like to be coy about this so maybe disable legacy booting if it’s an issue. If you’re booting via BIOS (legacy) then GRUB can have issues finding other operating systems.</p>
+<p>I only tested on the non-graphical install, it’s likely this can be done with the graphical installer. Continue through the installer entering time zones, usernames, and passwords until you reach the partitioner.</p>
+<h2 id="partitioning">Partitioning</h2>
+<p>In my tests I wanted a clean slate so I wrote new partition tables for my drive <code>sda</code>, if you have data or your partitions are already split you should likely avoid doing that.</p>
+<h2 id="uefi">UEFI</h2>
+<p>UEFI requires a special <code>system EFI</code> partition, it can be very small the norm seems to be 512MB. When selecting <code>system EFI</code> as the partition type everything will be automatically set up.</p>
+<p>Create a small 512MB <code>ext2</code> partition for <code>/boot</code>, this cannot be encrypted and will hold more Debian boot data.</p>
+<h2 id="dm-crypt">dm-crypt</h2>
+<p>Make a partition for the Debian operating system; if you intend to put some personal files on here maybe 100GB will do, otherwise 40GB is more than enough for just the system and apt-installed applications. This partition will be set to “Physical volume for <code>dm-crypt</code>” type, if you had data previously on this drive make sure “Erase drive” is “yes”. The single encrypted partition will use an LVM for many reasons, I feel most importantly so that we only have to decrypt the drive once for multiple volumes/swap space.</p>
+<p>This process sort of mounts the encrypted partition; if you want to resize your encrypted volume you can NOT do it after setting up encryption. Restarting the installation is your only way back from here. Now that you have a crypto partition select “Set up encryption” and in the selection area pick the drive marked crypto or find it by partition size. This will ask for the passphrase and erase the disk with random data, if selected come back in a fat minute, cancelling the erasure is perfectly safe. Afterwards it will give the same screen to “choose encrypted partition” or “finish” though there is little feedback, pick finish.</p>
+<h2 id="lvm">LVM</h2>
+<p>Now you should see the partitioner page expanded with a <code>dm-crypt</code> section, select the 40-100GB partition in that section. You should select the type “Physical volume for LVM”, and hit done but we’re not done yet, back in the partitioner screen select “Configure LVM”. Now selecting the <code>/dev/mapper/crypto</code> drive or by partition size. Create a volume group, I believe the standard naming convention is <code>hostname--vg</code> could be literally anything, don’t let nerds weigh you down.</p>
+<p>It’s up to you how you’d like to divy up the partitions, if you’re worried about space just a root and swap partition is perfectly fine. If you’re worried about stability then I’d recommend making separate <code>/var</code>, <code>/tmp</code>, and root. Either way you want to start making logical volumes from smallest to largest, the names of these volumes is also made up, typically <code>var</code>, <code>tmp</code>, <code>root</code>, and <code>swap_1</code>.</p>
+<p>Create the volumes in this order (assuming 40GB) Root will be the largest, remaining data for the volume group.</p>
+<table>
+<thead>
+<tr class="header">
+<th>size</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2GB</td>
+<td>tmp</td>
+</tr>
+<tr class="even">
+<td>10GB</td>
+<td>var</td>
+</tr>
+<tr class="odd">
+<td>8GB</td>
+<td>swap_1</td>
+</tr>
+<tr class="even">
+<td>20GB</td>
+<td>root</td>
+</tr>
+</tbody>
+</table>
+<p>Finish lvm configuration, we still need to use these volumes as mount points and set partitions for them.</p>
+<p>You’ll notice the partitioner has grown in subsections for your drive. For each logical volume set the partition type and mount point; since these are all system points they’ll be listed in the menu. You can change the partition type of <code>tmp</code> and <code>var</code> to any file system; setting <code>tmp</code> to <code>ext2</code> can help SSD health.</p>
+<table>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>partition</th>
+<th>mount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>root</td>
+<td>ext4</td>
+<td>/</td>
+</tr>
+<tr class="even">
+<td>var</td>
+<td>ext4</td>
+<td>/var</td>
+</tr>
+<tr class="odd">
+<td>tmp</td>
+<td>ext4</td>
+<td>/tmp</td>
+</tr>
+<tr class="even">
+<td>swap_1</td>
+<td>swap space</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p>Once the logical volumes are set and you have both a root, and a unencrypted <code>/boot</code> partition you shouldn’t have any errors finalizing this partition scheme, and progressing the rest of the installation.</p>
+</body>
+</html>
