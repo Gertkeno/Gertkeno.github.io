@@ -51,4 +51,5 @@ Please share your report.
 	~linkto: AsEsme_Choices
 ```
 
-Pages, or linked list heads are stored in a `TMap <FString, Line *>`, a hash table, so we can effectively use strings in a key, value pair.
+Pages, or linked list heads are stored in a `TMap <FString, Line *>`, a hash table,
+so we can effectively use strings in a key, value pair.

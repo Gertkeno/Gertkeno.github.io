@@ -6,9 +6,8 @@ author: Garrett Hale
 AIRLOCK
 =======
 
-[AIRLOCK](https://github.com/gertkeno/airlock) is a story focused game I helped
-create for the [HOFT Game Development Lab](https://www.gamedevelopmentlab.com/)
-program as part of a team of 6 aspiring game developers with many growing skills.
+[AIRLOCK](https://github.com/gertkeno/airlock) is a story focused game I helped create for the
+[HOFT Game Development Lab](https://www.gamedevelopmentlab.com/) as part of a team of 6 fantastic game developers.
 
 Personally I did plenty of back end programming, and engineered a system in the
 Unreal Engine for designers to easily add dialogue and functionality into the game.
