@@ -3,11 +3,12 @@ pagetitle: Airlock Dialogue System
 author: Garrett Hale
 ---
 
-AIRLOCK
+TITLE TBD
 =======
 
-[AIRLOCK](https://github.com/gertkeno/airlock) is a story focused game I helped create for the
+[TITLE TBD](https://github.com/gertkeno/airlock) is a story focused game I helped create for the
 [HOFT Game Development Lab](https://www.gamedevelopmentlab.com/) as part of a team of 6 fantastic game developers.
+The project name was Airlock while in-development.
 
 Personally I did plenty of back end programming, and engineered a system in the
 Unreal Engine for designers to easily add dialogue and functionality into the game.
@@ -17,7 +18,7 @@ together in a simple text file format.
 The Airlock Dialogue System
 ===========================
 
-AIRLOCK uses dialogue with branching paths, variables in and out of dialogue,
+TITLE TBD uses dialogue with branching paths, variables in and out of dialogue,
 conditional statements, and cosmetic information about said dialogue.
 As we were using Unreal Engine 4 we could've done dialogue in blueprints.
 However, blueprint is a general purpose scripting language, it couldn't make
@@ -34,8 +35,7 @@ reliant on `.adf` files being correct with little to no error checking possible.
 
 Adding variables and conditionals to `.adf` files pushed a majority of blueprint's functionality onto the dialogue system.
 This drastically improved our ability to produce and edit dialogue content.
-I made sure to automatically check if variables were unused or unknown.
-Blueprints were still used for resetting the scene and handling special triggers received from the dialogue system.
+Blueprints could still be used for resetting the scene and handling triggers received from the dialogue system.
 
 I was strongly against the initial implementation to separate variables from dialogue files.
 A high-level system like this removes a lot of freedom from developers; I was transparent about that.
@@ -45,5 +45,5 @@ We did learn more about what features we would and wouldn't be using, when back 
 
 I'd argue legibility's importance would be aided in this system, but much of our group was not comfortable writing plain text documents.
 A node-graph editor like [Twinery](https://twinery.org/) certainly helps with organizing/linking text, I would've liked to make a node-viewer tool if time permitted.
-Functionality within these files gets difficult to track, but I tried to create rules and warnings to aid.
-Such as per-file scoping unless explicitly disabled; variables are guaranteed to be set and used within a file, controlling sprawling dependency lists.
+Functionality within these files gets difficult to track, so I created plenty of warnings to aid.
+Such as per-file scoping; variables are guaranteed to be set and used within a file, controlling prawling dependency lists.
