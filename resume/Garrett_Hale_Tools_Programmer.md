@@ -3,6 +3,7 @@ pagetitle: Garrett Hale's Resume
 author: Garrett Hale
 date: Wed 22 Jan 2020 07:16:12 PM CST
 geometry: margin=3cm
+linkcolor: blue
 ---
 
 Garrett Hale \hfill https://gert.us/
