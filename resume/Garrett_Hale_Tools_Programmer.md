@@ -2,6 +2,7 @@
 pagetitle: Garrett Hale's Resume
 author: Garrett Hale
 date: Wed 22 Jan 2020 07:16:12 PM CST
+geometry: margin=3cm
 ---
 
 Garrett Hale \hfill https://gert.us/
@@ -33,8 +34,8 @@ UE4, C++, Tools/Backend, [Github repo](https://github.com/Gertkeno/airlock)
 
 C++, Tools, GameMaker Studio, [Steam Store Page](https://store.steampowered.com/app/1009750/Flappatron/)
 
-- Created automatic lip syncing algorithms
 - Manual and automatic lip syncing tools
+- Created lip syncing algorithms
 
 ### Meme Game 23D (2016 - 2018)
 
@@ -58,7 +59,7 @@ Python, NodeJS, [Program Site](https://code2college.org/)
 
 - Taught full stack web development
 
-<!--# References
+<!-- # References
 
 - Chris Morrow, Fellow instructor at Code2College, <cmmorrow@gmail.com>
 - Stephen Riesenberger, Game Designer, <stv2049@yahoo.com>-->
