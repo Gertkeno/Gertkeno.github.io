@@ -30,13 +30,14 @@ UE4, C++, Tools/Backend, [Github repo](https://github.com/Gertkeno/airlock)
 - Created Dialogue system in UE4
 - Virtual machine architecture
 - Quest tracking and Branching paths
+- Gameplay programming
 
 ### Flappatron (2019)
 
 C++, Tools, GameMaker Studio, [Steam Store Page](https://store.steampowered.com/app/1009750/Flappatron/)
 
 - Manual and automatic lip syncing tools
-- Created lip syncing algorithms
+- Created multiple lip syncing algorithms
 
 ### Meme Game 23D (2016 - 2018)
 
@@ -60,13 +61,7 @@ Python, NodeJS, [Program Site](https://code2college.org/)
 
 - Taught full stack web development
 
-<!-- # References
-
-- Chris Morrow, Fellow instructor at Code2College, <cmmorrow@gmail.com>
-- Stephen Riesenberger, Game Designer, <stv2049@yahoo.com>-->
-
 <!-- maybe include networking experience -->
-<!-- fix your margins holy -->
 
 <!-- vim: set spell: -->
 <!-- vim: set cc=80: -->
