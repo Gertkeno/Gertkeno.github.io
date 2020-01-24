@@ -24,7 +24,7 @@ Moderate Unreal Engine 4, OpenGL, Unity
 
 ### VESSELS (2019 - 2020)
 
-UE4, C++, Tools/Backend, [Github repo](https://github.com/Gertkeno/airlock)
+UE4, C++, Tools/Backend, [Github](https://github.com/Gertkeno/airlock)
 <!--- [steam or itch page here](https://example.com)-->
 
 - Created Dialogue system in UE4
@@ -34,14 +34,14 @@ UE4, C++, Tools/Backend, [Github repo](https://github.com/Gertkeno/airlock)
 
 ### Flappatron (2019)
 
-C++, Tools, GameMaker Studio, [Steam Store Page](https://store.steampowered.com/app/1009750/Flappatron/)
+C++, Tools, GameMaker Studio, [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
 
 - Manual and automatic lip syncing tools
 - Created multiple lip syncing algorithms
 
 ### Meme Game 23D (2016 - 2018)
 
-C++, OpenGL, Valgrind, [Bitbucket repo](https://bitbucket.org/Gertkeno/meme-game-23d),
+C++, OpenGL, Valgrind, [Bitbucket](https://bitbucket.org/Gertkeno/meme-game-23d),
 [Homemade Trailer](https://youtu.be/p9rINCeBq4s)
 
 - Graphics and Engine programming
