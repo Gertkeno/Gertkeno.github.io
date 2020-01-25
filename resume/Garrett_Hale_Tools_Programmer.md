@@ -6,9 +6,9 @@ geometry: margin=3cm
 linkcolor: blue
 ---
 
-Garrett Hale \hfill https://gert.us/
+# Garrett Hale \hfill https://gert.us/
 
-Engine/Tools Developer \hfill garrett@gert.us
+## Engine/Tools Developer \hfill garrett@gert.us
 
 \hfill 512-914-9558
 
@@ -27,16 +27,16 @@ Moderate Unreal Engine 4, OpenGL, Unity
 UE4, C++, Tools/Backend, [Github](https://github.com/Gertkeno/airlock)
 <!--- [steam or itch page here](https://example.com)-->
 
-- Created Dialogue system in UE4
-- Virtual machine architecture
-- Quest tracking and Branching paths
+- Created Dialogue system in UE4, managing 4000+ lines of dialogue
+  - Virtual machine architecture with variables and conditional jumps
+  - Quest tracking and Branching paths
 - Gameplay programming
 
 ### Flappatron (2019)
 
 C++, Tools, GameMaker Studio, [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
 
-- Manual and automatic lip syncing tools
+- Manual and automatic lip syncing tools, simplifying contract lip syncing work
 - Created multiple lip syncing algorithms
 
 ### Meme Game 23D (2016 - 2018)
@@ -52,8 +52,8 @@ C++, OpenGL, Valgrind, [Bitbucket](https://bitbucket.org/Gertkeno/meme-game-23d)
 
 Selenium, Python, phantomjs, [Company Site](http://www.venforma.com/)
 
+- Automated full-stack tests improving publishing speed
 - Worked in Agile development
-- Automated full-stack tests
 
 ### Code2College Volunteer Instructor (2017 - 2018)
 
