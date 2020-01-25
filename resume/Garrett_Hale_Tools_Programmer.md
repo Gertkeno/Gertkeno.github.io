@@ -3,14 +3,15 @@ pagetitle: Garrett Hale's Resume
 author: Garrett Hale
 date: Wed 22 Jan 2020 07:16:12 PM CST
 geometry: margin=3cm
-linkcolor: blue
+urlcolor: orange
+fontfamily: bookman
 ---
 
-# Garrett Hale \hfill https://gert.us/
+# Garrett Hale
 
-## Engine/Tools Developer \hfill garrett@gert.us
+## Engine/Tools Developer
 
-\hfill 512-914-9558
+<https://gert.us/>, <garrett@gert.us>, 512-914-9558
 
 ---
 
