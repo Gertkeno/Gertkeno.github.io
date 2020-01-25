@@ -6,25 +6,50 @@ geometry: margin=3cm
 linkcolor: blue
 ---
 
-Garrett Hale \hfill https://gert.us/
+::: {#info}
 
-Engine/Tools Developer \hfill garrett@gert.us
+- <https://gert.us/>
+- <garrett@gert.us>
+- 512-914-9558
 
-\hfill 512-914-9558
+# Garrett Hale
+
+## Engine/Tools Developer
+
+:::
 
 ---
 
 # Skills
 
-Expert C++11/14/17/20, git, gdb, Valgrind, Linux
+::: {#skills}
 
-Moderate Unreal Engine 4, OpenGL, Unity
+Expert
+
+- C++11/14/17/20
+- git
+- gdb
+- Valgrind
+- Linux
+
+
+Moderate
+
+- Unreal Engine 4
+- OpenGL
+- Unity
+
+:::
+
+---
 
 # Experience
 
-### VESSELS (2019 - 2020)
+::: {.exp}
 
-UE4, C++, Tools/Backend, [Github](https://github.com/Gertkeno/airlock)
+### VESSELS
+
+(2019 - 2020) LSSC, [Github](https://github.com/Gertkeno/airlock)
 <!--- [steam or itch page here](https://example.com)-->
 
 - Created Dialogue system in UE4
@@ -32,34 +57,88 @@ UE4, C++, Tools/Backend, [Github](https://github.com/Gertkeno/airlock)
 - Quest tracking and Branching paths
 - Gameplay programming
 
-### Flappatron (2019)
+\br
 
-C++, Tools, GameMaker Studio, [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
+- UE4
+- C++
+- Tools/Backend
+
+:::
+
+::: {.exp}
+
+### Flappatron
+
+\(2019\) Manning Media, [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
 
 - Manual and automatic lip syncing tools
 - Created multiple lip syncing algorithms
 
-### Meme Game 23D (2016 - 2018)
+\br
 
-C++, OpenGL, Valgrind, [Bitbucket](https://bitbucket.org/Gertkeno/meme-game-23d),
+- C++
+- Tools
+- GameMaker Studio
+
+
+:::
+
+::: {.exp}
+
+### Meme Game 23D
+
+(2016 - 2018)
+Independent,
+[Bitbucket](https://bitbucket.org/Gertkeno/meme-game-23d),
 [Homemade Trailer](https://youtu.be/p9rINCeBq4s)
 
 - Graphics and Engine programming
 - Audio Engine programming
 - Cross platform development
 
-### Venforma Contract SDET (2017 - 2018)
+\br
 
-Selenium, Python, phantomjs, [Company Site](http://www.venforma.com/)
+- C++
+- OpenGL
+- Valgrind
+
+:::
+
+::: {.exp}
+
+### SDET Contracts
+
+(2017 - 2018)
+Venforma,
+[Company Site](http://www.venforma.com/)
 
 - Worked in Agile development
 - Automated full-stack tests
 
-### Code2College Volunteer Instructor (2017 - 2018)
+\br
 
-Python, NodeJS, [Program Site](https://code2college.org/)
+- Selenium
+- Python
+- phantomjs
+
+:::
+
+::: {.exp}
+
+### Volunteer Instructor
+
+(2017 - 2018)
+Code2College,
+[Program Site](https://code2college.org/)
 
 - Taught full stack web development
+
+\br
+
+- Python
+- NodeJS
+
+:::
 
 <!-- maybe include networking experience -->
 

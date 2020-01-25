@@ -11,56 +11,122 @@
       span.smallcaps{font-variant: small-caps;}
       span.underline{text-decoration: underline;}
       div.column{display: inline-block; vertical-align: top; width: 50%;}
-	  .split {display: block; float: right;}
+
+	  a {color: darkorange;}
+	  a:visited {color: orange;}
+
+	  #info h1,#info h2 {width: 50%;}
+	  #info h2 {color: grey;}
+	  #info ul {list-style: none; float: right;}
+
+	  #skills ul {list-style: none; color: grey; padding-right: 1em;}
+	  /* only direct children of skills */
+	  #skills > * {box-sizing: border-box; display: table-cell;}
+
+	  .exp > h3 {display: inline-block;}
+	  .exp > p {display: inline-block;}
+	  .exp ul {width: 50%; box-sizing: border-box; display: table-cell;}
+	  .exp > ul:nth-of-type(2) {list-style: none; color: grey;}
+
   </style>
 </head>
 <body>
-<p>Garrett Hale <a class="split" href="https://gert.us/">https://gert.us/</a></p>
-<p>Engine/Tools Developer <a class="split" href="mailto:garrett@gert.us">garrett@gert.us</a></p>
-<p><span class="split">512-914-9558</span></p>
-<br>
+<div id="info">
+<ul>
+<li><a href="https://gert.us/" class="uri">https://gert.us/</a></li>
+<li><a href="mailto:garrett@gert.us">garrett@gert.us</a></li>
+<li>512-914-9558</li>
+</ul>
+<h1 id="garrett-hale">Garrett Hale</h1>
+<h2 id="enginetools-developer">Engine/Tools Developer</h2>
+</div>
 <hr />
 <h1 id="skills">Skills</h1>
-<p>Expert C++11/14/17/20, git, gdb, Valgrind, Linux</p>
-<p>Moderate Unreal Engine 4, OpenGL, Unity</p>
+<div id="skills">
+<p>Expert</p>
+<ul>
+<li>C++11/14/17/20</li>
+<li>git</li>
+<li>gdb</li>
+<li>Valgrind</li>
+<li>Linux</li>
+</ul>
+<p>Moderate</p>
+<ul>
+<li>Unreal Engine 4</li>
+<li>OpenGL</li>
+<li>Unity</li>
+</ul>
+</div>
+<hr />
 <h1 id="experience">Experience</h1>
-<h3 id="vessels-2019---2020">VESSELS (2019 - 2020)</h3>
-<p>UE4, C++, Tools/Backend, <a href="https://github.com/Gertkeno/airlock">Github repo</a> <!--- [steam or itch page here](https://example.com)--></p>
+<div class="exp">
+<h3 id="vessels">VESSELS</h3>
+<p>(2019 - 2020) LSSC, <a href="https://github.com/Gertkeno/airlock">Github</a> <!--- [steam or itch page here](https://example.com)--></p>
 <ul>
 <li>Created Dialogue system in UE4</li>
 <li>Virtual machine architecture</li>
 <li>Quest tracking and Branching paths</li>
+<li>Gameplay programming</li>
 </ul>
-<h3 id="flappatron-2019">Flappatron (2019)</h3>
-<p>C++, Tools, GameMaker Studio, <a href="https://store.steampowered.com/app/1009750/Flappatron/">Steam Store Page</a></p>
+<ul>
+<li>UE4</li>
+<li>C++</li>
+<li>Tools/Backend</li>
+</ul>
+</div>
+<div class="exp">
+<h3 id="flappatron">Flappatron</h3>
+<p>(2019) Manning Media, <a href="https://store.steampowered.com/app/1009750/Flappatron/">Steam</a></p>
 <ul>
 <li>Manual and automatic lip syncing tools</li>
-<li>Created lip syncing algorithms</li>
+<li>Created multiple lip syncing algorithms</li>
 </ul>
-<h3 id="meme-game-23d-2016---2018">Meme Game 23D (2016 - 2018)</h3>
-<p>C++, OpenGL, Valgrind, <a href="https://bitbucket.org/Gertkeno/meme-game-23d">Bitbucket repo</a>, <a href="https://youtu.be/p9rINCeBq4s">Homemade Trailer</a></p>
+<ul>
+<li>C++</li>
+<li>Tools</li>
+<li>GameMaker Studio</li>
+</ul>
+</div>
+<div class="exp">
+<h3 id="meme-game-23d">Meme Game 23D</h3>
+<p>(2016 - 2018) Independent, <a href="https://bitbucket.org/Gertkeno/meme-game-23d">Bitbucket</a>, <a href="https://youtu.be/p9rINCeBq4s">Homemade Trailer</a></p>
 <ul>
 <li>Graphics and Engine programming</li>
 <li>Audio Engine programming</li>
 <li>Cross platform development</li>
 </ul>
-<h3 id="venforma-contract-sdet-2017---2018">Venforma Contract SDET (2017 - 2018)</h3>
-<p>Selenium, Python, phantomjs, <a href="http://www.venforma.com/">Company Site</a></p>
+<ul>
+<li>C++</li>
+<li>OpenGL</li>
+<li>Valgrind</li>
+</ul>
+</div>
+<div class="exp">
+<h3 id="sdet-contracts">SDET Contracts</h3>
+<p>(2017 - 2018) Venforma, <a href="http://www.venforma.com/">Company Site</a></p>
 <ul>
 <li>Worked in Agile development</li>
 <li>Automated full-stack tests</li>
 </ul>
-<h3 id="code2college-volunteer-instructor-2017---2018">Code2College Volunteer Instructor (2017 - 2018)</h3>
-<p>Python, NodeJS, <a href="https://code2college.org/">Program Site</a></p>
+<ul>
+<li>Selenium</li>
+<li>Python</li>
+<li>phantomjs</li>
+</ul>
+</div>
+<div class="exp">
+<h3 id="volunteer-instructor">Volunteer Instructor</h3>
+<p>(2017 - 2018) Code2College, <a href="https://code2college.org/">Program Site</a></p>
 <ul>
 <li>Taught full stack web development</li>
 </ul>
-<!-- # References
-
-- Chris Morrow, Fellow instructor at Code2College, <cmmorrow@gmail.com>
-- Stephen Riesenberger, Game Designer, <stv2049@yahoo.com>-->
+<ul>
+<li>Python</li>
+<li>NodeJS</li>
+</ul>
+</div>
 <!-- maybe include networking experience -->
-<!-- fix your margins holy -->
 <!-- vim: set spell: -->
 <!-- vim: set cc=80: -->
 </body>
