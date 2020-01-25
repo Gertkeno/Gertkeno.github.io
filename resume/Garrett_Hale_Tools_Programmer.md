@@ -12,15 +12,13 @@ linkcolor: blue
 - <garrett@gert.us>
 - 512-914-9558
 
-# Garrett Hale
+## Garrett Hale
 
-## Engine/Tools Developer
+### Engine/Tools Developer
 
 :::
 
----
-
-# Skills
+## Skills
 
 ::: {#skills}
 
@@ -29,7 +27,6 @@ Expert
 - C++11/14/17/20
 - git
 - gdb
-- Valgrind
 - Linux
 
 
@@ -38,12 +35,11 @@ Moderate
 - Unreal Engine 4
 - OpenGL
 - Unity
+- Agile Development
 
 :::
 
----
-
-# Experience
+## Experience
 
 ::: {.exp}
 
