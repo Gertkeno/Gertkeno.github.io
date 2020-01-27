@@ -9,7 +9,7 @@ h1 {
 }
 
 .social svg {
-	font-size: 4em;
+	font-size: 2em;
 }
 
 .social svg:hover {
@@ -35,9 +35,5 @@ h1 {
 	div#sections > div {
 		display: inline-block;
 		width: 100%;
-	}
-
-	.social svg {
-		font-size: 2em;
 	}
 }
