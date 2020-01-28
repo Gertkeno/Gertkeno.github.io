@@ -1,0 +1,26 @@
+@media only screen and (orientation: landscape) {
+	body {
+		margin-left: 20vw;
+		margin-right: 20vw;
+	}
+}
+
+p {
+	text-align: justify;
+}
+
+/*a {
+	color: darkorange;
+}
+
+a:visited {
+	color: darkred;
+}/**/
+
+h1 {
+	border-bottom: 1px black solid;
+}
+
+table td {
+	padding-right: 1em;
+}

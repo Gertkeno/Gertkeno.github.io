@@ -1,6 +1,7 @@
 ---
 pagetitle: Debian single dm-crypt partition
 author: Garrett Hale
+css: ../document.css
 ---
 
 Setup

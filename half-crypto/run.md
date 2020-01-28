@@ -74,7 +74,7 @@ You can change the partition type of `tmp` and `var` to any file system; setting
 
 Once the logical volumes are set and you have both a root, and a unencrypted `/boot` partition you shouldn't have any errors finalizing this partition scheme.
 
-FREE SPACE
+Free Space
 ----------
 
 I don't believe any installer partitioner comes with NTFS, you can leave the space unallocated for Windows or `apt install ntfs-3g` to partition the shared section.
