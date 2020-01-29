@@ -1,5 +1,6 @@
 ---
 pagetitle: My Bookmarks
+css: ../nbasic.css
 ---
 
 ### Programming Resources

@@ -17,15 +17,26 @@ h1 {
 	/* box-shadow: 2px 2px lightblue; */
 }
 
+div.column {box-sizing: border-box;}
+
+a {color: darkorange;}
+a:visited {color: darkred;}
+a:hover {text-decoration: none;}
+
+ul {list-style-type: square;}
+
 @media only screen and (orientation: landscape) {
 	body {
 		border-left: 20vw solid;
 		border-right: 20vw solid;
-		border-image: -moz-linear-gradient( to bottom right, #77F, #7FF ) 1;
-		border-image: linear-gradient( to bottom right, #77F, #7FF ) 1;
+		/*border-image: -moz-linear-gradient( to bottom right, #77F, #7FF ) 1;*/
+		border-image: linear-gradient( to bottom right, #F73, #FFA ) 1;
 
 		padding: 1em;
 		margin: 0;
+
+		box-sizing: border-box;
+		min-height: 100vh;
 	}
 
 	div#sections {
