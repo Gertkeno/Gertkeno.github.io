@@ -3,22 +3,6 @@ h1 {
 	text-decoration: underline;
 }
 
-.social a{
-	display: inline-block;
-	margin-right: 1em;
-}
-
-.social svg {
-	font-size: 2em;
-}
-
-.social svg:hover {
-	filter: drop-shadow(2px 2px lightblue);
-	/* box-shadow: 2px 2px lightblue; */
-}
-
-div.column {box-sizing: border-box;}
-
 a {color: darkorange;}
 a:visited {color: darkred;}
 a:hover {text-decoration: none;}
@@ -37,14 +21,5 @@ ul {list-style-type: square;}
 
 		box-sizing: border-box;
 		min-height: 100vh;
-	}
-
-	div#sections {
-		column-count: 2;
-	}
-
-	div#sections > div {
-		display: inline-block;
-		width: 100%;
 	}
 }
