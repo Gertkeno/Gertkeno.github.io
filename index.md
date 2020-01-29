@@ -10,6 +10,7 @@ Hey, this is Gert. Welcome to my website.
 
 If you want me to program something, practically anything, email me at <g@gert.us>!
 
+:::{.column}
 ### Social
 
 - [**email**](g@gert.us) g@gert.us
@@ -23,7 +24,9 @@ If you want me to program something, practically anything, email me at <g@gert.u
 - [**gamejolt**](http://gamejolt.com/@gertkeno/games)
 - **nintendo** SW-5439-4751-0117
 - [**snapchat**](Snapchat-1915470728.jpg) gertkeno
+:::
 
+:::{.column}
 ### Games by me
 
 - [Traditions](https://globalgamejam.org/2019/games/traditions)
@@ -33,8 +36,11 @@ If you want me to program something, practically anything, email me at <g@gert.u
 - [Meme Game](https://gamejolt.com/games/meme-game/163369)
 - [Snowman Frogger](https://gamejolt.com/games/snowman-frogger/115638)
 - [Minion Killer](https://gamejolt.com/games/minion-killer/79776)
+:::
 
+:::{.column}
 ### Blog?
 
 - [Debian Partially-Encrypted Install](half-crypto/)
 - [Bookmarks](bookmarks/)
+:::
