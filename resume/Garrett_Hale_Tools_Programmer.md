@@ -4,28 +4,28 @@ author: Garrett Hale
 date: Wed 22 Jan 2020 07:16:12 PM CST
 geometry: margin=3cm
 urlcolor: orange
-fontfamily: bookman
+css: pandoc.css
 ---
 
-# Garrett Hale
+## Garrett Hale
 
-## Engine/Tools Developer
+### Engine/Tools Developer
 
 <https://gert.us/>, <garrett@gert.us>, 512-914-9558
 
 ---
 
-# Skills
+## Skills
 
 Expert C++11/14/17/20, git, gdb, Valgrind, Linux
 
 Moderate Unreal Engine 4, OpenGL, Unity
 
-# Experience
+## Experience
 
-### VESSELS (2019 - 2020)
+**VESSELS** (2019 - 2020) [Github](https://github.com/Gertkeno/airlock)
 
-UE4, C++, Tools/Backend, [Github](https://github.com/Gertkeno/airlock)
+UE4, C++, Tools/Backend
 <!--- [steam or itch page here](https://example.com)-->
 
 - Created Dialogue system in UE4, managing 4000+ lines of dialogue
@@ -33,32 +33,32 @@ UE4, C++, Tools/Backend, [Github](https://github.com/Gertkeno/airlock)
   - Quest tracking and Branching paths
 - Gameplay programming
 
-### Flappatron (2019)
+**Flappatron** (2019) [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
 
-C++, Tools, GameMaker Studio, [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
+C++, Tools, GameMaker Studio
 
 - Manual and automatic lip syncing tools, simplifying contract lip syncing work
 - Created multiple lip syncing algorithms
 
-### Meme Game 23D (2016 - 2018)
-
-C++, OpenGL, Valgrind, [Bitbucket](https://bitbucket.org/Gertkeno/meme-game-23d),
+**Meme Game 23D** (2016 - 2018) [Bitbucket](https://bitbucket.org/Gertkeno/meme-game-23d),
 [Homemade Trailer](https://youtu.be/p9rINCeBq4s)
+
+C++, OpenGL, Valgrind
 
 - Graphics and Engine programming
 - Audio Engine programming
 - Cross platform development
 
-### Venforma Contract SDET (2017 - 2018)
+**Venforma Contract SDET** (2017 - 2018) [Company Site](http://www.venforma.com/)
 
-Selenium, Python, phantomjs, [Company Site](http://www.venforma.com/)
+Selenium, Python, phantomjs
 
 - Automated full-stack tests improving publishing speed
 - Worked in Agile development
 
-### Code2College Volunteer Instructor (2017 - 2018)
+**Code2College Volunteer Instructor** (2017 - 2018) [Program Site](https://code2college.org/)
 
-Python, NodeJS, [Program Site](https://code2college.org/)
+Python, NodeJS
 
 - Taught full stack web development
 

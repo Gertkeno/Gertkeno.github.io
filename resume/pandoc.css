@@ -1,2 +1,9 @@
 a {color: darkorange;}
 a:visited {color: orange;}
+
+@media only screen and (orientation: landscape) {
+	body {
+		margin-left: 20vw;
+		margin-right: 20vw;
+	}
+}
