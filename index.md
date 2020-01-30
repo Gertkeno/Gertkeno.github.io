@@ -8,7 +8,7 @@ css: nbasic.css
 
 Hey, this is Gert. Welcome to my website.
 
-Check out my [resume](resume/)!
+Check out my [**resume**](resume/)!
 
 If you want me to program something, practically anything, email me at <g@gert.us>!
 
@@ -24,7 +24,6 @@ If you want me to program something, practically anything, email me at <g@gert.u
 - [**bitbucket**](https://bitbucket.org/Gertkeno/)
 - [**twitch**](https://www.twitch.tv/gert_h)
 - [**youtube**](https://www.youtube.com/user/cptgthkeno/videos)
-- [**gamejolt**](http://gamejolt.com/@gertkeno/games)
 - **nintendo** SW-5439-4751-0117
 - [**snapchat**](Snapchat-1915470728.jpg) gertkeno
 :::
