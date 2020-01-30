@@ -17,9 +17,9 @@ css: pandoc.css
 
 ## Skills
 
-Expert C++11/14/17/20, git, gdb, Valgrind, Linux
+_Expert_ C++11/14/17/20, git, gdb, Valgrind, Linux
 
-Moderate Unreal Engine 4, OpenGL, Unity
+_Proficient_ Unreal Engine 4, OpenGL, Unity
 
 ## Experience
 
@@ -46,6 +46,8 @@ C++, Tools, GameMaker Studio
 C++, OpenGL, Valgrind
 
 - Graphics and Engine programming
+  - Cut-scene system
+  - Full, remap-able controller support
 - Audio Engine programming
 - Cross platform development
 
