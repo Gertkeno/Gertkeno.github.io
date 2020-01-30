@@ -1,0 +1,14 @@
+@media only screen {
+	a {
+		color: darkorange;
+		text-decoration: none;
+	}
+
+	a:visited {
+		color: darkred;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+}

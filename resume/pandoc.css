@@ -1,20 +1,9 @@
+@import '../linkcolors.css';
+
 @media only screen and (orientation: landscape) {
 	body {
 		margin-left: 20vw;
 		margin-right: 20vw;
-	}
-
-	a {
-		color: darkorange;
-		text-decoration: none;
-	}
-
-	a:visited {
-		color: orange;
-	}
-
-	a:hover {
-		text-decoration: underline;
 	}
 }
 

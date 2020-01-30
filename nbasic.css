@@ -1,17 +1,4 @@
-h1 {
-	text-align: center;
-	text-decoration: underline;
-}
-
-p, li, a {
-	font-family: sans-serif;
-}
-
-a {color: darkorange;}
-a:visited {color: darkred;}
-a:hover {text-decoration: none;}
-
-ul {list-style-type: square;}
+@import 'linkcolors.css';
 
 @media only screen and (orientation: landscape) {
 	body {
@@ -35,4 +22,17 @@ ul {list-style-type: square;}
 		display: inline-block;
 		width: 100%;
 	}
+}
+
+h1 {
+	text-align: center;
+	text-decoration: underline;
+}
+
+p, li, a {
+	font-family: sans-serif;
+}
+
+ul {
+	list-style-type: square;
 }

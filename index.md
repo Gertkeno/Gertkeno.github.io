@@ -8,6 +8,8 @@ css: nbasic.css
 
 Hey, this is Gert. Welcome to my website.
 
+Check out my [resume](resume/)!
+
 If you want me to program something, practically anything, email me at <g@gert.us>!
 
 :::{#sect}
