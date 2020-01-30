@@ -7,15 +7,6 @@ p, li, a {
 	font-family: sans-serif;
 }
 
-div#sect {
-	column-count: 2;
-}
-
-div#sect > div {
-	display: inline-block;
-	width: 100%;
-}
-
 a {color: darkorange;}
 a:visited {color: darkred;}
 a:hover {text-decoration: none;}
@@ -34,5 +25,14 @@ ul {list-style-type: square;}
 
 		box-sizing: border-box;
 		min-height: 100vh;
+	}
+
+	div#sect {
+		column-count: 2;
+	}
+
+	div#sect > div {
+		display: inline-block;
+		width: 100%;
 	}
 }
