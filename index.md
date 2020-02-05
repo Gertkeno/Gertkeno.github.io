@@ -31,6 +31,7 @@ If you want me to program something, practically anything, email me at <g@gert.u
 :::{}
 ### Blog?
 
+- [Game Dialogue Systems](dialogue-systems/)
 - [Debian Partially-Encrypted Install](half-crypto/)
 - [Bookmarks](bookmarks/)
 :::
