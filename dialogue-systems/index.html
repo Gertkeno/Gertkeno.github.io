@@ -146,23 +146,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Structurally, this isn’t what most people expect, and sadly that means I’ve created a poor mental model for you.</p>
 <p>So we create each byte with two main variables for our machine to operate on. Each <code>EType_t</code> tells the VM what to do with the byte’s <code>text</code> variable, for merely displaying a <code>SAID_TEXT</code> operator will print the <code>text</code> variable on-screen. The <code>SET</code> function will store a value of true in the VM, with <code>text</code> as the key, for later state retrieval.</p>
 <p>Most virtual machines are programmed to read bytecode until some sentinel is met. <em>ADF</em> has separated functions for reading text, and operating on the VM state. In both cases <em>ADF</em> reads a <code>SAID_TEXT</code> then continues to read any other <code>EType_t</code> until it reaches a <code>SAID_TEXT</code> again. When just reading <em>ADF</em> only prints the initial <code>SAID_TEXT</code> and checks for cosmetics that follow. When operating <em>ADF</em> will set variables, potentially prepare another byte-string to read, and finally move forward in the current byte-string, where reading and operating will start for the next calls.</p>
-<p>To help understand how we craft our Byte I’ll take the last example and write it as a C++ array using the <code>struct Byte</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1"><span class="at">const</span> Byte Question_Suicide[] = {</a>
-<a class="sourceLine" id="cb3-2" title="2">    {SAID_TEXT, <span class="st">&quot;Yes... I am. And... I&#39;ve asked you to not talk to me about this.&quot;</span>},</a>
-<a class="sourceLine" id="cb3-3" title="3">    {NAME,      <span class="st">&quot;Esme&quot;</span>},</a>
-<a class="sourceLine" id="cb3-4" title="4">    {SAID_TEXT, <span class="st">&quot;Peyton, please... I respect the subjects you don&#39;t want to discuss.&quot;</span>},</a>
-<a class="sourceLine" id="cb3-5" title="5">    {SAID_TEXT, <span class="st">&quot;Please do not bring Marv up with me.&quot;</span> },</a>
-<a class="sourceLine" id="cb3-6" title="6">    {SAID_TEXT, <span class="st">&quot;This subject seems to upset her most...&quot;</span>},</a>
-<a class="sourceLine" id="cb3-7" title="7">    {NAME,      <span class="st">&quot;Entity&quot;</span>},</a>
-<a class="sourceLine" id="cb3-8" title="8">    {INTEREST,  <span class="st">&quot;Esme_Upset by Marv&#39;s suicide&quot;</span>},</a>
-<a class="sourceLine" id="cb3-9" title="9">    {SAID_TEXT, <span class="st">&quot;We can use this.&quot;</span>},</a>
-<a class="sourceLine" id="cb3-10" title="10">    {LINK_TO,   <span class="st">&quot;ASPEYTON_QUESTION&quot;</span>},</a>
+<p>To help understand how we craft our Byte I’ll take the last example and write it as a array in C++ using the <code>struct Byte</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1">Byte Question_Suicide[] = {</a>
+<a class="sourceLine" id="cb3-2" title="2">    {Byte::SAID_TEXT, <span class="st">&quot;Yes... I am. And... I&#39;ve asked you to not talk to me about this.&quot;</span>},</a>
+<a class="sourceLine" id="cb3-3" title="3">    {Byte::NAME,      <span class="st">&quot;Esme&quot;</span>},</a>
+<a class="sourceLine" id="cb3-4" title="4">    {Byte::SAID_TEXT, <span class="st">&quot;Peyton, please... I respect the subjects you don&#39;t want to discuss.&quot;</span>},</a>
+<a class="sourceLine" id="cb3-5" title="5">    {Byte::SAID_TEXT, <span class="st">&quot;Please do not bring Marv up with me.&quot;</span> },</a>
+<a class="sourceLine" id="cb3-6" title="6">    {Byte::SAID_TEXT, <span class="st">&quot;This subject seems to upset her most...&quot;</span>},</a>
+<a class="sourceLine" id="cb3-7" title="7">    {Byte::NAME,      <span class="st">&quot;Entity&quot;</span>},</a>
+<a class="sourceLine" id="cb3-8" title="8">    {Byte::INTEREST,  <span class="st">&quot;Esme_Upset by Marv&#39;s suicide&quot;</span>},</a>
+<a class="sourceLine" id="cb3-9" title="9">    {Byte::SAID_TEXT, <span class="st">&quot;We can use this.&quot;</span>},</a>
+<a class="sourceLine" id="cb3-10" title="10">    {Byte::LINK_TO,   <span class="st">&quot;ASPEYTON_QUESTION&quot;</span>},</a>
 <a class="sourceLine" id="cb3-11" title="11">};</a></code></pre></div>
-<p>This example code conversion is mostly accurate with the caveat that we can’t create a custom named <code>Question_Suicide</code> array for what’s declared in a text file. We opted to use a <code>std::map &lt;std::string, std::list &lt;Byte&gt;&gt;</code> to achieve this run-time array creation, where the <code>std::string</code> key is “Question_Suicide” and the rest, is the Byte list.</p>
+<p>A typical virtual machine will try to read the whole byte-string or finish prematurely, throw an error, and give up. This is why we track the last read <code>SAID_TEXT</code> operator and re-feed the list at that start point, making <code>SAID_TEXT</code> the “end” byte like <code>'\0'</code> for c-strings.</p>
+<p>This example code conversion is mostly accurate with the caveat that we can’t create a custom named <code>Question_Suicide</code> array for what’s declared in a text file. We opted to use a <code>std::map &lt;std::string, std::list &lt;Byte&gt;&gt;</code> to achieve this run-time array creation, where the <code>std::string</code> key is “Question_Suicide” and the rest, is the byte-string in linked list form.</p>
 <blockquote>
 <p>When actually implementing I’d use <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a> and <a href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code></a> for simpler insertion complexity.</p>
 </blockquote>
-<p>A typical virtual machine will try to read the whole byte-string or finish prematurely, throw an error, and give up. This is why we track the last read <code>SAID_TEXT</code> operator and re-feed the list at that start point, making <code>SAID_TEXT</code> the “end” byte like <code>'\0'</code> for c-strings.</p>
+<p>Byte-strings can take form of many data structures. Arrays will be faster to operate on but potentially slower to build. Linked lists will be quick to build and slower to operate. For this reason our dialogue system builds linked lists at the start of the game and operates over them during dialogue. Maps are surprisingly fast for how feature rich they are; we use maps to title and track the individual dialogue byte-strings.</p>
 <h2 id="operation-and-state-machine">Operation and State Machine</h2>
 <p>under construction! :)</p>
 <!-- vim: set cc=80: -->
