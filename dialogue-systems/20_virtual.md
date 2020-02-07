@@ -1,5 +1,5 @@
-Virtual Machines - Vessels
-==========================
+Vessels and Virtual Machines
+============================
 
 Vessels originally planned for a open world approach. The tool
 [*ink*](https://www.inklestudios.com/ink/) seemed promising, but didn't fit our
@@ -7,31 +7,22 @@ proposed design requirements. Looking at it now we seem to have implemented
 most of *ink*'s features and architecture with more legible syntax, if it
 worked with Unreal and I dug deeper I'm sure we would've picked this tool.
 
-Anyways the benefit of a virtual machine like *ink* or the
-"Airlock Dialogue File" (*ADF*) is allowing designers control over such immense
-pathways and state changes. Typically if a third party is distributing their
-dialogue system it'll be some sort of virtual machine, reason being that virtual
-machines can cover a lot of functionality. When marketing a system like this it
-sells to boast a large feature list and appeal to every possible edge case, this
-can be costly for designers as you end up working with some unpopular,
-esoteric, or illegible programming language like Rust.
+The benefit of a virtual machine like *ink* or the "Airlock Dialogue File"
+(*ADF*) is allowing designers control over such immense pathways and state
+changes. Typically if a third party is distributing their dialogue system it'll
+be some sort of virtual machine, reason being that virtual machines can cover
+a lot of functionality. When marketing a system like this it sells to boast a
+large feature list and appeal to every possible edge case, this can be costly
+for designers as you end up working with some unpopular, esoteric, or illegible
+programming language like Rust.
 
-I think the single largest mistake I made designing *ADF* was enforcing a per
-file encapsulation; meaning each file was built to only know itself or as little
-of outside data as possible. A quest system would be wholly reliant on breaking
-this ideology, and proved frustrating to implement and logically create content
-for such a hacked-in system.
-
-For all these potential downsides such restrained systems still flourish, *ADF*
+By curbing these potential downsides restrained systems flourish, *ADF*
 handles 4,948 lines of dialogue with 5,699 written operators for flow control.
-This would've been 5,699 or more nodes in blueprint without this system to ease
-editing and reading; not to mention cut out Unreal's atrocious boot time.
+This would've been over 5,699 nodes in blueprint without this system to ease
+reading and writing; not to mention cut out Unreal's atrocious boot time.
 
-VM - Implementation
-===================
-
-Data Structures
----------------
+VM - Data Structures
+====================
 
 First off a quick "VM 101". We'll fudge some of the specifics here but a virtual
 machine uses programmer-defined bytecode instructions to operate on top of your
@@ -52,8 +43,8 @@ our game.
 # Question_Suicide
 Yes... I am. And... I've asked you to not talk to me about this.
 	~name: Esme
-Peyton, please... I respect the subjects you don't want to discuss. 
-Please do not bring Marv up with me. 
+Peyton, please... I respect the subjects you don't want to discuss.
+Please do not bring Marv up with me.
 This subject seems to upset her most...
 	~name: Entity
 	~interest: Esme_Upset by Marv's suicide
@@ -106,7 +97,7 @@ Structurally, this isn't what most people expect, and sadly that means I've
 created a poor mental model for you.
 
 So we create each byte with two main variables for our machine to operate on.
-Each `EType_t` tells the VM what to do with the byte's `text` variable, for 
+Each `EType_t` tells the VM what to do with the byte's `text` variable, for
 merely displaying a `SAID_TEXT` operator will print the `text` variable on-screen.
 The `SET` function will store a value of true in the VM, with `text` as the key,
 for later state retrieval.
@@ -160,10 +151,32 @@ at the start of the game and operates over them during dialogue. Maps are
 surprisingly fast for how feature rich they are; we use maps to title and track
 the individual dialogue byte-strings.
 
-Operation and State Machine
----------------------------
+VM - Operation
+==============
 
-under construction! :)
+Operating over a byte-string can be a simple function, you can create a simple
+virtual machine class to track state out of scope, like so.
+
+```cpp
+class DialogueRunner
+{
+	// data can be endless
+	// make sure to keep this object in scope!
+	int example_data;
+public:
+	void run_string (const std::list <Byte> & opcode);
+};
+```
+
+In *UE4* finding a place for persistent data may be daunting. Creating a basic
+C++ "Game Mode" class with accessible data will persist through the game, just
+remember to reset during a game over or save/load. With this your VM function
+will pull and push data from *UE4*'s global variables, like your game mode class.
+
+For this document I'm going to continue with the custom `DialogueRunner` class
+definition.
+
+Now I mentioned before that
 
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->

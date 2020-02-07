@@ -88,21 +88,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Always compile <code>-Wall -Wextra</code> you cowards.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
-<h1 id="virtual-machines---vessels">Virtual Machines - Vessels</h1>
+<h1 id="vessels-and-virtual-machines">Vessels and Virtual Machines</h1>
 <p>Vessels originally planned for a open world approach. The tool <a href="https://www.inklestudios.com/ink/"><em>ink</em></a> seemed promising, but didn’t fit our proposed design requirements. Looking at it now we seem to have implemented most of <em>ink</em>’s features and architecture with more legible syntax, if it worked with Unreal and I dug deeper I’m sure we would’ve picked this tool.</p>
-<p>Anyways the benefit of a virtual machine like <em>ink</em> or the “Airlock Dialogue File” (<em>ADF</em>) is allowing designers control over such immense pathways and state changes. Typically if a third party is distributing their dialogue system it’ll be some sort of virtual machine, reason being that virtual machines can cover a lot of functionality. When marketing a system like this it sells to boast a large feature list and appeal to every possible edge case, this can be costly for designers as you end up working with some unpopular, esoteric, or illegible programming language like Rust.</p>
-<p>I think the single largest mistake I made designing <em>ADF</em> was enforcing a per file encapsulation; meaning each file was built to only know itself or as little of outside data as possible. A quest system would be wholly reliant on breaking this ideology, and proved frustrating to implement and logically create content for such a hacked-in system.</p>
-<p>For all these potential downsides such restrained systems still flourish, <em>ADF</em> handles 4,948 lines of dialogue with 5,699 written operators for flow control. This would’ve been 5,699 or more nodes in blueprint without this system to ease editing and reading; not to mention cut out Unreal’s atrocious boot time.</p>
-<h1 id="vm---implementation">VM - Implementation</h1>
-<h2 id="data-structures">Data Structures</h2>
+<p>The benefit of a virtual machine like <em>ink</em> or the “Airlock Dialogue File” (<em>ADF</em>) is allowing designers control over such immense pathways and state changes. Typically if a third party is distributing their dialogue system it’ll be some sort of virtual machine, reason being that virtual machines can cover a lot of functionality. When marketing a system like this it sells to boast a large feature list and appeal to every possible edge case, this can be costly for designers as you end up working with some unpopular, esoteric, or illegible programming language like Rust.</p>
+<p>By curbing these potential downsides restrained systems flourish, <em>ADF</em> handles 4,948 lines of dialogue with 5,699 written operators for flow control. This would’ve been over 5,699 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
+<h1 id="vm---data-structures">VM - Data Structures</h1>
 <p>First off a quick “VM 101”. We’ll fudge some of the specifics here but a virtual machine uses programmer-defined bytecode instructions to operate on top of your standard CPU instructions. The performance of virtual machines is always slower than raw machine code, yet faster than most interpreted languages. The defined bytecode can be very basic arithmetic and jumps, just like enterprise CPUs.</p>
 <p>You should define specific game or dialogue related bytecode. <em>ADF</em> has no mathematics builtin, every operation is built to aid in dialogue cosmetics and flow. Code samples like below will be shortened and <em>UE4</em> types will be replaced with <em>stl</em> variants.</p>
 <p>As reference I’ve attached this sample of dialogue the <em>ADF</em> parses and uses in our game.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb1-1" title="1"><span class="fu"># Question_Suicide</span></a>
 <a class="sourceLine" id="cb1-2" title="2">Yes... I am. And... I&#39;ve asked you to not talk to me about this.</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="bn">    ~name: Esme</span></a>
-<a class="sourceLine" id="cb1-4" title="4">Peyton, please... I respect the subjects you don&#39;t want to discuss. </a>
-<a class="sourceLine" id="cb1-5" title="5">Please do not bring Marv up with me. </a>
+<a class="sourceLine" id="cb1-4" title="4">Peyton, please... I respect the subjects you don&#39;t want to discuss.</a>
+<a class="sourceLine" id="cb1-5" title="5">Please do not bring Marv up with me.</a>
 <a class="sourceLine" id="cb1-6" title="6">This subject seems to upset her most...</a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="bn">    ~name: Entity</span></a>
 <a class="sourceLine" id="cb1-8" title="8"><span class="bn">    ~interest: Esme_Upset by Marv&#39;s suicide</span></a>
@@ -164,8 +162,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When actually implementing I’d use <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a> and <a href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code></a> for simpler insertion complexity.</p>
 </blockquote>
 <p>Byte-strings can take form of many data structures. Arrays will be faster to operate on but potentially slower to build. Linked lists will be quick to build and slower to operate. For this reason our dialogue system builds linked lists at the start of the game and operates over them during dialogue. Maps are surprisingly fast for how feature rich they are; we use maps to title and track the individual dialogue byte-strings.</p>
-<h2 id="operation-and-state-machine">Operation and State Machine</h2>
-<p>under construction! :)</p>
+<h1 id="vm---operation">VM - Operation</h1>
+<p>Operating over a byte-string can be a simple function, you can create a simple virtual machine class to track state out of scope, like so.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">class</span> DialogueRunner</a>
+<a class="sourceLine" id="cb4-2" title="2">{</a>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="co">// data can be endless</span></a>
+<a class="sourceLine" id="cb4-4" title="4">    <span class="co">// make sure to keep this object in scope!</span></a>
+<a class="sourceLine" id="cb4-5" title="5">    <span class="dt">int</span> example_data;</a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb4-7" title="7">    <span class="dt">void</span> run_string (<span class="at">const</span> <span class="bu">std::</span>list &lt;Byte&gt; &amp; opcode);</a>
+<a class="sourceLine" id="cb4-8" title="8">};</a></code></pre></div>
+<p>In <em>UE4</em> finding a place for persistent data may be daunting. Creating a basic C++ “Game Mode” class with accessible data will persist through the game, just remember to reset during a game over or save/load. With this your VM function will pull and push data from <em>UE4</em>’s global variables, like your game mode class.</p>
+<p>For this document I’m going to continue with the custom <code>DialogueRunner</code> class definition.</p>
+<p>Now I mentioned before that</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 </body>
