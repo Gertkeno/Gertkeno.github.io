@@ -92,6 +92,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Vessels originally planned for a open world approach. The tool <a href="https://www.inklestudios.com/ink/"><em>ink</em></a> seemed promising, but didn’t fit our proposed design requirements. Looking at it now we seem to have implemented most of <em>ink</em>’s features and architecture with more legible syntax, if it worked with Unreal and I dug deeper I’m sure we would’ve picked this tool.</p>
 <p>The benefit of a virtual machine like <em>ink</em> or the “Airlock Dialogue File” (<em>ADF</em>) is allowing designers control over such immense pathways and state changes. Typically if a third party is distributing their dialogue system it’ll be some sort of virtual machine, reason being that virtual machines can cover a lot of functionality. When marketing a system like this it sells to boast a large feature list and appeal to every possible edge case, this can be costly for designers as you end up working with some unpopular, esoteric, or illegible programming language like Rust.</p>
 <p>By curbing these potential downsides restrained systems flourish, <em>ADF</em> handles 4,948 lines of dialogue with 5,699 written operators for flow control. This would’ve been over 5,699 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
+<!-- vim: set cc=80: -->
+<!-- vim: set spell: -->
 <h1 id="vm---data-structures">VM - Data Structures</h1>
 <p>First off a quick “VM 101”. We’ll fudge some of the specifics here but a virtual machine uses programmer-defined bytecode instructions to operate on top of your standard CPU instructions. The performance of virtual machines is always slower than raw machine code, yet faster than most interpreted languages. The defined bytecode can be very basic arithmetic and jumps, just like enterprise CPUs.</p>
 <p>You should define specific game or dialogue related bytecode. <em>ADF</em> has no mathematics builtin, every operation is built to aid in dialogue cosmetics and flow. Code samples like below will be shortened and <em>UE4</em> types will be replaced with <em>stl</em> variants.</p>
@@ -162,19 +164,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When actually implementing I’d use <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a> and <a href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code></a> for simpler insertion complexity.</p>
 </blockquote>
 <p>Byte-strings can take form of many data structures. Arrays will be faster to operate on but potentially slower to build. Linked lists will be quick to build and slower to operate. For this reason our dialogue system builds linked lists at the start of the game and operates over them during dialogue. Maps are surprisingly fast for how feature rich they are; we use maps to title and track the individual dialogue byte-strings.</p>
+<!-- vim: set cc=80: -->
+<!-- vim: set spell: -->
 <h1 id="vm---operation">VM - Operation</h1>
-<p>Operating over a byte-string can be a simple function, you can create a simple virtual machine class to track state out of scope, like so.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">class</span> DialogueRunner</a>
+<p>The simplest virtual machine is a function taking some container to operate over; I’ll demonstrate the easiest, hardest to work with implementation.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="dt">bool</span> run_string (<span class="at">const</span> <span class="bu">std::</span>forward_list &lt;Byte&gt; data)</a>
 <a class="sourceLine" id="cb4-2" title="2">{</a>
-<a class="sourceLine" id="cb4-3" title="3">    <span class="co">// data can be endless</span></a>
-<a class="sourceLine" id="cb4-4" title="4">    <span class="co">// make sure to keep this object in scope!</span></a>
-<a class="sourceLine" id="cb4-5" title="5">    <span class="dt">int</span> example_data;</a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="kw">public</span>:</a>
-<a class="sourceLine" id="cb4-7" title="7">    <span class="dt">void</span> run_string (<span class="at">const</span> <span class="bu">std::</span>list &lt;Byte&gt; &amp; opcode);</a>
-<a class="sourceLine" id="cb4-8" title="8">};</a></code></pre></div>
+<a class="sourceLine" id="cb4-3" title="3">    <span class="cf">for</span> (<span class="kw">auto</span> &amp; i: data)</a>
+<a class="sourceLine" id="cb4-4" title="4">    {</a>
+<a class="sourceLine" id="cb4-5" title="5">        <span class="cf">switch</span> (i.function)</a>
+<a class="sourceLine" id="cb4-6" title="6">        {</a>
+<a class="sourceLine" id="cb4-7" title="7">        <span class="cf">case</span> Byte::SAID_TEXT:</a>
+<a class="sourceLine" id="cb4-8" title="8">            <span class="bu">std::</span>cout &lt;&lt; i.text &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb4-9" title="9">            <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb4-10" title="10">        <span class="cf">default</span>:</a>
+<a class="sourceLine" id="cb4-11" title="11">            <span class="bu">std::</span>cout &lt;&lt; <span class="st">&quot;unhandled function!&quot;</span> &lt;&lt; <span class="bu">std::</span>endl;</a>
+<a class="sourceLine" id="cb4-12" title="12">            <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb4-13" title="13">        }</a>
+<a class="sourceLine" id="cb4-14" title="14">    }</a>
+<a class="sourceLine" id="cb4-15" title="15">    <span class="cf">return</span> <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb4-16" title="16">}</a></code></pre></div>
+<p>This function may be enough for you, but I’d like to leverage objects to make some relationships between our dialogue and actors. Firstly any data from our byte-strings will be lost without somewhere to keep it. Second this operates an entire byte-string at a time, while useful for more programmatic cases we need to stop, and wait for the player to continue the reading. By making a class to house and run our dialogue we can attach this to actors and directly associate text with them.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">class</span> VM</a>
+<a class="sourceLine" id="cb5-2" title="2">{</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb5-4" title="4">    <span class="co">// loads text file into our &quot;dialogue&quot; variable</span></a>
+<a class="sourceLine" id="cb5-5" title="5">    VM (<span class="at">const</span> <span class="bu">std::</span>string &amp; filename);</a>
+<a class="sourceLine" id="cb5-6" title="6"></a>
+<a class="sourceLine" id="cb5-7" title="7">    <span class="kw">using</span> byte_itr = <span class="bu">std::</span>forward_list &lt;Byte&gt;::const_iterator;</a>
+<a class="sourceLine" id="cb5-8" title="8"></a>
+<a class="sourceLine" id="cb5-9" title="9">    <span class="co">// operates based on the playHead</span></a>
+<a class="sourceLine" id="cb5-10" title="10">    <span class="dt">void</span> run_string();</a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="kw">private</span>:</a>
+<a class="sourceLine" id="cb5-12" title="12">    <span class="co">// variables can be anything!</span></a>
+<a class="sourceLine" id="cb5-13" title="13">    <span class="bu">std::</span>string currentSpeaker;</a>
+<a class="sourceLine" id="cb5-14" title="14">    <span class="bu">std::</span>unordered_set &lt;<span class="bu">std::</span>string&gt; flags;</a>
+<a class="sourceLine" id="cb5-15" title="15"></a>
+<a class="sourceLine" id="cb5-16" title="16">    <span class="co">// what a mouthful!</span></a>
+<a class="sourceLine" id="cb5-17" title="17">    <span class="bu">std::</span>unordered_map &lt;<span class="bu">std::</span>string, <span class="bu">std::</span>forward_list &lt;Byte&gt;&gt; dialogue;</a>
+<a class="sourceLine" id="cb5-18" title="18"></a>
+<a class="sourceLine" id="cb5-19" title="19">    <span class="co">// track dialogue progression</span></a>
+<a class="sourceLine" id="cb5-20" title="20">    byte_itr playHead, playHeadEnd;</a>
+<a class="sourceLine" id="cb5-21" title="21">};</a></code></pre></div>
 <p>In <em>UE4</em> finding a place for persistent data may be daunting. Creating a basic C++ “Game Mode” class with accessible data will persist through the game, just remember to reset during a game over or save/load. With this your VM function will pull and push data from <em>UE4</em>’s global variables, like your game mode class.</p>
-<p>For this document I’m going to continue with the custom <code>DialogueRunner</code> class definition.</p>
-<p>Now I mentioned before that</p>
+<p>For this document I’m going to continue with the custom VM class definition.</p>
+<p>When managing dialogue you’ll likely want to display text, change state, and move the play head forward. We benefit from separating this into at least two functions, you might want to display text more than once, or skip ahead via a fast-forward key. The change is minor for the header, but requires some planning.</p>
+<p>It’s also important to find out what data needs to come out of your VM operations. For displaying text it’s usually just a <code>std::string</code>, running could return full state, a error code, or nothing! My advice here will be to try and catch your errors while loading dialogue.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">class</span> VM</a>
+<a class="sourceLine" id="cb6-2" title="2">{</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb6-4" title="4">    VM (<span class="at">const</span> <span class="bu">std::</span>string &amp; filename);</a>
+<a class="sourceLine" id="cb6-5" title="5"></a>
+<a class="sourceLine" id="cb6-6" title="6">    <span class="kw">using</span> byte_itr = <span class="bu">std::</span>forward_list &lt;Byte&gt;::const_iterator;</a>
+<a class="sourceLine" id="cb6-7" title="7"></a>
+<a class="sourceLine" id="cb6-8" title="8">    <span class="co">// returns if the run was successful</span></a>
+<a class="sourceLine" id="cb6-9" title="9">    <span class="dt">bool</span> run_string();</a>
+<a class="sourceLine" id="cb6-10" title="10"></a>
+<a class="sourceLine" id="cb6-11" title="11">    <span class="co">// returns text to display, may be empty</span></a>
+<a class="sourceLine" id="cb6-12" title="12">    <span class="bu">std::</span>string read_string() <span class="at">const</span>;</a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="kw">private</span>:</a>
+<a class="sourceLine" id="cb6-14" title="14">    <span class="bu">std::</span>string currentSpeaker;</a>
+<a class="sourceLine" id="cb6-15" title="15">    <span class="bu">std::</span>unordered_set &lt;<span class="bu">std::</span>string&gt; flags;</a>
+<a class="sourceLine" id="cb6-16" title="16"></a>
+<a class="sourceLine" id="cb6-17" title="17">    <span class="bu">std::</span>unordered_map &lt;<span class="bu">std::</span>string, <span class="bu">std::</span>forward_list &lt;Byte&gt;&gt; dialogue;</a>
+<a class="sourceLine" id="cb6-18" title="18"></a>
+<a class="sourceLine" id="cb6-19" title="19">    byte_itr playHead, playHeadEnd;</a>
+<a class="sourceLine" id="cb6-20" title="20">};</a></code></pre></div>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 </body>
