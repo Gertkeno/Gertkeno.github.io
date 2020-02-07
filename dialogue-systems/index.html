@@ -307,28 +307,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb9-12" title="12">        <span class="cf">switch</span> (line [<span class="dv">0</span>])</a>
 <a class="sourceLine" id="cb9-13" title="13">        {</a>
 <a class="sourceLine" id="cb9-14" title="14">        <span class="cf">case</span> <span class="ch">&#39;#&#39;</span>:</a>
-<a class="sourceLine" id="cb9-15" title="15">            <span class="co">// name new byte-string</span></a>
-<a class="sourceLine" id="cb9-16" title="16">            writingTo = &amp;dialogue [line.substr (<span class="dv">1</span>)];</a>
-<a class="sourceLine" id="cb9-17" title="17">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb9-18" title="18">        <span class="cf">case</span> <span class="ch">&#39;~&#39;</span>:</a>
-<a class="sourceLine" id="cb9-19" title="19">            <span class="cf">if</span> (writingTo != <span class="kw">nullptr</span>)</a>
-<a class="sourceLine" id="cb9-20" title="20">            {</a>
-<a class="sourceLine" id="cb9-21" title="21">                <span class="co">// is function of name:</span></a>
-<a class="sourceLine" id="cb9-22" title="22">                <span class="at">const</span> <span class="kw">auto</span> functionName {line.substr (<span class="dv">1</span>, line.find (<span class="ch">&#39;:&#39;</span>)-<span class="dv">1</span>)};</a>
-<a class="sourceLine" id="cb9-23" title="23">                <span class="at">const</span> <span class="kw">auto</span> functionText {line.substr (line.find (<span class="ch">&#39;:&#39;</span>))};</a>
-<a class="sourceLine" id="cb9-24" title="24"></a>
-<a class="sourceLine" id="cb9-25" title="25">                writingTo-&gt;push_front (Byte {functionName, functionText});</a>
-<a class="sourceLine" id="cb9-26" title="26">            }</a>
-<a class="sourceLine" id="cb9-27" title="27">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb9-28" title="28">        <span class="cf">default</span>:</a>
-<a class="sourceLine" id="cb9-29" title="29">            <span class="co">// is function SAID_TEXT</span></a>
-<a class="sourceLine" id="cb9-30" title="30">            <span class="cf">if</span> (writingTo != <span class="kw">nullptr</span>)</a>
-<a class="sourceLine" id="cb9-31" title="31">                writingTo-&gt;push_front (Byte {Byte::SAID_TEXT, line});</a>
-<a class="sourceLine" id="cb9-32" title="32">            <span class="cf">break</span>;</a>
-<a class="sourceLine" id="cb9-33" title="33">        }</a>
-<a class="sourceLine" id="cb9-34" title="34">    }</a>
-<a class="sourceLine" id="cb9-35" title="35">}</a></code></pre></div>
-<p>I’ll write out the <code>trim_whitespace()</code> function, and the string name &amp; text Byte constructor for completions sake.</p>
+<a class="sourceLine" id="cb9-15" title="15">            <span class="co">// we create our lists backwards with push_front()</span></a>
+<a class="sourceLine" id="cb9-16" title="16">            <span class="cf">if</span> (writingTo != <span class="kw">nullptr</span>)</a>
+<a class="sourceLine" id="cb9-17" title="17">                writingTo-&gt;reverse();</a>
+<a class="sourceLine" id="cb9-18" title="18"></a>
+<a class="sourceLine" id="cb9-19" title="19">            <span class="co">// name new byte-string</span></a>
+<a class="sourceLine" id="cb9-20" title="20">            writingTo = &amp;dialogue [line.substr (<span class="dv">1</span>)];</a>
+<a class="sourceLine" id="cb9-21" title="21">            <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb9-22" title="22">        <span class="cf">case</span> <span class="ch">&#39;~&#39;</span>:</a>
+<a class="sourceLine" id="cb9-23" title="23">            <span class="cf">if</span> (writingTo != <span class="kw">nullptr</span>)</a>
+<a class="sourceLine" id="cb9-24" title="24">            {</a>
+<a class="sourceLine" id="cb9-25" title="25">                <span class="co">// is function of name:</span></a>
+<a class="sourceLine" id="cb9-26" title="26">                <span class="at">const</span> <span class="kw">auto</span> functionName {line.substr (<span class="dv">1</span>, line.find (<span class="ch">&#39;:&#39;</span>)-<span class="dv">1</span>)};</a>
+<a class="sourceLine" id="cb9-27" title="27">                <span class="at">const</span> <span class="kw">auto</span> functionText {line.substr (line.find (<span class="ch">&#39;:&#39;</span>))};</a>
+<a class="sourceLine" id="cb9-28" title="28"></a>
+<a class="sourceLine" id="cb9-29" title="29">                writingTo-&gt;push_front (Byte {functionName, functionText});</a>
+<a class="sourceLine" id="cb9-30" title="30">            }</a>
+<a class="sourceLine" id="cb9-31" title="31">            <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb9-32" title="32">        <span class="cf">default</span>:</a>
+<a class="sourceLine" id="cb9-33" title="33">            <span class="co">// is function SAID_TEXT</span></a>
+<a class="sourceLine" id="cb9-34" title="34">            <span class="cf">if</span> (writingTo != <span class="kw">nullptr</span>)</a>
+<a class="sourceLine" id="cb9-35" title="35">                writingTo-&gt;push_front (Byte {Byte::SAID_TEXT, line});</a>
+<a class="sourceLine" id="cb9-36" title="36">            <span class="cf">break</span>;</a>
+<a class="sourceLine" id="cb9-37" title="37">        }</a>
+<a class="sourceLine" id="cb9-38" title="38">    }</a>
+<a class="sourceLine" id="cb9-39" title="39">}</a></code></pre></div>
+<p>This format is mostly based on the first character on a line, this makes it easy to expand for more shorthand or unique functions. A <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> format works well as it’s structure is analogous to byte-strings.</p>
+<p>I’ll write out the <code>trim_whitespace()</code> function, and the string based type Byte constructor for completions sake.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">inline</span> <span class="bu">std::</span>string trim_whitespace (<span class="at">const</span> <span class="bu">std::</span>string &amp; in)</a>
 <a class="sourceLine" id="cb10-2" title="2">{</a>
 <a class="sourceLine" id="cb10-3" title="3">    <span class="dt">unsigned</span> index {<span class="dv">0</span>};</a>

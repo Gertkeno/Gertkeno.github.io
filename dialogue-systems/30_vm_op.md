@@ -204,6 +204,10 @@ VM::VM (const std::string & filename)
 		switch (line [0])
 		{
 		case '#':
+			// we create our lists backwards with push_front()
+			if (writingTo != nullptr)
+				writingTo->reverse();
+
 			// name new byte-string
 			writingTo = &dialogue [line.substr (1)];
 			break;
@@ -227,7 +231,10 @@ VM::VM (const std::string & filename)
 }
 ```
 
-I'll write out the `trim_whitespace()` function, and the string name & text Byte
+This format is reliant on the first character on a line, this makes it easy to
+expand for more shorthand or unique functions.
+
+I'll write out the `trim_whitespace()` function, and the string based type Byte
 constructor for completions sake.
 
 ```cpp
