@@ -18,3 +18,9 @@ h1 {
 table td {
 	padding-right: 1em;
 }
+
+pre {
+	background-color: lightgray;
+	border-radius: 0.5em;
+	padding: 1em;
+}
