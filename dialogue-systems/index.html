@@ -91,7 +91,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 id="vessels-and-virtual-machines">Vessels and Virtual Machines</h1>
 <p>Vessels originally planned for a open world approach. The tool <a href="https://www.inklestudios.com/ink/"><em>ink</em></a> seemed promising, but didn’t fit our proposed design requirements. Looking at it now we seem to have implemented most of <em>ink</em>’s features and architecture with more legible syntax, if it worked with Unreal and I dug deeper I’m sure we would’ve picked this tool.</p>
 <p>The benefit of a virtual machine like <em>ink</em> or the “Airlock Dialogue File” (<em>ADF</em>) is allowing designers control over such immense pathways and state changes. Typically if a third party is distributing their dialogue system it’ll be some sort of virtual machine, reason being that virtual machines can cover a lot of functionality. When marketing a system like this it sells to boast a large feature list and appeal to every possible edge case, this can be costly for designers as you end up working with some unpopular, esoteric, or illegible programming language like Rust.</p>
-<p>By curbing these potential downsides restrained systems flourish, <em>ADF</em> handles 4,948 lines of dialogue with 5,699 written operators for flow control. This would’ve been over 5,699 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
+<p>When restraining scope and curbing these potential downsides virtual machines flourish, <em>ADF</em> handles 4,948 lines of dialogue with 5,699 written operators for flow control. This would’ve been over 5,699 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 <h1 id="vm---data-structures">VM - Data Structures</h1>
@@ -143,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb2-32" title="32">    <span class="dt">unsigned</span> indent;</a>
 <a class="sourceLine" id="cb2-33" title="33">};</a></code></pre></div>
 <p>Structurally, this isn’t what most people expect, and sadly that means I’ve created a poor mental model for you.</p>
-<p>So we create each byte with two main variables for our machine to operate on. Each <code>EType_t</code> tells the VM what to do with the byte’s <code>text</code> variable, for merely displaying a <code>SAID_TEXT</code> operator will print the <code>text</code> variable on-screen. The <code>SET</code> function will store a value of true in the VM, with <code>text</code> as the key, for later state retrieval.</p>
+<p>So we create each byte with two main variables for our machine to operate on. Each <code>EType_t</code> tells the VM what to do with the byte’s <code>text</code> variable, for merely displaying, a <code>SAID_TEXT</code> operator will print the <code>text</code> variable on-screen. The <code>SET</code> function will store a value of true in the VM, with <code>text</code> as the key, for later state retrieval.</p>
 <p>Most virtual machines are programmed to read bytecode until some sentinel is met. <em>ADF</em> has separated functions for reading text, and operating on the VM state. In both cases <em>ADF</em> reads a <code>SAID_TEXT</code> then continues to read any other <code>EType_t</code> until it reaches a <code>SAID_TEXT</code> again. When just reading <em>ADF</em> only prints the initial <code>SAID_TEXT</code> and checks for cosmetics that follow. When operating <em>ADF</em> will set variables, potentially prepare another byte-string to read, and finally move forward in the current byte-string, where reading and operating will start for the next calls.</p>
 <p>To help understand how we craft our Byte I’ll take the last example and write it as a array in C++ using the <code>struct Byte</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1">Byte Question_Suicide[] = {</a>
@@ -162,7 +162,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>When actually implementing I’d use <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a> and <a href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code></a> for simpler insertion complexity.</p>
 </blockquote>
-<p>Byte-strings can take form of many data structures. Arrays will be faster to operate on but potentially slower to build. Linked lists will be quick to build and slower to operate. For this reason our dialogue system builds linked lists at the start of the game and operates over them during dialogue. Maps are surprisingly fast for how feature rich they are; we use maps to title and track the individual dialogue byte-strings.</p>
+<p>Byte-strings can take form of many data structures. Arrays will be faster to operate on but potentially slower to build. Linked lists will be easy to build and slower to operate. For this reason our dialogue system builds linked lists at the start of the game and operates over them during dialogue. Maps are surprisingly fast for how feature rich they are; we use maps to title and track the dialogue byte-strings.</p>
+<p>Dialogue will be running our virtual machine sparsely, only when the player clicks through text, so performance when running is typically wasted effort.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 <h1 id="vm---operation">VM - Operation</h1>
@@ -297,7 +298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb9-3" title="3">    <span class="bu">std::</span>ifstream infile (filename);</a>
 <a class="sourceLine" id="cb9-4" title="4">    <span class="cf">if</span> (!infile.is_open())</a>
 <a class="sourceLine" id="cb9-5" title="5">        <span class="cf">throw</span> <span class="bu">std::</span>runtime_error {<span class="st">&quot;couldn&#39;t open file! &quot;</span> + filename};</a>
-<a class="sourceLine" id="cb9-6" title="6">    </a>
+<a class="sourceLine" id="cb9-6" title="6"></a>
 <a class="sourceLine" id="cb9-7" title="7">    <span class="bu">std::</span>string line;</a>
 <a class="sourceLine" id="cb9-8" title="8">    <span class="bu">std::</span>forward_list &lt;Byte&gt; * writingTo = <span class="kw">nullptr</span>;</a>
 <a class="sourceLine" id="cb9-9" title="9">    <span class="cf">while</span> (<span class="bu">std::</span>getline (infile, line))</a>

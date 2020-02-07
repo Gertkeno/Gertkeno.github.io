@@ -74,7 +74,7 @@ created a poor mental model for you.
 
 So we create each byte with two main variables for our machine to operate on.
 Each `EType_t` tells the VM what to do with the byte's `text` variable, for
-merely displaying a `SAID_TEXT` operator will print the `text` variable on-screen.
+merely displaying, a `SAID_TEXT` operator will print the `text` variable on-screen.
 The `SET` function will store a value of true in the VM, with `text` as the key,
 for later state retrieval.
 
@@ -120,12 +120,15 @@ and the rest, is the byte-string in linked list form.
 > and [`std::forward_list`](https://en.cppreference.com/w/cpp/container/forward_list)
 > for simpler insertion complexity.
 
-Byte-strings can take form of many data structures.  Arrays will be faster to
-operate on but potentially slower to build. Linked lists will be quick to build
+Byte-strings can take form of many data structures. Arrays will be faster to
+operate on but potentially slower to build. Linked lists will be easy to build
 and slower to operate. For this reason our dialogue system builds linked lists
 at the start of the game and operates over them during dialogue. Maps are
 surprisingly fast for how feature rich they are; we use maps to title and track
-the individual dialogue byte-strings.
+the dialogue byte-strings.
+
+Dialogue will be running our virtual machine sparsely, only when the player
+clicks through text, so performance when running is typically wasted effort.
 
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->

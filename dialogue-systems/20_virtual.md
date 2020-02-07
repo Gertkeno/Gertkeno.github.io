@@ -16,10 +16,11 @@ large feature list and appeal to every possible edge case, this can be costly
 for designers as you end up working with some unpopular, esoteric, or illegible
 programming language like Rust.
 
-By curbing these potential downsides restrained systems flourish, *ADF*
-handles 4,948 lines of dialogue with 5,699 written operators for flow control.
-This would've been over 5,699 nodes in blueprint without this system to ease
-reading and writing; not to mention cut out Unreal's atrocious boot time.
+When restraining scope and curbing these potential downsides virtual machines
+flourish, *ADF* handles 4,948 lines of dialogue with 5,699 written operators
+for flow control.  This would've been over 5,699 nodes in blueprint without
+this system to ease reading and writing; not to mention cut out Unreal's
+atrocious boot time.
 
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
