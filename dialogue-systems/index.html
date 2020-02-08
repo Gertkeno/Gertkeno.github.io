@@ -78,6 +78,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <link rel="stylesheet" href="../document.css" />
 </head>
 <body>
+<nav id="TOC">
+<ul>
+<li><a href="#systems-intent">Systems Intent</a></li>
+<li><a href="#vessels-and-virtual-machines">Vessels and Virtual Machines</a></li>
+<li><a href="#vm---data-structures">VM - Data Structures</a></li>
+<li><a href="#vm---operation">VM - Operation</a></li>
+<li><a href="#telltale-and-hierarchy">Telltale and Hierarchy</a></li>
+<li><a href="#morrowind-and-linear-quests">Morrowind and Linear Quests</a></li>
+</ul>
+</nav>
 <h1 id="systems-intent">Systems Intent</h1>
 <p>Dialogue can be the focus of many games, if robust dialogue is the foremost feature then it’s important to create or use a system that can account for the plethora of data and logistics behind simple game dialogue.</p>
 <p>Some games, like Morrowind use dialogue for linear quest interactions, and Morrowind houses a healthy amount of quests. In this scenario the game needs to track multiple quest progressions, though that’s the end of it, linear state.</p>
@@ -332,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb9-37" title="37">        }</a>
 <a class="sourceLine" id="cb9-38" title="38">    }</a>
 <a class="sourceLine" id="cb9-39" title="39">}</a></code></pre></div>
-<p>This format is mostly based on the first character on a line, this makes it easy to expand for more shorthand or unique functions. A <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> format works well as it’s structure is analogous to byte-strings.</p>
+<p>This format is reliant on the first character on a line, this makes it easy to expand for more shorthand or unique functions. Keep in mind this sample code doesn’t check for any potentially extreme errors, like reading the same <code># name</code>. Validating function inputs will be the bulk of your error checking, it’s very important to highlight any potential syntax or logic errors.</p>
 <p>I’ll write out the <code>trim_whitespace()</code> function, and the string based type Byte constructor for completions sake.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">inline</span> <span class="bu">std::</span>string trim_whitespace (<span class="at">const</span> <span class="bu">std::</span>string &amp; in)</a>
 <a class="sourceLine" id="cb10-2" title="2">{</a>
@@ -366,6 +376,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb10-30" title="30">        <span class="cf">if</span> (i.key == type)</a>
 <a class="sourceLine" id="cb10-31" title="31">            function = i.value;</a>
 <a class="sourceLine" id="cb10-32" title="32">}</a></code></pre></div>
+<!-- vim: set cc=80: -->
+<!-- vim: set spell: -->
+<h1 id="telltale-and-hierarchy">Telltale and Hierarchy</h1>
+<p>Under construction! :)</p>
+<!-- vim: set cc=80: -->
+<!-- vim: set spell: -->
+<h1 id="morrowind-and-linear-quests">Morrowind and Linear Quests</h1>
+<p>My implementation examples will be based on <a href="https://github.com/OpenMW/openmw">OpenMW</a>, a fan re-write of Bethesda’s engine. Most examples being specifically from the <a href="https://github.com/OpenMW/openmw/tree/master/apps/openmw/mwdialogue">mwdialogue</a> source folder. OpenMW houses very legible code, I’d recommend digging around if you feel inclined.</p>
+<p>Morrowind’s quests are often talking to some mook, going somewhere, killing a thing, getting an item, and reporting back. This structure can often be completed out of order, getting quest item then talking to quest giver usually results in immediately turning in the quest. This is all part of a very reactive dialogue system rather than a world reacting to quest state.</p>
+<p>There’s a handful of assumptions Morrowind holds about itself that is leveraged well in it’s dialogue system. There is only one player in Morrowind, this is something game engines typically have a hard time catering to and can make data storage a pain. Quests are linear, one way trips, it’s a fact that you cannot regress in quest completion; though we’ll dig into multiple endings and fail states later.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 </body>

@@ -232,7 +232,10 @@ VM::VM (const std::string & filename)
 ```
 
 This format is reliant on the first character on a line, this makes it easy to
-expand for more shorthand or unique functions.
+expand for more shorthand or unique functions. Keep in mind this sample code
+doesn't check for any potentially extreme errors, like reading the same `# name`.
+Validating function inputs will be the bulk of your error checking, it's very
+important to highlight any potential syntax or logic errors.
 
 I'll write out the `trim_whitespace()` function, and the string based type Byte
 constructor for completions sake.
