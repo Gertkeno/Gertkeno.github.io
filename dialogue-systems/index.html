@@ -81,9 +81,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <nav id="TOC">
 <ul>
 <li><a href="#systems-intent">Systems Intent</a></li>
-<li><a href="#vessels-and-virtual-machines">Vessels and Virtual Machines</a></li>
+<li><a href="#vessels-and-virtual-machines">Vessels and Virtual Machines</a><ul>
 <li><a href="#vm---data-structures">VM - Data Structures</a></li>
 <li><a href="#vm---operation">VM - Operation</a></li>
+<li><a href="#vm---file-reader">VM - File Reader</a></li>
+</ul></li>
 <li><a href="#telltale-and-hierarchy">Telltale and Hierarchy</a></li>
 <li><a href="#morrowind-and-linear-quests">Morrowind and Linear Quests</a></li>
 </ul>
@@ -104,7 +106,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When restraining scope and curbing these potential downsides virtual machines flourish, <em>ADF</em> handles 4,948 lines of dialogue with 5,699 written operators for flow control. This would’ve been over 5,699 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
-<h1 id="vm---data-structures">VM - Data Structures</h1>
+<h2 id="vm---data-structures">VM - Data Structures</h2>
 <p>First off a quick “VM 101”. We’ll fudge some of the specifics here but a virtual machine uses programmer-defined bytecode instructions to operate on top of your standard CPU instructions. The performance of virtual machines is always slower than raw machine code, yet faster than most interpreted languages. The defined bytecode can be very basic arithmetic and jumps, just like enterprise CPUs.</p>
 <p>You should define specific game or dialogue related bytecode. <em>ADF</em> has no mathematics builtin, every operation is built to aid in dialogue cosmetics and flow. Code samples like below will be shortened and <em>UE4</em> types will be replaced with <em>stl</em> variants.</p>
 <p>As reference I’ve attached this sample of dialogue the <em>ADF</em> parses and uses in our game.</p>
@@ -176,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Dialogue will be running our virtual machine sparsely, only when the player clicks through text, so performance when running is typically wasted effort.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
-<h1 id="vm---operation">VM - Operation</h1>
+<h2 id="vm---operation">VM - Operation</h2>
 <p>The simplest virtual machine is a function taking some container to operate over; I’ll demonstrate the easiest, hardest to work with implementation.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb4-1" title="1"><span class="dt">bool</span> run_string (<span class="at">const</span> <span class="bu">std::</span>forward_list &lt;Byte&gt; data)</a>
 <a class="sourceLine" id="cb4-2" title="2">{</a>
@@ -282,6 +284,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb7-33" title="33"></a>
 <a class="sourceLine" id="cb7-34" title="34">    <span class="cf">return</span> <span class="kw">true</span>;</a>
 <a class="sourceLine" id="cb7-35" title="35">}</a></code></pre></div>
+<!-- vim: set cc=80: -->
+<!-- vim: set spell: -->
+<h2 id="vm---file-reader">VM - File Reader</h2>
 <p>Constructing our byte-strings by reading the text files first requires formatting. I really like <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a> so I based <em>ADF</em> around it. A line-based formatting approach makes for easy programming, and can interfere with stylized/rich text formatting like <a href="http://www.pindari.com/rtf1.html">RTF</a>.</p>
 <p>When creating <em>ADF</em>’s formatting we only had to consider two parts; how to assign byte-strings a name for later reference, and how to specify the type per byte. Naming byte-strings was easy, any special character(s) to make a line or block stand out will do. Now specifying byte type certainly needs to be a key-value pair with some short hands for common functions.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb8-1" title="1"><span class="fu"># Esme_Success</span></a>

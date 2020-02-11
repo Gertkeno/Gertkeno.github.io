@@ -1,5 +1,5 @@
 VM - Data Structures
-====================
+--------------------
 
 First off a quick "VM 101". We'll fudge some of the specifics here but a virtual
 machine uses programmer-defined bytecode instructions to operate on top of your
