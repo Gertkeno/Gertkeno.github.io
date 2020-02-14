@@ -391,6 +391,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>My implementation examples will be based on <a href="https://github.com/OpenMW/openmw">OpenMW</a>, a fan re-write of Bethesda’s engine. Most examples being specifically from the <a href="https://github.com/OpenMW/openmw/tree/master/apps/openmw/mwdialogue">mwdialogue</a> source folder. OpenMW houses very legible code, I’d recommend digging around if you feel inclined.</p>
 <p>Morrowind’s quests are often talking to some mook, going somewhere, killing a thing, getting an item, and reporting back. This structure can often be completed out of order, getting quest item then talking to quest giver usually results in immediately turning in the quest. This is all part of a very reactive dialogue system rather than a world reacting to quest state.</p>
 <p>There’s a handful of assumptions Morrowind holds about itself that is leveraged well in it’s dialogue system. There is only one player in Morrowind, this is something game engines typically have a hard time catering to and can make data storage a pain. Quests are linear, one way trips, it’s a fact that you cannot regress in quest completion; though we’ll dig into multiple endings and fail states later.</p>
+<p>Tracking quest state can be done purely by a integer value; keeping a boolean for if the quest is finished can be advantageous, but you can typically get away with a sentinel finish value. Say if a quest state is above or equal to 100 it is finished, this gives you 100 beats for the quest to hit before getting into fail/success states. Morrowind followed this ideology closely, and like BASIC most quests would increment state by 10 to allow for easy dialogue insertion.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb11-1" title="1"><span class="co">// quest.hpp</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="kw">class</span> Quest</a>
+<a class="sourceLine" id="cb11-3" title="3">{</a>
+<a class="sourceLine" id="cb11-4" title="4">    <span class="dt">int</span> state;</a>
+<a class="sourceLine" id="cb11-5" title="5"></a>
+<a class="sourceLine" id="cb11-6" title="6">    <span class="at">const</span> <span class="bu">std::</span>string name;</a>
+<a class="sourceLine" id="cb11-7" title="7"><span class="kw">public</span>:</a>
+<a class="sourceLine" id="cb11-8" title="8">    Quest (<span class="at">const</span> <span class="bu">std::</span>string &amp; questName);</a>
+<a class="sourceLine" id="cb11-9" title="9"></a>
+<a class="sourceLine" id="cb11-10" title="10">    <span class="dt">bool</span> is_complete() <span class="at">const</span> {<span class="cf">return</span> state &gt;= <span class="dv">100</span>;}</a>
+<a class="sourceLine" id="cb11-11" title="11">    <span class="dt">int</span> get_state() <span class="at">const</span> {<span class="cf">return</span> state;}</a>
+<a class="sourceLine" id="cb11-12" title="12"></a>
+<a class="sourceLine" id="cb11-13" title="13">    <span class="dt">bool</span> update_state (<span class="dt">int</span> newState)</a>
+<a class="sourceLine" id="cb11-14" title="14">    {</a>
+<a class="sourceLine" id="cb11-15" title="15">        <span class="cf">if</span> (newState &lt;= state)</a>
+<a class="sourceLine" id="cb11-16" title="16">            <span class="cf">return</span> <span class="kw">false</span>;</a>
+<a class="sourceLine" id="cb11-17" title="17"></a>
+<a class="sourceLine" id="cb11-18" title="18">        state = newState;</a>
+<a class="sourceLine" id="cb11-19" title="19">        <span class="cf">return</span> <span class="kw">true</span>;</a>
+<a class="sourceLine" id="cb11-20" title="20">    }</a>
+<a class="sourceLine" id="cb11-21" title="21"></a>
+<a class="sourceLine" id="cb11-22" title="22">    <span class="bu">std::</span>string get_name() <span class="at">const</span> {<span class="cf">return</span> name;}</a>
+<a class="sourceLine" id="cb11-23" title="23">};</a></code></pre></div>
+<p>This on it’s own doesn’t do a great job tying into game programming, most dialogue calls would have to check state and manually return the relevant string.</p>
+<p>Under construction! :^)</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 </body>
