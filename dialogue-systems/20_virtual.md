@@ -6,6 +6,9 @@ Vessels originally planned for a open world approach. The tool
 proposed design requirements. Looking at it now we seem to have implemented
 most of *ink*'s features and architecture with more legible syntax, if it
 worked with Unreal and I dug deeper I'm sure we would've picked this tool.
+[*Twinery*](https://twinery.org/) is another tool we would use for our initial
+draft. *Twinery* doesn't export to a easy to parse format, nor work out of the
+box with Unreal, it was useful to map out what features we would need.
 
 The benefit of a virtual machine like *ink* or the "Airlock Dialogue File"
 (*ADF*) is allowing designers control over such immense pathways and state
