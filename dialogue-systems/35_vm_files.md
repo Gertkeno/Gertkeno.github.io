@@ -67,8 +67,9 @@ VM::VM (const std::string & filename)
 			if (writingTo != nullptr)
 			{
 				// is function of name:
-				const auto functionName {line.substr (1, line.find (':')-1)};
-				const auto functionText {line.substr (line.find (':'))};
+				const auto colonPoint {line.find (':')};
+				const auto functionName {line.substr (1, colonPoint-1)};
+				const auto functionText {trim_whitespace (line.substr (colonPoint))};
 
 				writingTo->push_front (Byte {functionName, functionText});
 			}
@@ -99,10 +100,10 @@ inline std::string trim_whitespace (const std::string & in)
 	while (index < in.length() and std::isspace (in [index]))
 		index++;
 
-	if (in.length() <= index)
+	if (index >= in.length() or index == 0)
 		return in;
 
-	return in.substr (index-1);
+	return in.substr (index);
 }
 
 Byte::Byte (std::string type, std::string value)
