@@ -35,8 +35,12 @@ class Quest
 
 	const std::string name;
 public:
-	Quest (const std::string & questName);
+	Quest (const std::string & questName)
+		: name (questName), state (0)
+	{
+	}
 
+	std::string get_name() const {return name;}
 	bool is_complete() const {return state >= 100;}
 	int get_state() const {return state;}
 
@@ -48,13 +52,16 @@ public:
 		state = newState;
 		return true;
 	}
-
-	std::string get_name() const {return name;}
 };
 ```
 
-This on it's own doesn't do a great job tying into game programming, most
-dialogue calls would have to check state and manually return the relevant string.
+Integrating this nicely can be difficult, I'm going to assume a more hard-coded
+approach which is unlike Morrowind and their creation kit. Creating a file for
+quest specific dialogue can prove useful even if state updates are compiled in
+the game. Morrowind uses a quick question and answer dialogue format, one input
+and one output. Most of this file structure is pairing a block of NPC text to a
+topic. A topic may only contain one block of text, where a quest has state and
+responds differently.
 
 Under construction! :^)
 
