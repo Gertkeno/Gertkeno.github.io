@@ -20,8 +20,8 @@ for designers as you end up working with some unpopular, esoteric, or illegible
 programming language like Rust.
 
 When restraining scope and curbing these potential downsides virtual machines
-flourish, *ADF* handles 4,948 lines of dialogue with 5,699 written operators
-for flow control.  This would've been over 5,699 nodes in blueprint without
+flourish, *ADF* handles 6,923 lines of dialogue with 7,258 written operators
+for flow control.  This would've been over 7,258 nodes in blueprint without
 this system to ease reading and writing; not to mention cut out Unreal's
 atrocious boot time.
 
