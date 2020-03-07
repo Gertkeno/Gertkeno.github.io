@@ -14,6 +14,9 @@ plethora of data and logistics behind simple game dialogue.
 Some games, like Morrowind use dialogue for linear quest interactions, and
 Morrowind houses a healthy amount of quests. In this scenario the game needs
 to track multiple quest progressions, though that's the end of it, linear state.
+[OpenMW](https://openmw.org/en/), a fan re-write of the Morrowind engine has
+fairly legible quest code available
+[here](https://github.com/OpenMW/openmw/tree/master/apps/openmw/mwdialogue).
 
 Telltale's "The Walking Dead" uses a branching paths story in a hierarchic
 structure, one choice always leads to a new choice, never repeating.
