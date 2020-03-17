@@ -40,7 +40,7 @@ you'll need the most robust system, this rarely reduces time spent coding for
 both the tools developer and content creators.
 
 It's very important to make sure your system can be debugged, even those not
-using virtual machines or any seemingly simple system. Error checking is little
+using virtual machines or a seemingly simple system. Error checking is little
 work when automated and a major headache if left invisible.
 
 Always compile `-Wall -Wextra` you cowards.

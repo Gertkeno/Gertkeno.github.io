@@ -5,11 +5,9 @@ First off a quick "VM 101". We'll fudge some of the specifics here but a virtual
 machine uses programmer-defined bytecode instructions to operate on top of your
 standard CPU instructions. The performance of virtual machines is always
 slower than raw machine code, yet faster than most interpreted languages.
-The defined bytecode can be very basic arithmetic and jumps, just like
-enterprise CPUs.
 
 You should define specific game or dialogue related bytecode. *ADF* has no
-mathematics builtin, every operation is built to aid in dialogue cosmetics and
+mathematics built-in, every operation is built to aid in dialogue cosmetics and
 flow. Code samples like below will be shortened and *UE4* types will be replaced
 with *stl* variants.
 
@@ -78,15 +76,6 @@ merely displaying, a `SAID_TEXT` operator will print the `text` variable on-scre
 The `SET` function will store a value of true in the VM, with `text` as the key,
 for later state retrieval.
 
-Most virtual machines are programmed to read bytecode until some sentinel is met.
-*ADF* has separated functions for reading text, and operating on the VM state.
-In both cases *ADF* reads a `SAID_TEXT` then continues to read any other `EType_t`
-until it reaches a `SAID_TEXT` again. When just reading *ADF* only prints the
-initial `SAID_TEXT` and checks for cosmetics that follow. When operating *ADF*
-will set variables, potentially prepare another byte-string to read, and
-finally move forward in the current byte-string, where reading and operating
-will start for the next calls.
-
 To help understand how we craft our Byte I'll take the last example and write
 it as a array in C++ using the `struct Byte`.
 
@@ -105,9 +94,10 @@ Byte Question_Suicide[] = {
 ```
 
 A typical virtual machine will try to read the whole byte-string or finish
-prematurely, throw an error, and give up. This is why we track the last read
-`SAID_TEXT` operator and re-feed the list at that start point, making `SAID_TEXT`
-the "end" byte like `'\0'` for c-strings.
+prematurely, throw an error, and give up. If we track the last read `SAID_TEXT`
+operator and re-feed the list at that start point; making `SAID_TEXT` the "end"
+byte like `'\0'` for c-strings. We can use this pattern to wait for user input
+"click to continue" before reading the next `SAID_TEXT`.
 
 This example code conversion is mostly accurate with the caveat that we can't
 create a custom named `Question_Suicide` array for what's declared in a text
@@ -128,7 +118,7 @@ surprisingly fast for how feature rich they are; we use maps to title and track
 the dialogue byte-strings.
 
 Dialogue will be running our virtual machine sparsely, only when the player
-clicks through text, so performance when running is typically wasted effort.
+clicks through text, so performance at vm-runtime is typically wasted effort.
 
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->

@@ -86,6 +86,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#vm---operation">VM - Operation</a></li>
 <li><a href="#vm---file-reader">VM - File Reader</a></li>
 </ul></li>
+<li><a href="#conclusion">Conclusion</a></li>
 </ul>
 </nav>
 <h1 id="systems-intent">Systems Intent</h1>
@@ -94,19 +95,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Telltale’s “The Walking Dead” uses a branching paths story in a hierarchic structure, one choice always leads to a new choice, never repeating. The hierarchy inherently provides structure used to create branches and reduce branches back into a linear path.</p>
 <p>Our team’s game “Vessels”, we had a finite cast of characters and a spider-web of dialogue for the player to unravel. We used <a href="https://twinery.org/">Twinery</a> to draft our story as the node-based system and robust state machine handles our cyclical, evolving story. In Unreal we developed our own virtual machine to handle dialogue, sewing programming and dialogue into one text file. With a virtual machine like this we could create branching paths and out of order execution for player progression.</p>
 <p>When designing any system it’s important to only pay for what you use. Having a firmly low scope means saying no to some requests, it means building a system that simply can’t do everything. By design the limitations can bring benefits, you can make assumptions of what designers are trying to do and automatically react or properly throw errors. It’s very easy to believe you’ll need the most robust system, this rarely reduces time spent coding for both the tools developer and content creators.</p>
-<p>It’s very important to make sure your system can be debugged, even those not using virtual machines or any seemingly simple system. Error checking is little work when automated and a major headache if left invisible.</p>
+<p>It’s very important to make sure your system can be debugged, even those not using virtual machines or a seemingly simple system. Error checking is little work when automated and a major headache if left invisible.</p>
 <p>Always compile <code>-Wall -Wextra</code> you cowards.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 <h1 id="vessels-and-virtual-machines">Vessels and Virtual Machines</h1>
-<p>Vessels originally planned for a open world approach. The tool <a href="https://www.inklestudios.com/ink/"><em>ink</em></a> seemed promising, but didn’t fit our proposed design requirements. Looking at it now we seem to have implemented most of <em>ink</em>’s features and architecture with more legible syntax, if it worked with Unreal and I dug deeper I’m sure we would’ve picked this tool. <a href="https://twinery.org/"><em>Twinery</em></a> is another tool we would use for our initial draft. <em>Twinery</em> doesn’t export to a easy to parse format, nor work out of the box with Unreal, it was useful to map out what features we would need.</p>
-<p>The benefit of a virtual machine like <em>ink</em> or the “Airlock Dialogue File” (<em>ADF</em>) is allowing designers control over such immense pathways and state changes. Typically if a third party is distributing their dialogue system it’ll be some sort of virtual machine, reason being that virtual machines can cover a lot of functionality. When marketing a system like this it sells to boast a large feature list and appeal to every possible edge case, this can be costly for designers as you end up working with some unpopular, esoteric, or illegible programming language like Rust.</p>
-<p>When restraining scope and curbing these potential downsides virtual machines flourish, <em>ADF</em> handles 6,923 lines of dialogue with 7,258 written operators for flow control. This would’ve been over 7,258 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
+<p>Vessels originally planned for a open world approach. The tool <a href="https://www.inklestudios.com/ink/"><em>ink</em></a> seemed promising, but didn’t fit our proposed design requirements. Looking at it now we seem to have implemented most of <em>ink</em>’s features and architecture with more legible syntax, if it worked with Unreal and I dug deeper I’m sure we would’ve picked this tool. <a href="https://twinery.org/"><em>Twinery</em></a> is another tool we would use for our initial draft. <em>Twinery</em> doesn’t export to a easy to parse format, nor work out of the box with Unreal, it was useful to find out what features we would need.</p>
+<p>I didn’t look into <a href="https://github.com/exodrifter/unity-rumor"><em>Rumor</em></a> at the time, but it’s a fruitful dialogue system with fantastic, simple syntax.</p>
+<p>The benefit of a virtual machine like <em>ink</em> or the “Airlock Dialogue File” (<em>ADF</em>) is allowing designers immense control over pathways and state changes. It’s important to only cater to those two objectives, too many features can bog down your dialogue systems ease of use or overcomplicate simple functions. <em>ADF</em> for example only stores boolean flags, no integers or math allowed.</p>
+<p>When restraining scope and curbing potential downsides virtual machines flourish, <em>ADF</em> handles 6,923 lines of dialogue with 7,258 written operators for flow control. This would’ve been over 7,258 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 <h2 id="vm---data-structures">VM - Data Structures</h2>
-<p>First off a quick “VM 101”. We’ll fudge some of the specifics here but a virtual machine uses programmer-defined bytecode instructions to operate on top of your standard CPU instructions. The performance of virtual machines is always slower than raw machine code, yet faster than most interpreted languages. The defined bytecode can be very basic arithmetic and jumps, just like enterprise CPUs.</p>
-<p>You should define specific game or dialogue related bytecode. <em>ADF</em> has no mathematics builtin, every operation is built to aid in dialogue cosmetics and flow. Code samples like below will be shortened and <em>UE4</em> types will be replaced with <em>stl</em> variants.</p>
+<p>First off a quick “VM 101”. We’ll fudge some of the specifics here but a virtual machine uses programmer-defined bytecode instructions to operate on top of your standard CPU instructions. The performance of virtual machines is always slower than raw machine code, yet faster than most interpreted languages.</p>
+<p>You should define specific game or dialogue related bytecode. <em>ADF</em> has no mathematics built-in, every operation is built to aid in dialogue cosmetics and flow. Code samples like below will be shortened and <em>UE4</em> types will be replaced with <em>stl</em> variants.</p>
 <p>As reference I’ve attached this sample of dialogue the <em>ADF</em> parses and uses in our game.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb1-1" title="1"><span class="fu"># Question_Suicide</span></a>
 <a class="sourceLine" id="cb1-2" title="2">Yes... I am. And... I&#39;ve asked you to not talk to me about this.</a>
@@ -154,7 +156,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb2-33" title="33">};</a></code></pre></div>
 <p>Structurally, this isn’t what most people expect, and sadly that means I’ve created a poor mental model for you.</p>
 <p>So we create each byte with two main variables for our machine to operate on. Each <code>EType_t</code> tells the VM what to do with the byte’s <code>text</code> variable, for merely displaying, a <code>SAID_TEXT</code> operator will print the <code>text</code> variable on-screen. The <code>SET</code> function will store a value of true in the VM, with <code>text</code> as the key, for later state retrieval.</p>
-<p>Most virtual machines are programmed to read bytecode until some sentinel is met. <em>ADF</em> has separated functions for reading text, and operating on the VM state. In both cases <em>ADF</em> reads a <code>SAID_TEXT</code> then continues to read any other <code>EType_t</code> until it reaches a <code>SAID_TEXT</code> again. When just reading <em>ADF</em> only prints the initial <code>SAID_TEXT</code> and checks for cosmetics that follow. When operating <em>ADF</em> will set variables, potentially prepare another byte-string to read, and finally move forward in the current byte-string, where reading and operating will start for the next calls.</p>
 <p>To help understand how we craft our Byte I’ll take the last example and write it as a array in C++ using the <code>struct Byte</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><a class="sourceLine" id="cb3-1" title="1">Byte Question_Suicide[] = {</a>
 <a class="sourceLine" id="cb3-2" title="2">    {Byte::SAID_TEXT, <span class="st">&quot;Yes... I am. And... I&#39;ve asked you to not talk to me about this.&quot;</span>},</a>
@@ -167,13 +168,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb3-9" title="9">    {Byte::SAID_TEXT, <span class="st">&quot;We can use this.&quot;</span>},</a>
 <a class="sourceLine" id="cb3-10" title="10">    {Byte::LINK_TO,   <span class="st">&quot;ASPEYTON_QUESTION&quot;</span>},</a>
 <a class="sourceLine" id="cb3-11" title="11">};</a></code></pre></div>
-<p>A typical virtual machine will try to read the whole byte-string or finish prematurely, throw an error, and give up. This is why we track the last read <code>SAID_TEXT</code> operator and re-feed the list at that start point, making <code>SAID_TEXT</code> the “end” byte like <code>'\0'</code> for c-strings.</p>
+<p>A typical virtual machine will try to read the whole byte-string or finish prematurely, throw an error, and give up. If we track the last read <code>SAID_TEXT</code> operator and re-feed the list at that start point; making <code>SAID_TEXT</code> the “end” byte like <code>'\0'</code> for c-strings. We can use this pattern to wait for user input “click to continue” before reading the next <code>SAID_TEXT</code>.</p>
 <p>This example code conversion is mostly accurate with the caveat that we can’t create a custom named <code>Question_Suicide</code> array for what’s declared in a text file. We opted to use a <code>std::map &lt;std::string, std::list &lt;Byte&gt;&gt;</code> to achieve this run-time array creation, where the <code>std::string</code> key is “Question_Suicide” and the rest, is the byte-string in linked list form.</p>
 <blockquote>
 <p>When actually implementing I’d use <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a> and <a href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code></a> for simpler insertion complexity.</p>
 </blockquote>
 <p>Byte-strings can take form of many data structures. Arrays will be faster to operate on but potentially slower to build. Linked lists will be easy to build and slower to operate. For this reason our dialogue system builds linked lists at the start of the game and operates over them during dialogue. Maps are surprisingly fast for how feature rich they are; we use maps to title and track the dialogue byte-strings.</p>
-<p>Dialogue will be running our virtual machine sparsely, only when the player clicks through text, so performance when running is typically wasted effort.</p>
+<p>Dialogue will be running our virtual machine sparsely, only when the player clicks through text, so performance at vm-runtime is typically wasted effort.</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 <h2 id="vm---operation">VM - Operation</h2>
@@ -380,6 +381,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb10-30" title="30">        <span class="cf">if</span> (i.key == type)</a>
 <a class="sourceLine" id="cb10-31" title="31">            function = i.value;</a>
 <a class="sourceLine" id="cb10-32" title="32">}</a></code></pre></div>
+<!-- vim: set cc=80: -->
+<!-- vim: set spell: -->
+<h1 id="conclusion">Conclusion</h1>
+<p>When designing a system it’s of utmost importance to consider the following:</p>
+<ol type="1">
+<li>Error Checking</li>
+<li>Legibility</li>
+<li>Expandability</li>
+</ol>
+<p>While programming in general the ability to debug code should be in the back of your head. While designers are using your system it should be a forced, implicit part of the system. At any point stop and think “How could this function be misused?”, “What if this is misspelled?” and try to flag that case. Your system should check designer’s code vigorously.</p>
+<p>Writing your own language puts you in a unique situation of having to teach it. Do yourself a favor and make it simple and transparent, use as much English as possible. “Syntactic sugar” should be avoided, too many enigmatic percent signs and asterisks only cause confusion and a trip to the manual, even for yourself. I’d recommend making use of braces or parenthesis if applicable, white space can be difficult to debug and program for.</p>
+<p>More functionality will always be around the corner, be ready to quickly try out ideas. Make sure you can account for functions with multiple parameters. Add an escape character in case your special characters are needed in-dialogue.</p>
+<p>Creating a virtual machine can be all the fun of making your own language without all the hassle of compiler architecture. Good luck, try to make the most of it!</p>
 <!-- vim: set cc=80: -->
 <!-- vim: set spell: -->
 </body>
