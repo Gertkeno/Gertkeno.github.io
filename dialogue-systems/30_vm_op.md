@@ -58,9 +58,10 @@ private:
 ```
 
 In *UE4* finding a place for persistent data may be daunting. Creating a basic
-C++ "Game Mode" class with accessible data will persist through the game, just
+C++ "Game Instance" class with accessible data will persist through the game, just
 remember to reset during a game over or save/load. With this your VM function
-will pull and push data from *UE4*'s global variables, like the game mode object.
+will pull and push data from *UE4*'s global variables, like the game instance
+object.
 
 For this document I'm going to continue with the custom VM class definition.
 

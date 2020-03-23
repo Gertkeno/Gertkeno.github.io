@@ -219,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb5-18" title="18">    <span class="co">// track dialogue progression</span></a>
 <a class="sourceLine" id="cb5-19" title="19">    byte_itr playHead, playHeadEnd;</a>
 <a class="sourceLine" id="cb5-20" title="20">};</a></code></pre></div>
-<p>In <em>UE4</em> finding a place for persistent data may be daunting. Creating a basic C++ “Game Mode” class with accessible data will persist through the game, just remember to reset during a game over or save/load. With this your VM function will pull and push data from <em>UE4</em>’s global variables, like the game mode object.</p>
+<p>In <em>UE4</em> finding a place for persistent data may be daunting. Creating a basic C++ “Game Instance” class with accessible data will persist through the game, just remember to reset during a game over or save/load. With this your VM function will pull and push data from <em>UE4</em>’s global variables, like the game instance object.</p>
 <p>For this document I’m going to continue with the custom VM class definition.</p>
 <p>When managing dialogue you’ll likely want to display text, change state, and move the play head forward. We benefit from separating this into at least two functions, you might want to display text more than once, or skip ahead via a fast-forward key.</p>
 <p>It’s also important to find out what data needs to come out of your VM operations. For displaying text it’s usually just a <code>std::string</code>, while running could return full state, a error code, or nothing! My advice here will be to try and catch your errors while loading dialogue.</p>
