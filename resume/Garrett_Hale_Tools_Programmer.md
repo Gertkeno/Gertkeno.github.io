@@ -49,7 +49,6 @@ C++, OpenGL, Valgrind
   - Cut-scene system
   - Full, remap-able controller support
 - Audio Engine programming
-- Cross platform development
 
 **Venforma Contract SDET** (2017 - 2018) [Company Site](http://www.venforma.com/)
 
