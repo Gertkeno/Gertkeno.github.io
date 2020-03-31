@@ -11,7 +11,7 @@ css: pandoc.css
 
 ### Engine/Tools Developer
 
-<https://gert.us/>, <garrett@gert.us>, 512-914-9558
+<https://gerttech.com>, <gthkeno@gmail.com>, 512-914-9558
 
 ---
 
