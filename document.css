@@ -15,6 +15,12 @@ h1 {
 	border-bottom: 1px black solid;
 }
 
+/* slightly thinner hr lines to match h1 */
+hr {
+	border-top: 0;
+	border-bottom: 1px black solid;
+}
+
 table td {
 	padding-right: 1em;
 }
