@@ -63,11 +63,9 @@ specific community, of which I even got some story and art help from!
 It's asteroid controls doing boss fights, and the boss fights were very fun to
 program. With help I could focus on programming and making the enemies unique.
 
-This specific video is some muted basic game play.
-
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/STzDAmqXj5c?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-And this is the intended streamer playing the finished game.
+This is the intended streamer playing the finished game.
 
 <iframe src="https://www.youtube-nocookie.com/embed/Z1RxPUxIggQ?start=5925" width="560" height="315" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -78,8 +76,8 @@ Dad Slayer Six
 
 This is a sample of ["Dad Slayer
 Six"](https://bitbucket.org/Gertkeno/dadslayersix/downloads/) a
-wave-based twin stick shooter with power ups and a turret thing. I later had
-my friend do audio, music, and some art. Coded in C++ with SDL2.
+wave-based twin stick shooter with power ups and a turret thing. I later my
+friend did audio, music, and some art. Coded in C++ with SDL2.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0rdo_x2oDKE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -89,8 +87,8 @@ Project Ant Farm
 ----------------
 
 My first attempt at a proper 2D game is working-titled "Ant Farm". It's a idle
-increment game using resource collection in such games as Starcraft or
-Age of Empires. I argue it's still in development because I want to convert it
+increment game using resource collection in such games as *Starcraft* or
+*Age of Empires*. I argue it's still in development because I want to convert it
 from 2D to 3D as a opportunity to study Vulkan.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vvI1iAd-gqo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

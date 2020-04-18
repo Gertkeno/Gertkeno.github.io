@@ -8,7 +8,7 @@ css: nbasic.css
 
 Hey, this is Gert. Welcome to my website.
 
-Check out my [**resume**](resume/)!
+Check out my [**resume**](resume/) and [**portfolio**](portfolio/)!
 
 If you want me to program something, practically anything, email me at <gthkeno@gmail.com>!
 
@@ -31,6 +31,7 @@ If you want me to program something, practically anything, email me at <gthkeno@
 :::{}
 ### Blog?
 
+- [My Portfolio](portfolio/)
 - [Game Dialogue Systems](dialogue-systems/)
 - [Debian Partially-Encrypted Install](half-crypto/)
 - [Bookmarks](bookmarks/)
