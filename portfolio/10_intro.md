@@ -30,10 +30,10 @@ Meme Game 2: 3D
 I had an itch for OpenGL since I knew it would not only allow 3D but more
 complex, fun rendering in general. I started with a sequel to "Meme Game" aptly
 called ["Meme Game 2: 3D"](https://bitbucket.org/Gertkeno/meme-game-23d/downloads/).
-The game is a bosh-rush controlling like *Star Fox 64*, there is a mini-game
-between bosses to collect power ups for later use. I wanted specific audio
-features like looping music so I spent some time figuring out SDL2's bare bones
-audio buffer system.
+The game is a boss-rush like *Star Fox 64* without the basic enemies, there is
+a mini-game between bosses to collect power ups for later use. I wanted
+specific audio features like looping music so I spent some time figuring out
+SDL2's bare bones audio buffer system.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/ZObwwNiPOq4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
