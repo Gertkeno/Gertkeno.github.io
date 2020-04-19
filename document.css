@@ -21,6 +21,10 @@ hr {
 	border-bottom: 1px black solid;
 }
 
+iframe, video, img {
+	max-width: 100%;
+}
+
 table td {
 	padding-right: 1em;
 }
