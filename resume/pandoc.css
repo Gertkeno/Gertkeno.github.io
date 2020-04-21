@@ -1,11 +1,4 @@
-@import '../linkcolors.css';
-
-@media only screen and (orientation: landscape) {
-	body {
-		margin-left: 20vw;
-		margin-right: 20vw;
-	}
-}
+@import '../document.css';
 
 @media only print {
 	* {
