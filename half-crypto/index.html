@@ -83,7 +83,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we’re just going over the partitioner I’m confident nearly any version will work.</p>
 <p>This half-crypto setup can work on BIOS or UEFI boot modes, but I recommend confirming your bootable media boots UEFI. If you’re having trouble creating a UEFI bootable media you can easily overwrite a USB by first finding it by disk size with <code>lsblk</code> and then overwriting it and it’s partitions where <code>sde</code> in <code>/dev/sde</code> is replaced with the found drive in this command</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">dd</span> if=debian-10.2.0-amd64-netinst.iso of=/dev/sde bs=4M</a></code></pre></div>
-<p>Note; appending <code>bs=4M</code> will load more of the in file into ram, the only reason not to use this is if you don’t have 4M of ram to spare. Afterwards <code>lsblk</code> might look as if the drive has 2 partitions like so</p>
+<p>Appending <code>bs=4M</code> will load more of the in file into ram which can speed up the write process, the only reason not to use this is if you don’t have ram to spare. Afterwards <code>lsblk</code> might look as if the drive has 2 partitions like so</p>
 <pre><code>NAME                  MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 sda                     8:0    0 465.8G  0 disk
 [TRUNCATED]

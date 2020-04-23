@@ -21,7 +21,7 @@ and then overwriting it and it's partitions where `sde` in `/dev/sde` is replace
 dd if=debian-10.2.0-amd64-netinst.iso of=/dev/sde bs=4M
 ```
 
-Note; appending `bs=4M` will load more of the in file into ram, the only reason not to use this is if you don't have 4M of ram to spare.
+Appending `bs=4M` will load more of the in file into ram which can speed up the write process, the only reason not to use this is if you don't have ram to spare.
 Afterwards `lsblk` might look as if the drive has 2 partitions like so
 
 ```
