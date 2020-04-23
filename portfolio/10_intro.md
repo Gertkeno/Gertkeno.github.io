@@ -50,7 +50,11 @@ HTTPS Server
 I wrote an asynchronous HTTPS server in C++ using boost's ASIO library, to
 prepare for Code2College teaching since I didn't have much web dev experience
 before that. It should be live at [gerthouse.com](https://gerthouse.com/).
-It's a link aggregate site hosted on a Raspberry Pi.
+
+It's a link aggregate site hosted on a Raspberry Pi, my implementation is based
+on [RFC7230](https://tools.ietf.org/html/rfc7230). Though I don't implement most
+file manipulation functionality, instead sticking to what a browser would
+normally send.
 
 ---
 
