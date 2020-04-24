@@ -21,6 +21,7 @@ If you want me to program something, practically anything, email me at <gthkeno@
 - [**steam**](https://steamcommunity.com/id/gertman)
 - [**twitter**](https://twitter.com/gertkeno)
 - **discord** Gert#1320
+- [**github**](https://github.com/Gertkeno)
 - [**bitbucket**](https://bitbucket.org/Gertkeno/)
 - [**twitch**](https://www.twitch.tv/gert_h)
 - [**youtube**](https://www.youtube.com/user/cptgthkeno/videos)
