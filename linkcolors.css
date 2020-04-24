@@ -1,5 +1,5 @@
 @media only screen {
-	a {
+	a:link {
 		color: darkorange;
 		text-decoration: none;
 	}
