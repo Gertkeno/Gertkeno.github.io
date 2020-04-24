@@ -16,7 +16,7 @@ If you want me to program something, practically anything, email me at <gthkeno@
 :::{}
 ### Social
 
-- [**email**](gthkeno@gmail.com) gthkeno@gmail.com
+- [**email**](mailto:gthkeno@gmail.com) gthkeno@gmail.com
 - [**linkedin**](https://www.linkedin.com/in/garrett-hale-43b907b9/)
 - [**steam**](https://steamcommunity.com/id/gertman)
 - [**twitter**](https://twitter.com/gertkeno)
