@@ -13,17 +13,19 @@ css: pandoc.css
 
 <https://gerttech.com/portfolio/>, <gthkeno@gmail.com>, 512-914-9558
 
----
+**_Skills_**
 
-## Skills
+---
 
 _Expert_ C++11/14/17/20, git, gdb, Valgrind, Linux
 
 _Proficient_ Unreal Engine 4, OpenGL, Unity
 
-## Experience
+**_Experience_**
 
-**VESSELS** (2019 - 2020) [Github](https://github.com/Gertkeno/airlock)
+---
+
+**VESSELS** (2019 - 2020)
 
 UE4, C++, Tools/Backend
 <!--- [steam or itch page here](https://example.com)-->
@@ -33,6 +35,8 @@ UE4, C++, Tools/Backend
   - Quest tracking and Branching paths
 - Gameplay programming
 
+---
+
 **Flappatron** (2019) [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
 
 C++, Tools, GameMaker Studio
@@ -40,15 +44,17 @@ C++, Tools, GameMaker Studio
 - Manual and automatic lip syncing tools, simplifying contract lip syncing work
 - Created multiple lip syncing algorithms
 
+---
+
 **Meme Game 23D** (2016 - 2018) [Bitbucket](https://bitbucket.org/Gertkeno/meme-game-23d),
 [Homemade Trailer](https://youtu.be/p9rINCeBq4s)
 
 C++, OpenGL, Valgrind
 
 - Graphics and Engine programming
-  - Cut-scene system
-  - Full, remap-able controller support
 - Audio Engine programming
+
+---
 
 **Venforma Contract SDET** (2017 - 2018) [Company Site](http://www.venforma.com/)
 
@@ -56,6 +62,8 @@ Selenium, Python, phantomjs
 
 - Automated full-stack tests improving publishing speed
 - Worked in Agile development
+
+---
 
 **Code2College Volunteer Instructor** (2017 - 2018) [Program Site](https://code2college.org/)
 
