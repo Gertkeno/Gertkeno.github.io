@@ -16,11 +16,31 @@ system for designers to quickly write and test in-game dialogue and story paths.
 
 I wrote a good amount on what tools we looked at, how I implemented this system
 as a virtual machine, and what I believe are very important design philosophies
-in my blog post [Game Dialogue Systems](/dialogue-systems/).
+in my blog post [Game Dialogue Systems](/dialogue-systems/). When making a
+scripting language I knew we'd be throwing away valuable debugging tools, I made
+sure to keep the scope low, strict, and loud with tests/warnings as new features
+were added.
 
 <video controls loop>
 <source src="small_vessels.webm" type="video/webm">
 </video>
+
+---
+
+Flappatron
+----------
+
+I made tools for automatic and manual lip syncing in Flappatron, a unique and
+charming game. I reached out to the lead developer with recommendations on how
+to solve the lip syncing time sink they were facing, sadly open source and
+custom automatic solutions weren't capable of handling the wide variety of
+characters and voices. We opted to speed up the manual syncing process with
+custom tools.
+
+[Steam Link](https://store.steampowered.com/app/1009750/Flappatron/)
+
+<a href="https://store.steampowered.com/app/1009750/Flappatron/">
+![](https://steamcdn-a.akamaihd.net/steam/apps/1009750/header.jpg?t=1588784337)</a>
 
 ---
 
@@ -52,7 +72,7 @@ prepare for Code2College teaching since I didn't have much web dev experience
 before that. It should be live at [gerthouse.com](https://gerthouse.com/).
 
 It's a link aggregate site hosted on a Raspberry Pi, my implementation is based
-on [RFC2616](https://tools.ietf.org/html/rfc2616). Though I don't implement most
+on [RFC2616](https://tools.ietf.org/html/rfc2616). Though I don't allow most
 file manipulation functionality, instead sticking to what a browser would
 normally send.
 
