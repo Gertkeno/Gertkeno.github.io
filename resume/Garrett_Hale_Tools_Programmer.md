@@ -25,7 +25,16 @@ _Proficient_ Unreal Engine 4, OpenGL, Unity
 
 ---
 
-**VESSELS** (2019 - 2020)
+**RIFT** (2020 - )
+
+C++, Flash, Tools
+
+- Maintained long standing game systems
+- Created new UI through Flash
+- Gameplay programming
+- Server programming
+
+**VESSELS** (2019 - 2020) [Steam](https://store.steampowered.com/app/1371330/Vessels/)
 
 UE4, C++, Tools/Backend
 <!--- [steam or itch page here](https://example.com)-->
