@@ -17,7 +17,7 @@ css: pandoc.css
 
 ---
 
-_Expert_ C++11/14/17/20, git, gdb, Valgrind, Linux
+_Expert_ C++11-20, git, gdb, valgrind, Linux
 
 _Proficient_ Unreal Engine 4, OpenGL, Unity
 
@@ -25,7 +25,7 @@ _Proficient_ Unreal Engine 4, OpenGL, Unity
 
 ---
 
-**RIFT** (2020 - )
+**RIFT** (2020 - 2021) [Steam](https://store.steampowered.com/app/39120/RIFT/)
 
 C++, Flash, Tools
 
