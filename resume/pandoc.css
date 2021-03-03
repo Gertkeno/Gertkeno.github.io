@@ -4,4 +4,8 @@
 	* {
 		font-size: 10pt;
 	}
+
+	hr {
+	    border: 0;
+	}
 }
