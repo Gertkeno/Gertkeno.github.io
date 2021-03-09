@@ -2,9 +2,10 @@
 pagetitle: Garrett Hale's Resume
 author: Garrett Hale
 date: Wed 22 Jan 2020 07:16:12 PM CST
-geometry: margin=3cm
+geometry: margin=2cm
 urlcolor: orange
 css: pandoc.css
+pagestyle: empty
 ---
 
 ## Garrett Hale
@@ -15,15 +16,13 @@ css: pandoc.css
 
 **_Skills_**
 
----
-
 _Expert_ C++11-20, git, gdb, valgrind, Linux
 
 _Proficient_ Unreal Engine 4, OpenGL, Unity
 
-**_Experience_**
-
 ---
+
+**_Experience_**
 
 **RIFT** (2020 - 2021) [Steam](https://store.steampowered.com/app/39120/RIFT/)
 
@@ -39,7 +38,6 @@ C++, Flash, Tools
 **VESSELS** (2019 - 2020) [Steam](https://store.steampowered.com/app/1371330/Vessels/)
 
 UE4, C++, Tools/Backend
-<!--- [steam or itch page here](https://example.com)-->
 
 - Created Dialogue system in UE4, managing 4000+ lines of dialogue
   - Virtual machine architecture with variables and conditional jumps
@@ -81,8 +79,3 @@ Selenium, Python, phantomjs
 Python, NodeJS
 
 - Taught full stack web development
-
-<!-- maybe include networking experience -->
-
-<!-- vim: set spell: -->
-<!-- vim: set cc=80: -->
