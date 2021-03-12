@@ -42,6 +42,7 @@ If you want me to program something, practically anything, email me at <gthkeno@
 ### Games by me
 
 - [RIFT](https://www.trionworlds.com/rift/en/)
+- [G5 GameJame, Solario](https://solariogame.itch.io/solario)
 - [Vessels](https://www.vesselsgame.com/)
 - [GGJ20, WatchmIn](https://globalgamejam.org/2020/games/global-game-jam-2020-2)
 - [GGJ19, Traditions](https://globalgamejam.org/2019/games/traditions)
