@@ -1,11 +1,26 @@
 ---
 pagetitle: Gert Portfolio
 author: Garrett Hale
+toc: true
 css: ../document.css
 ---
 
 A Catalog of My Story in Reverse Chronological Order
 ====================================================
+
+RIFT
+----
+
+I added new features to a large code base, including working on UI. I worked
+closely with designers and overall had a great time. Gamigo held a game jam of
+which I lead a team to create [Solario](https://solariogame.itch.io/solario).
+Sadly as of writing this RIFT is on maintenance mode and will not be receiving
+updates.
+
+<a href="https://www.trionworlds.com/rift/en/">
+![](https://cdn.akamai.steamstatic.com/steam/apps/39120/header.jpg?t=1610702571)</a>
+
+---
 
 Vessels
 -------
