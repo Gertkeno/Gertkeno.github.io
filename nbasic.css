@@ -18,7 +18,7 @@
 		column-count: 2;
 	}
 
-	div#sect > div {
+	div#sect > div,section {
 		display: inline-block;
 		width: 100%;
 	}
