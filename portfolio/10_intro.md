@@ -87,9 +87,12 @@ prepare for Code2College teaching since I didn't have much web dev experience
 before that. It should be live at [gerthouse.com](https://gerthouse.com/).
 
 It's a link aggregate site hosted on a Raspberry Pi, my implementation is based
-on [RFC2616](https://tools.ietf.org/html/rfc2616). Though I don't allow most
+on [RFC7230](https://tools.ietf.org/html/rfc7230). Though I don't allow most
 file manipulation functionality, instead sticking to what a browser would
 normally send.
+
+I've since written another HTTP server in [Zig](https://ziglang.org/) a lovely
+experimental language that comes with TCP networking in the standard library.
 
 ---
 
@@ -115,8 +118,8 @@ Dad Slayer Six
 
 This is a sample of ["Dad Slayer
 Six"](https://bitbucket.org/Gertkeno/dadslayersix/downloads/) a
-wave-based twin stick shooter with power ups and a turret thing. I later my
-friend did audio, music, and some art. Coded in C++ with SDL2.
+wave-based twin stick shooter with power ups and a turret thing. Later my friend
+helped by doing audio, music, and some art. Coded in C++ with SDL2.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0rdo_x2oDKE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -132,5 +135,14 @@ from 2D to 3D as a opportunity to study Vulkan.
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vvI1iAd-gqo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-<!-- vim: set cc=80: -->
-<!-- vim: set spell: -->
+---
+
+Starfighter
+-----------
+
+I started game programming early on with this 2D Galaga-type game written in
+Ruby. My father helped plenty and we gave a talk about it at a local Ruby on
+Rails meet up! The code is over 10 years old and doesn't run without updating
+gosu calls.
+
+[Github Link](https://github.com/masonhale/Starfighter-Gosu-Tutorial)

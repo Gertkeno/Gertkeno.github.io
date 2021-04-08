@@ -33,6 +33,7 @@
 <li><a href="#meme-game">Meme Game</a></li>
 <li><a href="#dad-slayer-six">Dad Slayer Six</a></li>
 <li><a href="#project-ant-farm">Project Ant Farm</a></li>
+<li><a href="#starfighter">Starfighter</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -63,7 +64,8 @@
 <hr />
 <h2 id="https-server">HTTPS Server</h2>
 <p>I wrote an asynchronous HTTPS server in C++ using boost’s ASIO library, to prepare for Code2College teaching since I didn’t have much web dev experience before that. It should be live at <a href="https://gerthouse.com/">gerthouse.com</a>.</p>
-<p>It’s a link aggregate site hosted on a Raspberry Pi, my implementation is based on <a href="https://tools.ietf.org/html/rfc2616">RFC2616</a>. Though I don’t allow most file manipulation functionality, instead sticking to what a browser would normally send.</p>
+<p>It’s a link aggregate site hosted on a Raspberry Pi, my implementation is based on <a href="https://tools.ietf.org/html/rfc7230">RFC7230</a>. Though I don’t allow most file manipulation functionality, instead sticking to what a browser would normally send.</p>
+<p>I’ve since written another HTTP server in <a href="https://ziglang.org/">Zig</a> a lovely experimental language that comes with TCP networking in the standard library.</p>
 <hr />
 <h2 id="meme-game">Meme Game</h2>
 <p>My last 2D project before digging into 3D was <a href="https://bitbucket.org/Gertkeno/meme-game/downloads/">“Meme Game”</a> made for a specific community, of which I even got some story and art help from! It’s asteroid controls doing boss fights, and the boss fights were very fun to program. With help I could focus on programming and making the enemies unique.</p>
@@ -74,7 +76,7 @@
 </iframe>
 <hr />
 <h2 id="dad-slayer-six">Dad Slayer Six</h2>
-<p>This is a sample of <a href="https://bitbucket.org/Gertkeno/dadslayersix/downloads/">“Dad Slayer Six”</a> a wave-based twin stick shooter with power ups and a turret thing. I later my friend did audio, music, and some art. Coded in C++ with SDL2.</p>
+<p>This is a sample of <a href="https://bitbucket.org/Gertkeno/dadslayersix/downloads/">“Dad Slayer Six”</a> a wave-based twin stick shooter with power ups and a turret thing. Later my friend helped by doing audio, music, and some art. Coded in C++ with SDL2.</p>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0rdo_x2oDKE?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
 <hr />
@@ -82,7 +84,9 @@
 <p>My first attempt at a proper 2D game is working-titled “Ant Farm”. It’s a idle increment game using resource collection in such games as <em>Starcraft</em> or <em>Age of Empires</em>. I argue it’s still in development because I want to convert it from 2D to 3D as a opportunity to study Vulkan.</p>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/vvI1iAd-gqo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 </iframe>
-<!-- vim: set cc=80: -->
-<!-- vim: set spell: -->
+<hr />
+<h2 id="starfighter">Starfighter</h2>
+<p>I started game programming early on with this 2D Galaga-type game written in Ruby. My father helped plenty and we gave a talk about it at a local Ruby on Rails meet up! The code is over 10 years old and doesn’t run without updating gosu calls.</p>
+<p><a href="https://github.com/masonhale/Starfighter-Gosu-Tutorial">Github Link</a></p>
 </body>
 </html>
