@@ -28,6 +28,9 @@ mitigated in Zig.
 What I Like
 ===========
 
+Simple Declarations
+-------------------
+
 Starting off Zig uses a variant of pascal's variable definition `name: type =
 value;` this makes pointers, const, and function pointers so much easier to deal
 with. Using function pointers in C/C++ I've always had to look up how exactly to
@@ -43,7 +46,7 @@ the examples from this side by side.
 
 ```c
 1 char *str[10];
-2 char *(*fp)( int, float *);
+2 char *(*fp)(int, float *);
 3 void (*signal(int, void (*fp)(int)))(int);
 ```
 
@@ -58,3 +61,20 @@ the examples from this side by side.
 That last one is still a mess but at least it's apparent it's a function pointer
 which returns a function pointer. Furthermore you can read every declaration
 left to right, no Uzumaki ramblings about spirals.
+
+Error Handling
+--------------
+
+Zig normalizes error handling, it is truly easy to write code that handles edge
+cases. In debug/safe builds Zig gives a wonderful trace if an error reaches all
+the way past main. Functions are required to state if they can fail with a
+simple `!` and the compiler will figure out how it can fail based on thrown
+values. The "how it can fail" part is important for switching on error values
+with 100% certainty that all cases are covered. It's impressive how easy error
+handling is in Zig, while in any try-block language thrown errors provide less
+and less information based on how far they are from the throw, promote handling
+multiple errors as one, and make it painful to declare user-defined errors.
+
+In combination with `errdefer` cleaning up in failure conditions is easy too,
+C would require rewriting free statements after every failure check and
+cascading indents if you cannot early `return;` or `exit(0);` in the function.
