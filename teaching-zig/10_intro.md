@@ -8,17 +8,19 @@ css: ../document.css
 Teaching with Zig
 =================
 
-I started teaching my girlfriend programming, previously I've taught my friends
-and students with hurdles and some of that is certainly my fault. I found that
-syntax is simply difficult in many languages beginners want to learn. A lot of
-under the hood magic typically did more harm than good, curious minds ask why
-thing happen not just how, and it typically benefits them to know. Worse yet if
-magic messes up they now *need* to know why and the magic is instead a edge case
-to trip over.
+I started teaching my cute girlfriend programming, previously I've taught my
+friends and students with hurdles and some of that is certainly my fault. I
+found that syntax is simply difficult in many languages beginners want to learn.
+A lot of under the hood magic typically did more harm than good, curious minds
+ask why thing happen not just how, and it typically benefits them to know. Worse
+yet if magic messes up they now *need* to know why and the magic is instead a
+edge case to trip over.
 
 People don't think of C/C++ as having a lot of magic, it doesn't compared to
 Python or Ruby. Implicit casting however does a good job tripping up new
 programmers, the classic case being diving integers with floats.
+
+zig helps teach programming ramble ramble here
 
 What is Zig?
 ============
