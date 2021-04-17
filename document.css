@@ -29,6 +29,11 @@ table td {
 	padding-right: 1em;
 }
 
+code {
+	background-color: lightgray;
+	border-radius: 2px;
+}
+
 pre {
 	background-color: lightgray;
 	border-radius: 0.5em;
