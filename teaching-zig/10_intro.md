@@ -88,23 +88,23 @@ That last one is still a mess but at least it's apparent it's a function pointer
 which returns a function pointer. Furthermore you can read every declaration
 left to right, no Uzumaki ramblings about spirals.
 
-Easy Compile and Run
+Quick Compile and Run
 --------------------
 
 Tackling syntax and structure is hard enough, adding a esoteric build system and
 config files on top is just a mess; especially for students just getting into it
-and trying to show off to friends. `zig run FILE` behaves like an python, ruby,
-or any other interpreter, compiles and immediately runs the program from the
-file.
+and trying to show off to friends. `zig build-exe` by default has no
+dependencies, you can ship executables to people and it will just work!
 
-`zig run` alone doesn't have much use for expert developers, with dependencies
-it requires tons of arguments; `zig build run` with a `build.zig` file takes the
-torch as a proper build system. Luckily `zig init-exe` can generate a simple
-sample project, this still leaves you to decipher zig's build functionality.
+`zig run FILE` behaves like an python, ruby, or other interpreted languages,
+compiles and immediately runs the program from the file. `zig run` alone doesn't
+have much use for expert developers, with dependencies it requires tons of
+arguments; `zig build` with a `build.zig` file takes the torch as a proper
+build system.
 
-Zig caches compilations so if a student's program does get large it still
-doesn't take long to get back into the program. With stage 2 around the corner
-compilation speeds are blazing fast with benchmarks as low as 4 milliseconds!
+Zig caches compilations so if a program does get large it still doesn't take
+long to get back into the program. With stage 2 around the corner compilation
+speeds are blazing fast with benchmarks as low as 4 milliseconds!
 
 Error Handling
 --------------
