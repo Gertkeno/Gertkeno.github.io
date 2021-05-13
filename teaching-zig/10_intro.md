@@ -8,26 +8,21 @@ css: ../document.css
 Teaching with Zig
 =================
 
-I started teaching my cute girlfriend programming, previously I've taught my
-friends and students with hurdles and some of that is certainly my fault. I
-found that syntax is simply difficult in many languages that beginners want to
-learn.
+I started teaching my cute girlfriend how to program, previously I've taught my
+friends and students with hurdles. With zig I feel it's consistent, usually
+looks beautiful, and focus on ease of reading over writing helps learning
+without second guessing syntax.
 
-A lot of under the hood magic typically did more harm than good, curious minds
+A lot of under the hood magic typically does more harm than good, curious minds
 ask why things happen not just how, and it typically benefits them to know.
 Worse yet if magic does break they now _need_ to know why and the magic is
-instead a edge case to trip over.
+now something to watch for! For example implicit casts always trip up newcomers,
+it's something all of us learned to deal with, and it's a new book of hidden
+rules from C to Javascript.
 
-People don't think of C/C++ as having a lot of magic, it doesn't compared to
-Python or Ruby. Implicit casting however does a good job tripping up new
-programmers, the classic case being diving integers with floats.
-
-Zig helps by forcing more explicit code and having consistent, lean syntax where
-one action does one thing. If you've read "The design of everyday things" I'm
-sure the last part sounds appealing, it's surprising how programming languages
-often refuse this. Picking on C++ again, there are so many ways to declare a
-variable, and largely none of them matter; expert advice is use `type
-name{value(s)};` and let the compiler figure it out.
+Zig helps by forcing more explicit code and having consistent, lean syntax.
+Picking on C++, there are so many ways to declare a variable, and largely none
+of them matter.
 
 ![initialize meme haha](https://i.imgur.com/3wlxtI0.mp4)
 
@@ -35,7 +30,7 @@ What is Zig?
 ============
 
 Zig sets out to learn from the nearly 50 years of C development, making already
-standard patterns easier to write and read. With low cost error checking via
+standard patterns easier to read and write. With low cost error checking via
 under the hood unions, slices for bundling pointer and length, defer/errdefer
 to ensure allocations are paired with deallocations in a semi RAII fashion, and
 more! A big selling point is safety, with some dogma Zig benefits by making it
@@ -61,7 +56,7 @@ Starting off Zig uses a variant of pascal's variable definition `name: type =
 value;` this makes pointers, const, and function pointers so much easier to deal
 with. Using function pointers in C/C++ I've always had to look up how exactly to
 write it especially with variations for typedefs and C++'s `using =`, in Zig I
-just guessed the first time correctly; purely intuition.
+just guessed correctly the first time; purely intuition.
 
 The old adage for C is
 ["The Spiral Rule"](http://c-faq.com/decl/spiral.anderson.html) to not read from
@@ -89,7 +84,7 @@ which returns a function pointer. Furthermore you can read every declaration
 left to right, no Uzumaki ramblings about spirals.
 
 Quick Compile and Run
---------------------
+---------------------
 
 Tackling syntax and structure is hard enough, adding a esoteric build system and
 config files on top is just a mess; especially for students just getting into it
@@ -98,9 +93,8 @@ dependencies, you can ship executables to people and it will just work!
 
 `zig run FILE` behaves like an python, ruby, or other interpreted languages,
 compiles and immediately runs the program from the file. `zig run` alone doesn't
-have much use for expert developers, with dependencies it requires tons of
-arguments; `zig build` with a `build.zig` file takes the torch as a proper
-build system.
+have much use for expert developers `zig build` with a `build.zig` file takes
+the torch as a proper build system.
 
 Zig caches compilations so if a program does get large it still doesn't take
 long to get back into the program. With stage 2 around the corner compilation
@@ -111,13 +105,13 @@ Error Handling
 
 Zig normalizes error handling, it is truly easy to write code that handles edge
 cases. In debug/safe builds Zig gives a wonderful trace if an error reaches all
-the way past main. Functions are required to state if they can fail with a
-simple `!` and the compiler will figure out how it can fail based on thrown
-values. The "how it can fail" part is important for switching on error values
-with 100% certainty that all cases are covered. It's impressive how easy error
-handling is in Zig, while in any try-block language thrown errors provide less
-and less information based on how far they are from the throw, promote handling
-multiple errors as one, and make it painful to declare user-defined errors.
+the way up main. Functions are required to state if they can fail with a simple
+`!` and the compiler will figure out how it can fail based on thrown values. The
+"how it can fail" part is important for switching on error values with 100%
+certainty that all cases are covered. It's impressive how easy error handling is
+in Zig, while in any try-block language thrown errors provide less and less
+information the further they are thrown, promote handling multiple errors as
+one, and make it painful to declare user-defined errors.
 
 In combination with `errdefer` cleaning up in failure conditions is easy too,
 C would require rewriting free statements after every failure check and
@@ -128,6 +122,10 @@ More Resources
 
 [Ziglearn.org](https://ziglearn.org/chapter-1/) does a fantastic and up to date
 job going over features in zig and even some of the standard library!
+
+[Ziglings](https://github.com/ratfactor/ziglings) is a tutorial in the form of
+fixing broken zig code. This tutorial goes over basic programming fundamentals,
+and zig specific functionality, like slices and optional types.
 
 As a new and experimental language core stuff changes frequently so it's hard to
 write tutorials at the moment.
