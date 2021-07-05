@@ -2,6 +2,8 @@
 pagetitle: Gert!
 author: Garrett Hale
 css: nbasic.css
+lang: en
+description: Garrett's links and blog and games
 ---
 
 # Welcome!
