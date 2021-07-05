@@ -26,6 +26,3 @@ escape character in case your special characters are needed in-dialogue.
 
 Creating a virtual machine can be all the fun of making your own language without
 all the hassle of compiler architecture. Good luck, try to make the most of it!
-
-<!-- vim: set cc=80: -->
-<!-- vim: set spell: -->

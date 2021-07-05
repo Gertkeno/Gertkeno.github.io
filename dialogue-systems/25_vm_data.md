@@ -67,9 +67,6 @@ struct Byte
 };
 ```
 
-Structurally, this isn't what most people expect, and sadly that means I've
-created a poor mental model for you.
-
 So we create each byte with two main variables for our machine to operate on.
 Each `EType_t` tells the VM what to do with the byte's `text` variable, for
 merely displaying, a `SAID_TEXT` operator will print the `text` variable on-screen.
@@ -119,6 +116,3 @@ the dialogue byte-strings.
 
 Dialogue will be running our virtual machine sparsely, only when the player
 clicks through text, so performance at vm-runtime is typically wasted effort.
-
-<!-- vim: set cc=80: -->
-<!-- vim: set spell: -->

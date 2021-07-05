@@ -24,6 +24,3 @@ flourish, *ADF* handles 6,923 lines of dialogue with 7,258 written operators
 for flow control.  This would've been over 7,258 nodes in blueprint without
 this system to ease reading and writing; not to mention cut out Unreal's
 atrocious boot time.
-
-<!-- vim: set cc=80: -->
-<!-- vim: set spell: -->

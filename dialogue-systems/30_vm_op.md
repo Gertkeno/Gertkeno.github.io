@@ -149,6 +149,3 @@ bool VM::run_head()
 	return true;
 }
 ```
-
-<!-- vim: set cc=80: -->
-<!-- vim: set spell: -->

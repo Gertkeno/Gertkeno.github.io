@@ -127,6 +127,3 @@ Byte::Byte (std::string type, std::string value)
 			function = i.value;
 }
 ```
-
-<!-- vim: set cc=80: -->
-<!-- vim: set spell: -->
