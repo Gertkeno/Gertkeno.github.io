@@ -1,10 +1,8 @@
 @import 'linkcolors.css';
 
-@media only screen and (orientation: landscape) {
-	body {
-		margin-left: 20vw;
-		margin-right: 20vw;
-	}
+body {
+	margin: 20px auto;
+	max-width: 700px;
 }
 
 p {
