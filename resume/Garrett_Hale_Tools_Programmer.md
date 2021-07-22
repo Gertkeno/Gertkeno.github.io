@@ -43,6 +43,7 @@ UE4, C++, Tools/Backend
   - Virtual machine architecture with variables and conditional jumps
   - Quest tracking and Branching paths
 - Gameplay programming
+- Won IGF's 2021 student game award!
 
 ---
 
