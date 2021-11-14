@@ -14,8 +14,8 @@ Check out my [**resume**](resume/) and [**portfolio**](portfolio/)!
 
 If you want me to program something, practically anything, email me at <gthkeno@gmail.com>!
 
-Our lovely game [Vessels](https://vesselsgame.com/) won the IGF 2021 student
-game award!!!
+Our lovely game [Vessels](https://vesselsgame.com/) won the [IGF 2021](https://igf.com/2021)
+student game award!!!
 
 :::::: {#sect}
 ::: social

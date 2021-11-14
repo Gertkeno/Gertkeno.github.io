@@ -24,6 +24,17 @@ _Proficient_ Unreal Engine 4, OpenGL, Unity
 
 **_Experience_**
 
+**Sandshark Games** (2021 - )
+[Roblox](https://www.roblox.com/groups/5747787/Sand-Shark-Games#!/about)
+
+Luau, 
+
+- Created Roblox experiences in a fast paced market
+- UI programming
+- Highly multithreaded and multiplayer architecture
+
+---
+
 **RIFT** (2020 - 2021) [Steam](https://store.steampowered.com/app/39120/RIFT/)
 
 C++, Flash, Tools
