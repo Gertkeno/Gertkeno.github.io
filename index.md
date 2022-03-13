@@ -46,6 +46,7 @@ student game award!!!
 ::: games
 ### Games by me
 
+- [TO THE CORE](https://gertkeno.itch.io/to-the-core)
 - [RIFT](https://www.trionworlds.com/rift/en/)
 - [G5 Game Jam, Solario](https://solariogame.itch.io/solario)
 - [Vessels](https://www.vesselsgame.com/)
