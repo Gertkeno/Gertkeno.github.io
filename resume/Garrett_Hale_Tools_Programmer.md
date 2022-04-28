@@ -16,22 +16,22 @@ pagestyle: empty
 
 **_Skills_**
 
-_Expert_ C++11-20, git, gdb, valgrind, Linux
+_Expert:_ C++11-20, git, gdb, valgrind, Linux, [Zig](https://ziglang.org/)
 
-_Proficient_ Unreal Engine 4, OpenGL, Unity
+_Proficient:_ Unreal Engine 4, OpenGL, Unity, Godot
 
 ---
 
 **_Experience_**
 
 **Sandshark Games** (2021 - )
-[Roblox](https://www.roblox.com/groups/5747787/Sand-Shark-Games#!/about)
+[Roblox](https://www.sandsharkgames.com/)
 
 Luau, 
 
 - Created Roblox experiences in a fast paced market
 - UI programming
-- Highly multithreaded and multiplayer architecture
+- Highly evented, multiplayer architecture
 
 ---
 
@@ -50,10 +50,9 @@ C++, Flash, Tools
 
 UE4, C++, Tools/Backend
 
-- Created Dialogue system in UE4, managing 4000+ lines of dialogue
+- Created Dialogue system in UE4, managing 16,000+ lines of dialogue
   - Virtual machine architecture with variables and conditional jumps
   - Quest tracking and Branching paths
-- Gameplay programming
 - Won IGF's 2021 student game award!
 
 ---
@@ -83,11 +82,3 @@ Selenium, Python, phantomjs
 
 - Automated full-stack tests improving publishing speed
 - Worked in Agile development
-
----
-
-**Code2College Volunteer Instructor** (2017 - 2018) [Program Site](https://code2college.org/)
-
-Python, NodeJS
-
-- Taught full stack web development
