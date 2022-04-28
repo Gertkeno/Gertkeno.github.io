@@ -8,6 +8,27 @@ css: ../document.css
 A Catalog of My Story in Reverse Chronological Order
 ====================================================
 
+Zig - Crochet Helper - Wasm4
+----------------------------
+
+In my free time I crochet blankets, ponchos, and scarfs for my friends and
+family. I prefer to make colorful flat images for these and I use to print out
+an image, draw a grid and stitch marks over it. This took a lot of counting and
+other work I would like done by computers. This was also a great excuse to use
+[Zig](https://ziglang.org) a programming language I love!
+
+[Crochet Helper Github.](https://github.com/Gertkeno/crochet_helper)
+
+[Zig](https://ziglang.org) has been wonderful to program personal games, and
+integrates well with [wasm4](https://wasm4.org). Which I participated in the
+wasm4 game jam and published to the core! My super cute girlfriend and I are
+programming a multiplayer game with wasm4 which will hopefully make use of the
+new net play feature.
+
+[Play To The Core Online!](https://wasm4.org/play/to-the-core/)
+
+---
+
 RIFT
 ----
 
