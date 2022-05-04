@@ -1,7 +1,6 @@
 ---
-pagetitle: Gert Portfolio
+pagetitle: Garrett Hale's Portfolio
 author: Garrett Hale
-toc: true
 css: ../document.css
 ---
 

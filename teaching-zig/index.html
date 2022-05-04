@@ -85,38 +85,120 @@
 </head>
 <body>
 <h1 id="teaching-with-zig">Teaching with Zig</h1>
-<p>I started teaching my cute girlfriend how to program, previously I’ve taught my friends and students with hurdles. With zig I feel it’s consistent, usually looks beautiful, and focus on ease of reading over writing helps learning without second guessing syntax.</p>
-<p>A lot of under the hood magic typically does more harm than good, curious minds ask why things happen not just how, and it typically benefits them to know. Worse yet if magic does break they now <em>need</em> to know why and the magic is now something to watch for! For example implicit casts always trip up newcomers, it’s something all of us learned to deal with, and it’s a new book of hidden rules from C to Javascript.</p>
-<p>Zig helps by forcing more explicit code and having consistent, lean syntax. Picking on C++, there are so many ways to declare a variable, and largely none of them matter.</p>
+<p>I started teaching my cute girlfriend how to program in zig. With zig
+I feel it’s consistent, usually looks beautiful, and it’s focus on ease
+of reading over writing helps with learning for veterans and newcomers
+alike.</p>
+<p>A lot of under the hood magic does more harm than good, curious minds
+ask why things happen not just how, and it typically benefits them to
+know. Worse yet if magic does break they now <em>need</em> to know why
+and the magic is now something to watch for! For example implicit casts
+always trip up newcomers, it’s something all of us learned to deal with,
+and for every language it’s a new book of hidden rules from C to
+Javascript.</p>
+<p>Zig helps by forcing more explicit code and having consistent, lean
+syntax. Picking on C++, there are so many ways to initialize a variable,
+and it’s so rare to use even half of them.</p>
 <figure>
-<video src="https://i.imgur.com/3wlxtI0.mp4" controls=""><a href="https://i.imgur.com/3wlxtI0.mp4">initialize meme haha</a></video><figcaption aria-hidden="true">initialize meme haha</figcaption>
+<video src="https://i.imgur.com/3wlxtI0.mp4"
+title="Forest Gump Initializer Meme on Imgur.com" controls=""><a
+href="https://i.imgur.com/3wlxtI0.mp4">initialize meme haha</a></video>
+<figcaption aria-hidden="true">initialize meme haha</figcaption>
 </figure>
+<p>In teaching I’ve found that the most trouble is caused by something
+that is allowed by a language, but absolutely not what the student wants
+to do. It’s a large part of simply learning the syntax.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> helloWorld<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    printf<span class="op">(</span><span class="st">&quot;Hello World!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    helloWorld<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>A simple syntactic mistake: forgetting parenthesis, yet this compiles
+and does nothing. It looks correct, at least close to correct! Luckily
+<code>-Wall</code> will catch this and while it <em>should</em> be
+standard practice to make with <code>-Wall -Wextra</code> I find this
+mistake far too often.</p>
 <h1 id="what-is-zig">What is Zig?</h1>
-<p>Zig sets out to learn from the nearly 50 years of C development, making already standard patterns easier to read and write. With low cost error checking via under the hood unions, slices for bundling pointer and length, defer/errdefer to ensure allocations are paired with deallocations in a semi RAII fashion, and more! A big selling point is safety, with some dogma Zig benefits by making it more difficult to accidentally mess up; you’re working with the language as it catches slip ups.</p>
-<p>This might sound a lot like Rust’s pitch so far but I feel Zig is much closer to C’s style and it’s easy to feel at home with most deviations. Zig is often more helpful with <em>less</em> features! For example my introduction to Rust included variable shadowing in the spotlight as a way to deal with the immense const correctness, yet shadowing is a feature that made it into <a href="https://youtu.be/lkgszkPnV8g">Facebook’s curiously recurring bugs</a>. Furthermore if you watch through that cppcon talk you’ll find that nearly every bug talked about is mitigated in Zig.</p>
-<h1 id="what-i-like">What I Like</h1>
+<p>Zig sets out to learn from the nearly 50 years of C development,
+making already standard patterns easier to read and write. With low cost
+error checking, slices bundling pointer and length, defer/errdefer to
+ensure allocations are paired with deallocations in a semi RAII fashion,
+and more! A big selling point is safety, with some dogma Zig benefits by
+making it more difficult to accidentally mess up; you’re working with
+the language as it catches slip ups.</p>
+<p>This might sound a lot like Rust’s pitch so far but I feel Zig is
+much closer to C’s style and uses less special characters and glyphs,
+making it feel more like English. Safety checks can be turned off for
+release builds, but still help tremendously in debug and even optimized
+‘release-safe’ mode. Personally I have not had to use gdb or valgrind
+for my games in written in Zig.</p>
 <h2 id="simple-declarations">Simple Declarations</h2>
-<p>Starting off Zig uses a variant of pascal’s variable definition <code>name: type = value;</code> this makes pointers, const, and function pointers so much easier to deal with. Using function pointers in C/C++ I’ve always had to look up how exactly to write it especially with variations for typedefs and C++’s <code>using =</code>, in Zig I just guessed correctly the first time; purely intuition.</p>
-<p>The old adage for C is <a href="http://c-faq.com/decl/spiral.anderson.html">“The Spiral Rule”</a> to not read from left to right but wrapping around in a clockwise circle, sometimes? I’ll post the examples from this side by side.</p>
+<p>Zig uses a variant of pascal’s variable definition
+<code>name: type = value;</code> this makes pointers, const, and
+function pointers so much easier to deal with. Using function pointers
+in C/C++ I’ve always had to look up how exactly to write it especially
+with variations for typedefs and C++’s <code>using =</code>, in Zig I
+just guessed correctly the first time; purely intuition.</p>
+<p>The old adage for C is <a
+href="http://c-faq.com/decl/spiral.anderson.html">“The Spiral Rule”</a>
+to not read from left to right but wrapping around in a clockwise
+circle, sometimes? I’ll post the examples from this side by side.</p>
 <p><em>c</em></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dt">char</span> <span class="op">*</span>str<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dt">char</span> <span class="op">*(*</span>fp<span class="op">)(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">float</span> <span class="op">*);</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dt">void</span> <span class="op">(*</span>signal<span class="op">(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">void</span> <span class="op">(*</span>fp<span class="op">)(</span><span class="dt">int</span><span class="op">)))(</span><span class="dt">int</span><span class="op">);</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="dt">char</span> <span class="op">*</span>str<span class="op">[</span><span class="dv">10</span><span class="op">];</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="dt">char</span> <span class="op">*(*</span>fp<span class="op">)(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">float</span> <span class="op">*);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="dt">void</span> <span class="op">(*</span>signal<span class="op">(</span><span class="dt">int</span><span class="op">,</span> <span class="dt">void</span> <span class="op">(*</span>fp<span class="op">)(</span><span class="dt">int</span><span class="op">)))(</span><span class="dt">int</span><span class="op">);</span></span></code></pre></div>
 <p><em>zig</em></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rs"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> var <span class="dt">str</span><span class="op">:</span> [<span class="dv">10</span>]<span class="op">*</span><span class="dt">u8</span><span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> var fp<span class="op">:</span> <span class="kw">fn</span>(<span class="dt">i32</span><span class="op">,</span> <span class="op">*</span><span class="dt">f32</span>) <span class="op">*</span><span class="dt">u8</span><span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> var signal<span class="op">:</span> <span class="kw">fn</span>(<span class="dt">i32</span><span class="op">,</span> <span class="kw">fn</span>(<span class="dt">i32</span>) void)) <span class="kw">fn</span>(<span class="dt">i32</span>) void<span class="op">;</span></span></code></pre></div>
-<p>That last one is still a mess but at least it’s apparent it’s a function pointer which returns a function pointer. Furthermore you can read every declaration left to right, no Uzumaki ramblings about spirals.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rs"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> var <span class="dt">str</span><span class="op">:</span> [<span class="dv">10</span>]<span class="op">*</span><span class="dt">u8</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> var fp<span class="op">:</span> <span class="kw">fn</span>(<span class="dt">i32</span><span class="op">,</span> <span class="op">*</span><span class="dt">f32</span>) <span class="op">*</span><span class="dt">u8</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> var signal<span class="op">:</span> <span class="kw">fn</span>(<span class="dt">i32</span><span class="op">,</span> <span class="kw">fn</span>(<span class="dt">i32</span>) void)) <span class="kw">fn</span>(<span class="dt">i32</span>) void<span class="op">;</span></span></code></pre></div>
+<p>You can read every declaration left to right, no Uzumaki ramblings
+about spirals. That last one is still a mess but at least it’s apparent
+it’s a function pointer which takes a number and a function pointer, and
+returns a function pointer. Furthermore writing 3 as a function is
+nearly identical.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rs"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> function_signal(arg<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span> function<span class="op">:</span> <span class="kw">fn</span>(<span class="dt">i32</span>) void) <span class="kw">fn</span>(<span class="dt">i32</span>) void <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    function(arg)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> function<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>var signal<span class="op">:</span> <span class="kw">fn</span>(<span class="dt">i32</span><span class="op">,</span> <span class="kw">fn</span>(<span class="dt">i32</span>) void)) <span class="kw">fn</span>(<span class="dt">i32</span>) void <span class="op">=</span> function_signal<span class="op">;</span></span></code></pre></div>
 <h2 id="quick-compile-and-run">Quick Compile and Run</h2>
-<p>Tackling syntax and structure is hard enough, adding a esoteric build system and config files on top is just a mess; especially for students just getting into it and trying to show off to friends. <code>zig build-exe</code> by default has no dependencies, you can ship executables to people and it will just work!</p>
-<p><code>zig run FILE</code> behaves like an python, ruby, or other interpreted languages, compiles and immediately runs the program from the file. <code>zig run</code> alone doesn’t have much use for expert developers <code>zig build</code> with a <code>build.zig</code> file takes the torch as a proper build system.</p>
-<p>Zig caches compilations so if a program does get large it still doesn’t take long to get back into the program. With stage 2 around the corner compilation speeds are blazing fast with benchmarks as low as 4 milliseconds!</p>
+<p>Tackling syntax and structure is hard enough, adding a esoteric build
+system and config files on top is a mess; especially for students
+staring to get into it and trying to show off to friends.
+<code>zig build-exe file.zig</code> by default has no dependencies, you
+can ship executables to people and it will just work!
+<code>zig run file.zig</code> behaves like and interpreted languages, by
+compiling and immediately running the program. Both of these aren’t
+proper build system, which is where build.zig comes in, why learn a new
+language to build your zig files? Zig houses it’s own build system.</p>
 <h2 id="error-handling">Error Handling</h2>
-<p>Zig normalizes error handling, it is truly easy to write code that handles edge cases. In debug/safe builds Zig gives a wonderful trace if an error reaches all the way up main. Functions are required to state if they can fail with a simple <code>!</code> and the compiler will figure out how it can fail based on thrown values. The “how it can fail” part is important for switching on error values with 100% certainty that all cases are covered. It’s impressive how easy error handling is in Zig, while in any try-block language thrown errors provide less and less information the further they are thrown, promote handling multiple errors as one, and make it painful to declare user-defined errors.</p>
-<p>In combination with <code>errdefer</code> cleaning up in failure conditions is easy too, C would require rewriting free statements after every failure check and cascading indents if you cannot early <code>return;</code> or <code>exit(0);</code> in the function.</p>
+<p>Zig normalizes error handling, it is truly easy to write code that
+handles edge cases. In debug/safe builds Zig gives a wonderful trace if
+an error reaches all the way up main. Functions are required to state if
+they can fail with a simple <code>!</code>. It’s impressive how easy
+error handling is in Zig, while in any try-block language thrown errors
+provide less, promote handling multiple errors as one, and make it
+painful to declare user-defined errors.</p>
+<p>In combination with <code>errdefer</code> cleaning up in failure
+conditions is easy too, C would require rewriting free statements after
+every failure check and cascading indents if you cannot early
+<code>return;</code> or <code>exit(0);</code> in the function.</p>
 <h1 id="more-resources">More Resources</h1>
-<p><a href="https://ziglearn.org/chapter-1/">Ziglearn.org</a> does a fantastic and up to date job going over features in zig and even some of the standard library!</p>
-<p><a href="https://github.com/ratfactor/ziglings">Ziglings</a> is a tutorial in the form of fixing broken zig code. This tutorial goes over basic programming fundamentals, and zig specific functionality, like slices and optional types.</p>
-<p>As a new and experimental language core stuff changes frequently so it’s hard to write tutorials at the moment.</p>
+<p><a href="https://ziglearn.org/chapter-1/">Ziglearn.org</a> does a
+fantastic and up to date job going over features in zig and even some of
+the standard library!</p>
+<p><a href="https://github.com/ratfactor/ziglings">Ziglings</a> is a
+tutorial in the form of fixing broken zig code. This tutorial goes over
+basic programming fundamentals, and zig specific functionality, like
+slices and optional types.</p>
+<p>As a new and experimental language core stuff changes frequently so
+it’s hard to write tutorials at the moment.</p>
 </body>
 </html>

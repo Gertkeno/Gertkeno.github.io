@@ -30,6 +30,8 @@ table td {
 code {
 	background-color: lightgray;
 	border-radius: 2px;
+	padding-left: 2pt;
+	padding-right: 2pt;
 }
 
 pre {

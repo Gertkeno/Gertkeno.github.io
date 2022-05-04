@@ -1,15 +1,15 @@
 VM - Data Structures
 --------------------
 
-First off a quick "VM 101". We'll fudge some of the specifics here but a virtual
-machine uses programmer-defined bytecode instructions to operate on top of your
-standard CPU instructions. The performance of virtual machines is always
-slower than raw machine code, yet faster than most interpreted languages.
+A virtual machine uses programmer-defined instructions to operate on. The
+performance of virtual machines is always slower than raw machine code, yet
+can be much faster than most interpreted languages if the instructions are small
+and specific.
 
-You should define specific game or dialogue related bytecode. *ADF* has no
-mathematics built-in, every operation is built to aid in dialogue cosmetics and
-flow. Code samples like below will be shortened and *UE4* types will be replaced
-with *stl* variants.
+We will define game or dialogue related instructions. *ADF* has no mathematics
+built-in, every operation is built to aid in dialogue cosmetics and flow. Code
+samples like below will be shortened and *UE4* types will be replaced with *stl*
+variants.
 
 As reference I've attached this sample of dialogue the *ADF* parses and uses in
 our game.
@@ -90,11 +90,10 @@ Byte Question_Suicide[] = {
 };
 ```
 
-A typical virtual machine will try to read the whole byte-string or finish
-prematurely, throw an error, and give up. If we track the last read `SAID_TEXT`
-operator and re-feed the list at that start point; making `SAID_TEXT` the "end"
-byte like `'\0'` for c-strings. We can use this pattern to wait for user input
-"click to continue" before reading the next `SAID_TEXT`.
+If we track the last read `SAID_TEXT` operator and re-feed the list at that
+start point; making `SAID_TEXT` the "end" for an iteration. We can use this
+pattern to wait for user input "click to continue" before iterating to the next
+`SAID_TEXT`.
 
 This example code conversion is mostly accurate with the caveat that we can't
 create a custom named `Question_Suicide` array for what's declared in a text

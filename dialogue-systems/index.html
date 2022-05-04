@@ -86,33 +86,96 @@
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#systems-intent">Systems Intent</a></li>
-<li><a href="#vessels-and-virtual-machines">Vessels and Virtual Machines</a>
+<li><a href="#systems-intent" id="toc-systems-intent">Systems
+Intent</a></li>
+<li><a href="#vessels-and-virtual-machines"
+id="toc-vessels-and-virtual-machines">Vessels and Virtual Machines</a>
 <ul>
-<li><a href="#vm---data-structures">VM - Data Structures</a></li>
-<li><a href="#vm---operation">VM - Operation</a></li>
-<li><a href="#vm---file-reader">VM - File Reader</a></li>
+<li><a href="#vm---data-structures" id="toc-vm---data-structures">VM -
+Data Structures</a></li>
+<li><a href="#vm---operation" id="toc-vm---operation">VM -
+Operation</a></li>
+<li><a href="#vm---file-reader" id="toc-vm---file-reader">VM - File
+Reader</a></li>
 </ul></li>
-<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
 </ul>
 </nav>
 <h1 id="systems-intent">Systems Intent</h1>
-<p>Dialogue can be the focus of many games, if robust dialogue is the foremost feature then it’s important to create or use a system that can account for the plethora of data and logistics behind simple game dialogue.</p>
-<p>Some games, like Morrowind use dialogue for linear quest interactions, and Morrowind houses a healthy amount of quests. In this scenario the game needs to track multiple quest progressions, though that’s the end of it, linear state. <a href="https://openmw.org/en/">OpenMW</a>, a fan re-write of the Morrowind engine has fairly legible quest code available <a href="https://github.com/OpenMW/openmw/tree/master/apps/openmw/mwdialogue">here</a>.</p>
-<p>Telltale’s “The Walking Dead” uses a branching paths story in a hierarchic structure, one choice always leads to a new choice, never repeating. The hierarchy inherently provides structure used to create branches and reduce branches back into a linear path.</p>
-<p>Our team’s game “Vessels”, we had a finite cast of characters and a spider-web of dialogue for the player to unravel. We used <a href="https://twinery.org/">Twinery</a> to draft our story as the node-based system and robust state machine handles our cyclical, evolving story. In Unreal we developed our own virtual machine to handle dialogue, sewing programming and dialogue into one text file. With a virtual machine like this we could create branching paths and out of order execution for player progression.</p>
-<p>When designing any system it’s important to only pay for what you use. Having a firmly low scope means saying no to some requests, it means building a system that simply can’t do everything. By design the limitations can bring benefits, you can make assumptions of what designers are trying to do and automatically react or properly throw errors. It’s very easy to believe you’ll need the most robust system, this rarely reduces time spent coding for both the tools developer and content creators.</p>
-<p>It’s very important to make sure your system can be debugged, even those not using virtual machines or a seemingly simple system. Error checking is little work when automated and a major headache if left invisible.</p>
+<p>Dialogue can be the focus of many games, if robust dialogue is the
+foremost feature then it’s important to create or use a system that can
+account for the plethora of data and logistics behind simple game
+dialogue.</p>
+<p>Some games, like Morrowind use dialogue for linear quest
+interactions, and Morrowind houses a healthy amount of quests. In this
+scenario the game needs to track multiple quest progressions, though
+that’s the end of it, linear state. <a
+href="https://openmw.org/en/">OpenMW</a>, a fan re-write of the
+Morrowind engine has fairly legible quest code available <a
+href="https://github.com/OpenMW/openmw/tree/master/apps/openmw/mwdialogue">here</a>.</p>
+<p>Telltale’s “The Walking Dead” uses a branching paths story in a
+hierarchic structure, one choice always leads to a new choice, never
+repeating. The hierarchy inherently provides structure used to create
+branches and reduce branches back into a linear path.</p>
+<p>Our team’s game “Vessels”, we had a finite cast of characters and a
+spider-web of dialogue for the player to unravel. We used <a
+href="https://twinery.org/">Twinery</a> to draft our story as the
+node-based system and robust state machine handles our cyclical,
+evolving story. In Unreal we developed our own virtual machine to handle
+dialogue, sewing programming and dialogue into one text file. With a
+virtual machine like this we could create branching paths and out of
+order execution for player progression.</p>
+<p>When designing any system it’s important to only pay for what you
+use. Having a firmly low scope means saying no to some requests, it
+means building a system that simply can’t do everything. By design the
+limitations can bring benefits, you can make assumptions of what
+designers are trying to do and automatically react or properly throw
+errors. It’s very easy to believe you’ll need the most robust system,
+this rarely reduces time spent coding for both the tools developer and
+content creators.</p>
+<p>It’s very important to make sure your system can be debugged, even
+those not using virtual machines or a seemingly simple system. Error
+checking is little work when automated and a major headache if left
+invisible.</p>
 <h1 id="vessels-and-virtual-machines">Vessels and Virtual Machines</h1>
-<p>Vessels originally planned for a open world approach. The tool <a href="https://www.inklestudios.com/ink/"><em>ink</em></a> seemed promising, but didn’t fit our proposed design requirements. Looking at it now we seem to have implemented most of <em>ink</em>’s features and architecture with more legible syntax, if it worked with Unreal and I dug deeper I’m sure we would’ve picked this tool. <a href="https://twinery.org/"><em>Twinery</em></a> is another tool we would use for our initial draft. <em>Twinery</em> doesn’t export to a easy to parse format, nor work out of the box with Unreal, it was useful to find out what features we would need.</p>
-<p>I didn’t look into <a href="https://github.com/exodrifter/unity-rumor"><em>Rumor</em></a> at the time, but it’s a fruitful dialogue system with fantastic, simple syntax.</p>
-<p>The benefit of a virtual machine like <em>ink</em> or the “Airlock Dialogue File” (<em>ADF</em>) is allowing designers immense control over pathways and state changes. It’s important to only cater to those two objectives, too many features can bog down your dialogue systems ease of use or overcomplicate simple functions. <em>ADF</em> for example only stores boolean flags, no integers or math allowed.</p>
-<p>When restraining scope and curbing potential downsides virtual machines flourish, <em>ADF</em> handles 6,923 lines of dialogue with 7,258 written operators for flow control. This would’ve been over 7,258 nodes in blueprint without this system to ease reading and writing; not to mention cut out Unreal’s atrocious boot time.</p>
+<p>Vessels originally planned for a open world approach. The tool <a
+href="https://www.inklestudios.com/ink/"><em>ink</em></a> seemed
+promising, but didn’t fit our proposed design requirements. Looking at
+it now we seem to have implemented most of <em>ink</em>’s features and
+architecture with more legible syntax, if it worked with Unreal and I
+dug deeper I’m sure we would’ve picked this tool. <a
+href="https://twinery.org/"><em>Twinery</em></a> is another tool we
+would use for our initial draft. <em>Twinery</em> doesn’t export to a
+easy to parse format, nor work out of the box with Unreal, it was useful
+to find out what features we would need.</p>
+<p>I didn’t look into <a
+href="https://github.com/exodrifter/unity-rumor"><em>Rumor</em></a> at
+the time, but it’s a fruitful dialogue system with fantastic, simple
+syntax.</p>
+<p>The benefit of a virtual machine like <em>ink</em> or the “Airlock
+Dialogue File” (<em>ADF</em>) is allowing designers immense control over
+pathways and state changes. It’s important to only cater to those two
+objectives, too many features can bog down your dialogue systems ease of
+use or overcomplicate simple functions. <em>ADF</em> for example only
+stores boolean flags, no integers or math allowed.</p>
+<p>When restraining scope and curbing potential downsides virtual
+machines flourish, <em>ADF</em> handles 6,923 lines of dialogue with
+7,258 written operators for flow control. This would’ve been over 7,258
+nodes in blueprint without this system to ease reading and writing; not
+to mention cut out Unreal’s atrocious boot time.</p>
 <h2 id="vm---data-structures">VM - Data Structures</h2>
-<p>First off a quick “VM 101”. We’ll fudge some of the specifics here but a virtual machine uses programmer-defined bytecode instructions to operate on top of your standard CPU instructions. The performance of virtual machines is always slower than raw machine code, yet faster than most interpreted languages.</p>
-<p>You should define specific game or dialogue related bytecode. <em>ADF</em> has no mathematics built-in, every operation is built to aid in dialogue cosmetics and flow. Code samples like below will be shortened and <em>UE4</em> types will be replaced with <em>stl</em> variants.</p>
-<p>As reference I’ve attached this sample of dialogue the <em>ADF</em> parses and uses in our game.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Question_Suicide</span></span>
+<p>A virtual machine uses programmer-defined instructions to operate on.
+The performance of virtual machines is always slower than raw machine
+code, yet can be much faster than most interpreted languages if the
+instructions are small and specific.</p>
+<p>We will define game or dialogue related instructions. <em>ADF</em>
+has no mathematics built-in, every operation is built to aid in dialogue
+cosmetics and flow. Code samples like below will be shortened and
+<em>UE4</em> types will be replaced with <em>stl</em> variants.</p>
+<p>As reference I’ve attached this sample of dialogue the <em>ADF</em>
+parses and uses in our game.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Question_Suicide</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Yes... I am. And... I&#39;ve asked you to not talk to me about this.</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ~name: Esme</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Peyton, please... I respect the subjects you don&#39;t want to discuss.</span>
@@ -122,8 +185,11 @@
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    ~interest: Esme_Upset by Marv&#39;s suicide</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>We can use this.</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    ~link: ASPEYTON_QUESTION</span></code></pre></div>
-<p>Each piece of dialogue and function (the ~ part) is stored as a “byte” in the machine. “Byte” used lightly as we keep the whole string in this bytecode rather than referencing it elsewhere in memory.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Byte</span>
+<p>Each piece of dialogue and function (the ~ part) is stored as a
+“byte” in the machine. “Byte” used lightly as we keep the whole string
+in this bytecode rather than referencing it elsewhere in memory.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Byte</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">enum</span> <span class="dt">EType_t</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
@@ -156,9 +222,17 @@
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> originLine<span class="op">;</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> indent<span class="op">;</span></span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
-<p>So we create each byte with two main variables for our machine to operate on. Each <code>EType_t</code> tells the VM what to do with the byte’s <code>text</code> variable, for merely displaying, a <code>SAID_TEXT</code> operator will print the <code>text</code> variable on-screen. The <code>SET</code> function will store a value of true in the VM, with <code>text</code> as the key, for later state retrieval.</p>
-<p>To help understand how we craft our Byte I’ll take the last example and write it as a array in C++ using the <code>struct Byte</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Byte Question_Suicide<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
+<p>So we create each byte with two main variables for our machine to
+operate on. Each <code>EType_t</code> tells the VM what to do with the
+byte’s <code>text</code> variable, for merely displaying, a
+<code>SAID_TEXT</code> operator will print the <code>text</code>
+variable on-screen. The <code>SET</code> function will store a value of
+true in the VM, with <code>text</code> as the key, for later state
+retrieval.</p>
+<p>To help understand how we craft our Byte I’ll take the last example
+and write it as a array in C++ using the <code>struct Byte</code>.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Byte Question_Suicide<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span>Byte<span class="op">::</span>SAID_TEXT<span class="op">,</span> <span class="st">&quot;Yes... I am. And... I&#39;ve asked you to not talk to me about this.&quot;</span><span class="op">},</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span>Byte<span class="op">::</span>NAME<span class="op">,</span>      <span class="st">&quot;Esme&quot;</span><span class="op">},</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span>Byte<span class="op">::</span>SAID_TEXT<span class="op">,</span> <span class="st">&quot;Peyton, please... I respect the subjects you don&#39;t want to discuss.&quot;</span><span class="op">},</span></span>
@@ -169,16 +243,39 @@
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span>Byte<span class="op">::</span>SAID_TEXT<span class="op">,</span> <span class="st">&quot;We can use this.&quot;</span><span class="op">},</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span>Byte<span class="op">::</span>LINK_TO<span class="op">,</span>   <span class="st">&quot;ASPEYTON_QUESTION&quot;</span><span class="op">},</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
-<p>A typical virtual machine will try to read the whole byte-string or finish prematurely, throw an error, and give up. If we track the last read <code>SAID_TEXT</code> operator and re-feed the list at that start point; making <code>SAID_TEXT</code> the “end” byte like <code>'\0'</code> for c-strings. We can use this pattern to wait for user input “click to continue” before reading the next <code>SAID_TEXT</code>.</p>
-<p>This example code conversion is mostly accurate with the caveat that we can’t create a custom named <code>Question_Suicide</code> array for what’s declared in a text file. We opted to use a <code>std::map &lt;std::string, std::list &lt;Byte&gt;&gt;</code> to achieve this run-time array creation, where the <code>std::string</code> key is “Question_Suicide” and the rest, is the byte-string in linked list form.</p>
+<p>If we track the last read <code>SAID_TEXT</code> operator and re-feed
+the list at that start point; making <code>SAID_TEXT</code> the “end”
+for an iteration. We can use this pattern to wait for user input “click
+to continue” before iterating to the next <code>SAID_TEXT</code>.</p>
+<p>This example code conversion is mostly accurate with the caveat that
+we can’t create a custom named <code>Question_Suicide</code> array for
+what’s declared in a text file. We opted to use a
+<code>std::map &lt;std::string, std::list &lt;Byte&gt;&gt;</code> to
+achieve this run-time array creation, where the <code>std::string</code>
+key is “Question_Suicide” and the rest, is the byte-string in linked
+list form.</p>
 <blockquote>
-<p>When actually implementing I’d use <a href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a> and <a href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code></a> for simpler insertion complexity.</p>
+<p>When actually implementing I’d use <a
+href="https://en.cppreference.com/w/cpp/container/unordered_map"><code>std::unordered_map</code></a>
+and <a
+href="https://en.cppreference.com/w/cpp/container/forward_list"><code>std::forward_list</code></a>
+for simpler insertion complexity.</p>
 </blockquote>
-<p>Byte-strings can take form of many data structures. Arrays will be faster to operate on but potentially slower to build. Linked lists will be easy to build and slower to operate. For this reason our dialogue system builds linked lists at the start of the game and operates over them during dialogue. Maps are surprisingly fast for how feature rich they are; we use maps to title and track the dialogue byte-strings.</p>
-<p>Dialogue will be running our virtual machine sparsely, only when the player clicks through text, so performance at vm-runtime is typically wasted effort.</p>
+<p>Byte-strings can take form of many data structures. Arrays will be
+faster to operate on but potentially slower to build. Linked lists will
+be easy to build and slower to operate. For this reason our dialogue
+system builds linked lists at the start of the game and operates over
+them during dialogue. Maps are surprisingly fast for how feature rich
+they are; we use maps to title and track the dialogue byte-strings.</p>
+<p>Dialogue will be running our virtual machine sparsely, only when the
+player clicks through text, so performance at vm-runtime is typically
+wasted effort.</p>
 <h2 id="vm---operation">VM - Operation</h2>
-<p>The simplest virtual machine is a function taking some container to operate over; I’ll demonstrate the easiest, hardest to work with implementation.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> run_string <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>forward_list<span class="op"> &lt;</span>Byte<span class="op">&gt;</span> data<span class="op">)</span></span>
+<p>The simplest virtual machine is a function taking some container to
+operate over; I’ll demonstrate the easiest, hardest to work with
+implementation.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> run_string <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>forward_list<span class="op"> &lt;</span>Byte<span class="op">&gt;</span> data<span class="op">)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="kw">auto</span> <span class="op">&amp;</span> i<span class="op">:</span> data<span class="op">)</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
@@ -197,8 +294,15 @@
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>This function may be enough for you, but I’d like to leverage objects to make some relationships between our dialogue and actors. Firstly any data from our byte-strings will be lost without somewhere to keep it. Second this operates an entire byte-string at a time, while useful for more programmatic cases we need to stop, and wait for the player to continue the reading. By making a class to house and run our dialogue we can attach this to actors and directly associate text with them.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VM</span>
+<p>This function may be enough for you, but I’d like to leverage objects
+to make some relationships between our dialogue and actors. Firstly any
+data from our byte-strings will be lost without somewhere to keep it.
+Second this operates an entire byte-string at a time, while useful for
+more programmatic cases we need to stop, and wait for the player to
+continue the reading. By making a class to house and run our dialogue we
+can attach this to actors and directly associate text with them.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VM</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// loads text file into our &quot;dialogue&quot; variable</span></span>
@@ -218,12 +322,26 @@
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// track dialogue progression</span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    byte_itr playHead<span class="op">,</span> playHeadEnd<span class="op">;</span></span>
 <span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
-<p>In <em>UE4</em> finding a place for persistent data may be daunting. Creating a basic C++ “Game Instance” class with accessible data will persist through the game, just remember to reset during a game over or save/load. With this your VM function will pull and push data from <em>UE4</em>’s global variables, like the game instance object.</p>
-<p>For this document I’m going to continue with the custom VM class definition.</p>
-<p>When managing dialogue you’ll likely want to display text, change state, and move the play head forward. We benefit from separating this into at least two functions, you might want to display text more than once, or skip ahead via a fast-forward key.</p>
-<p>It’s also important to find out what data needs to come out of your VM operations. For displaying text it’s usually just a <code>std::string</code>, while running could return full state, a error code, or nothing! My advice here will be to try and catch your errors while loading dialogue.</p>
-<p>Conditional statements probably operate the same when running or reading, so we can move this to it’s own function as well.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VM</span>
+<p>In <em>UE4</em> finding a place for persistent data may be daunting.
+Creating a basic C++ “Game Instance” class with accessible data will
+persist through the game, just remember to reset during a game over or
+save/load. With this your VM function will pull and push data from
+<em>UE4</em>’s global variables, like the game instance object.</p>
+<p>For this document I’m going to continue with the custom VM class
+definition.</p>
+<p>When managing dialogue you’ll likely want to display text, change
+state, and move the play head forward. We benefit from separating this
+into at least two functions, you might want to display text more than
+once, or skip ahead via a fast-forward key.</p>
+<p>It’s also important to find out what data needs to come out of your
+VM operations. For displaying text it’s usually just a
+<code>std::string</code>, while running could return full state, a error
+code, or nothing! My advice here will be to try and catch your errors
+while loading dialogue.</p>
+<p>Conditional statements probably operate the same when running or
+reading, so we can move this to it’s own function as well.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> VM</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    VM <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string<span class="op"> &amp;</span> filename<span class="op">);</span></span>
@@ -245,9 +363,17 @@
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    byte_itr playHead<span class="op">,</span> playHeadEnd<span class="op">;</span></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
-<p>Implementing these functions is very similar to the stand alone function I wrote before. The <em>ADF</em> structure requires byte-strings to start with <code>SAID_TEXT</code>, we specify this so we can use <code>SAID_TEXT</code> as a sentential to halt. When the VM picks back up we can grantee <code>playHead</code> is either <code>SAID_TEXT</code> or <code>playHeadEnd</code>.</p>
-<p>Re-writing the standalone <code>run_string()</code> example function for our class certainly looks larger, but the logic now checks for our sentinel and holds the play head properly.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> VM<span class="op">::</span>run_head<span class="op">()</span></span>
+<p>Implementing these functions is very similar to the stand alone
+function I wrote before. The <em>ADF</em> structure requires
+byte-strings to start with <code>SAID_TEXT</code>, we specify this so we
+can use <code>SAID_TEXT</code> as a sentential to halt. When the VM
+picks back up we can grantee <code>playHead</code> is either
+<code>SAID_TEXT</code> or <code>playHeadEnd</code>.</p>
+<p>Re-writing the standalone <code>run_string()</code> example function
+for our class certainly looks larger, but the logic now checks for our
+sentinel and holds the play head properly.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> VM<span class="op">::</span>run_head<span class="op">()</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>playHead <span class="op">==</span> playHeadEnd<span class="op">)</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
@@ -283,9 +409,20 @@
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h2 id="vm---file-reader">VM - File Reader</h2>
-<p>Constructing our byte-strings by reading the text files first requires formatting. I really like <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a> so I based <em>ADF</em> around it. A line-based formatting approach makes for easy programming, and can interfere with stylized/rich text formatting like <a href="http://www.pindari.com/rtf1.html">RTF</a>.</p>
-<p>When creating <em>ADF</em>’s formatting we only had to consider two parts; how to assign byte-strings a name for later reference, and how to specify the type per byte. Naming byte-strings was easy, any special character(s) to make a line or block stand out will do. Now specifying byte type certainly needs to be a key-value pair with some short hands for common functions.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Esme_Success</span></span>
+<p>Constructing our byte-strings by reading the text files first
+requires formatting. I really like <a
+href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">markdown</a>
+so I based <em>ADF</em> around it. A line-based formatting approach
+makes for easy programming, and can interfere with stylized/rich text
+formatting like <a href="http://www.pindari.com/rtf1.html">RTF</a>.</p>
+<p>When creating <em>ADF</em>’s formatting we only had to consider two
+parts; how to assign byte-strings a name for later reference, and how to
+specify the type per byte. Naming byte-strings was easy, any special
+character(s) to make a line or block stand out will do. Now specifying
+byte type certainly needs to be a key-value pair with some short hands
+for common functions.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Esme_Success</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>I&#39;ll be right there.</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    ~name: Esme</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Esme is on her way.</span>
@@ -302,9 +439,16 @@
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    ~set: dl_someone_enroute</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    ~set: dl_rakesh_spoke</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    ~special: sound_off</span></code></pre></div>
-<p>This example shows we used ‘#’ to mark the start of a new byte-string. We enclose byte types in <code>~function:</code> and the byte text as anything afterwards. Lines without a <code>~function:</code> at the start are treated as <code>~SAID_TEXT:</code>, our shorthand.</p>
-<p>Reading our line based files will look like this, proper error checking will massively expand this constructor, but it’s well worth it.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>VM<span class="op">::</span>VM <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string<span class="op"> &amp;</span> filename<span class="op">)</span></span>
+<p>This example shows we used ‘#’ to mark the start of a new
+byte-string. We enclose byte types in <code>~function:</code> and the
+byte text as anything afterwards. Lines without a
+<code>~function:</code> at the start are treated as
+<code>~SAID_TEXT:</code>, our shorthand.</p>
+<p>Reading our line based files will look like this, proper error
+checking will massively expand this constructor, but it’s well worth
+it.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>VM<span class="op">::</span>VM <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string<span class="op"> &amp;</span> filename<span class="op">)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">std::</span>ifstream<span class="op"> </span>infile <span class="op">(</span>filename<span class="op">);</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>infile<span class="op">.</span>is_open<span class="op">())</span></span>
@@ -344,9 +488,16 @@
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>This format is reliant on the first character on a line, this makes it easy to expand for more shorthand or unique functions. Keep in mind this sample code doesn’t check for any potentially extreme errors, like reading the same <code># name</code>. Validating function inputs will be the bulk of your error checking, it’s very important to highlight any potential syntax or logic errors.</p>
-<p>I’ll write out the <code>trim_whitespace()</code> function, and the string based type Byte constructor for completions sake.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="bu">std::</span>string<span class="op"> </span>trim_whitespace <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string<span class="op"> &amp;</span> in<span class="op">)</span></span>
+<p>This format is reliant on the first character on a line, this makes
+it easy to expand for more shorthand or unique functions. Keep in mind
+this sample code doesn’t check for any potentially extreme errors, like
+reading the same <code># name</code>. Validating function inputs will be
+the bulk of your error checking, it’s very important to highlight any
+potential syntax or logic errors.</p>
+<p>I’ll write out the <code>trim_whitespace()</code> function, and the
+string based type Byte constructor for completions sake.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">inline</span> <span class="bu">std::</span>string<span class="op"> </span>trim_whitespace <span class="op">(</span><span class="at">const</span> <span class="bu">std::</span>string<span class="op"> &amp;</span> in<span class="op">)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> index <span class="op">{</span><span class="dv">0</span><span class="op">};</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>index <span class="op">&lt;</span> in<span class="op">.</span>length<span class="op">()</span> <span class="kw">and</span> <span class="bu">std::</span>isspace<span class="op"> (</span>in <span class="op">[</span>index<span class="op">]))</span></span>
@@ -379,15 +530,32 @@
 <span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>            function <span class="op">=</span> i<span class="op">.</span>value<span class="op">;</span></span>
 <span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <h1 id="conclusion">Conclusion</h1>
-<p>When designing a system it’s of utmost importance to consider the following:</p>
+<p>When designing a system it’s of utmost importance to consider the
+following:</p>
 <ol type="1">
 <li>Error Checking</li>
 <li>Legibility</li>
 <li>Expandability</li>
 </ol>
-<p>While programming in general the ability to debug code should be in the back of your head. While designers are using your system it should be a forced, implicit part of the system. At any point stop and think “How could this function be misused?”, “What if this is misspelled?” and try to flag that case. Your system should check designer’s code vigorously.</p>
-<p>Writing your own language puts you in a unique situation of having to teach it. Do yourself a favor and make it simple and transparent, use as much English as possible. “Syntactic sugar” should be avoided, too many enigmatic percent signs and asterisks only cause confusion and a trip to the manual, even for yourself. I’d recommend making use of braces or parenthesis if applicable, white space can be difficult to debug and program for.</p>
-<p>More functionality will always be around the corner, be ready to quickly try out ideas. Make sure you can account for functions with multiple parameters. Add an escape character in case your special characters are needed in-dialogue.</p>
-<p>Creating a virtual machine can be all the fun of making your own language without all the hassle of compiler architecture. Good luck, try to make the most of it!</p>
+<p>While programming in general the ability to debug code should be in
+the back of your head. While designers are using your system it should
+be a forced, implicit part of the system. At any point stop and think
+“How could this function be misused?”, “What if this is misspelled?” and
+try to flag that case. Your system should check designer’s code
+vigorously.</p>
+<p>Writing your own language puts you in a unique situation of having to
+teach it. Do yourself a favor and make it simple and transparent, use as
+much English as possible. “Syntactic sugar” should be avoided, too many
+enigmatic percent signs and asterisks only cause confusion and a trip to
+the manual, even for yourself. I’d recommend making use of braces or
+parenthesis if applicable, white space can be difficult to debug and
+program for.</p>
+<p>More functionality will always be around the corner, be ready to
+quickly try out ideas. Make sure you can account for functions with
+multiple parameters. Add an escape character in case your special
+characters are needed in-dialogue.</p>
+<p>Creating a virtual machine can be all the fun of making your own
+language without all the hassle of compiler architecture. Good luck, try
+to make the most of it!</p>
 </body>
 </html>

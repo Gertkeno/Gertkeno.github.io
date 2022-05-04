@@ -23,11 +23,12 @@ Zig helps by forcing more explicit code and having consistent, lean syntax.
 Picking on C++, there are so many ways to initialize a variable, and it's so
 rare to use even half of them.
 
-![initialize meme haha](https://i.imgur.com/3wlxtI0.mp4)
+![initialize meme haha](https://i.imgur.com/3wlxtI0.mp4 "Forest Gump Initializer
+Meme on Imgur.com")
 
-In teaching I've found that the most trouble is caused by what is allowed by a
-language, but absolutely not what the student wants to do. It's a large part of
-simply learning the syntax.
+In teaching I've found that the most trouble is caused by something that is
+allowed by a language, but absolutely not what the student wants to do. It's a
+large part of simply learning the syntax.
 
 ```c
 #include <stdio.h>
@@ -43,9 +44,10 @@ int main() {
 }
 ```
 
-A simple syntactic mistake, forgetting parenthesis, yet this compiles and does
+A simple syntactic mistake: forgetting parenthesis, yet this compiles and does
 nothing. It looks correct, at least close to correct! Luckily `-Wall` will catch
-this and it _should_ be standard practice to make with `-Wall -Wextra`.
+this and while it _should_ be standard practice to make with `-Wall -Wextra` I
+find this mistake far too often.
 
 What is Zig?
 ============
@@ -66,11 +68,11 @@ not had to use gdb or valgrind for my games in written in Zig.
 Simple Declarations
 -------------------
 
-Starting off Zig uses a variant of pascal's variable definition `name: type =
-value;` this makes pointers, const, and function pointers so much easier to deal
-with. Using function pointers in C/C++ I've always had to look up how exactly to
-write it especially with variations for typedefs and C++'s `using =`, in Zig I
-just guessed correctly the first time; purely intuition.
+Zig uses a variant of pascal's variable definition `name: type = value;` this
+makes pointers, const, and function pointers so much easier to deal with. Using
+function pointers in C/C++ I've always had to look up how exactly to write it
+especially with variations for typedefs and C++'s `using =`, in Zig I just
+guessed correctly the first time; purely intuition.
 
 The old adage for C is
 ["The Spiral Rule"](http://c-faq.com/decl/spiral.anderson.html) to not read from
@@ -96,7 +98,16 @@ the examples from this side by side.
 You can read every declaration left to right, no Uzumaki ramblings about
 spirals. That last one is still a mess but at least it's apparent it's a
 function pointer which takes a number and a function pointer, and returns a
-function pointer.
+function pointer. Furthermore writing 3 as a function is nearly identical.
+
+```rs
+fn function_signal(arg: i32, function: fn(i32) void) fn(i32) void {
+	function(arg);
+	return function;
+}
+
+var signal: fn(i32, fn(i32) void)) fn(i32) void = function_signal;
+```
 
 Quick Compile and Run
 ---------------------
