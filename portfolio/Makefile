@@ -1,3 +1,5 @@
+.PHONY: clean test all
+
 all: index.html
 
 index.html: 10_intro.md
