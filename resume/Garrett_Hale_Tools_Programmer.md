@@ -27,7 +27,7 @@ _Proficient:_ Unreal Engine 4, OpenGL, Unity, Godot
 **Sandshark Games** (2021 - )
 [Roblox](https://www.sandsharkgames.com/)
 
-Luau, 
+Luau
 
 - Created Roblox experiences in a fast paced market
 - UI programming

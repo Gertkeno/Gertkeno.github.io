@@ -27,15 +27,11 @@ table td {
 	padding-right: 1em;
 }
 
-code {
+code, pre {
 	background-color: lightgray;
 	border-radius: 2px;
-	padding-left: 2pt;
-	padding-right: 2pt;
 }
 
 pre {
-	background-color: lightgray;
-	border-radius: 0.5em;
 	padding: 1em;
 }
