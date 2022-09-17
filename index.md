@@ -51,7 +51,7 @@ student game award!!!
 - [TO THE CORE](https://gertkeno.itch.io/to-the-core) for Wasm4 Jam
 - [RIFT](https://www.trionworlds.com/rift/en/)
 - [G5 Game Jam, Solario](https://solariogame.itch.io/solario)
-- [Vessels](https://www.vesselsgame.com/)
+- [Vessels](https://store.steampowered.com/app/1371330/Vessels/)
 - [WatchmIn](https://globalgamejam.org/2020/games/global-game-jam-2020-2) for
   Global Game Jam 2020
 - [Traditions](https://globalgamejam.org/2019/games/traditions) for Global Game
