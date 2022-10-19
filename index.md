@@ -47,6 +47,7 @@ student game award!!!
 ::: games
 ### Games by me
 
+- [ZoopZoop Bee Adventures 7](https://zoopzoopadventures.com/)
 - [Aim Trainer Idle](https://hankik.itch.io/aim-trainer-idle) for Go Godot 3 Jam
 - [TO THE CORE](https://gertkeno.itch.io/to-the-core) for Wasm4 Jam
 - [RIFT](https://www.trionworlds.com/rift/en/)
