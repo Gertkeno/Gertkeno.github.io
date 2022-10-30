@@ -13,3 +13,12 @@
 p {
 	margin: 0.2em 0 0.2em 0;
 }
+
+.Experience {
+	column-count: 2;
+	column-width: 300px;
+}
+
+.Experience ul {
+	display: inline-block;
+}
