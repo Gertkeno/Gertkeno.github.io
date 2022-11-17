@@ -12,8 +12,9 @@ Roblox Games
 
 Working at [Sandshark Games](https://www.sandsharkgames.com/) I programmed
 games of various genres. I learned the bounty of lovely foot guns Roblox
-has to offer. Stemming from the single threaded evented structure with
-yielding calls, but it looks better than nodejs' call back mess.
+has to offer. I spent a fair amount of time learning and helping others through
+the scripting support section of the
+[devforum](https://devforum.roblox.com/u/gertkeno/summary)!
 
 - [Get Big](https://www.roblox.com/games/9379939316/)
 - [Legends RP](https://www.roblox.com/games/9184480540/)
@@ -24,7 +25,8 @@ Go Godot Game Jam 2022
 ----------------------
 
 First time using Godot I grouped up with a few of my friends to make a aim
-training idle game. I like Godot's quick launch and broad feature set,
+training idle game. I like Godot's quick launch and broad feature set, it's a
+game engine made by and for programmers!
 
 [Play Aim Trainer Idle Online!](https://hankik.itch.io/aim-trainer-idle)
 
@@ -39,10 +41,10 @@ Zig - Crochet Helper - Wasm4
 ----------------------------
 
 In my free time I crochet blankets, ponchos, and scarfs for my friends and
-family. I prefer to make colorful flat images for these and I use to print out
-an image, draw a grid and stitch marks over it. This took a lot of counting and
-other work I would like done by computers. This was also a great excuse to use
-[Zig](https://ziglang.org) a programming language I love!
+family. I prefer to make colorful flat images for these, previously I would
+print out an image, draw a grid and stitch marks over it. This took a lot of
+counting and other work I would like done by computers. This was also a great
+excuse to use [Zig](https://ziglang.org) a programming language I love!
 
 [Crochet Helper Github.](https://github.com/Gertkeno/crochet_helper)
 
