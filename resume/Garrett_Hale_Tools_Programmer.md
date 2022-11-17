@@ -16,7 +16,7 @@ pagestyle: empty
 
 **_Skills_**
 
-_Language:_ C++11-20, git, Python, Lua, Linux, [Zig](https://ziglang.org/)
+_Language:_ C++11-20, git, Python, Lua, GNU/Linux, [Zig](https://ziglang.org/)
 
 _Engine:_ Unreal Engine 4, OpenGL, Unity, Godot, Roblox
 
@@ -26,8 +26,7 @@ _Engine:_ Unreal Engine 4, OpenGL, Unity, Godot, Roblox
 
 ::: Experience
 
-**Sandshark Games** (2021 - )
-[Roblox](https://www.sandsharkgames.com/)
+**Sandshark Games** (2021 - ) [Roblox](https://www.roblox.com/groups/5747787/Sand-Shark-Games#!/about)
 
 Luau, Unity
 
@@ -76,5 +75,11 @@ Selenium, Python, phantomjs
 
 - Automated full-stack tests improving publishing speed
 - Worked in Agile development
+
+**Code2College** (2017) [Company Site](https://code2college.org/)
+
+HTML, Python, Javascript
+
+- Taught Pflugerville high school students how to make a full stack website
 
 :::
