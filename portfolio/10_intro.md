@@ -21,6 +21,23 @@ the scripting support section of the
 
 ---
 
+Zoop Zoop Bee Adventures Seven
+------------------------------
+
+Having fun teaching mi amor game programming for Wasm4. We had a hard drive
+failure but pressed on to re-make the game, this time with back ups! I even
+bought the domain name "[zoopzoopadventures.com](https://zoopzoopadventures.com/)".
+
+You may see both Zig and Wasm4 later in this list, I find this language and
+fantasy console joyous to work with. This is my second Wasm4 project and a
+avenue to teach Zig!
+
+<a href="https://zoopzoopadventures.com/">
+![](https://github.com/aduros/wasm4/raw/main/site/static/carts/zoopzoop.png "ZoopZoop Bee Adventures 7 Title Screen")
+</a>
+
+---
+
 Go Godot Game Jam 2022
 ----------------------
 
@@ -81,6 +98,8 @@ updates.
 
 Vessels
 -------
+
+**We won the [IGF 2021](https://igf.com/2021) best student game award!**
 
 I was the lead programmer on a team of six developers making Vessels, a narrative
 focused puzzle/exploration game. I created a concise dialogue system for
