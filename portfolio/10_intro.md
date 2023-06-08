@@ -41,8 +41,8 @@ avenue to teach Zig!
 Go Godot Game Jam 2022
 ----------------------
 
-First time using Godot I grouped up with a few of my friends to make a aim
-training idle game. I like Godot's quick launch and broad feature set, it's a
+First time using Godot I grouped up with my friends to make a aim training idle
+game. I like Godot's quick launch, sane defaults, and broad feature set. It's a
 game engine made by and for programmers!
 
 [Play Aim Trainer Idle Online!](https://hankik.itch.io/aim-trainer-idle)
@@ -54,8 +54,8 @@ Trainer Idle Screenshot/cover image")
 
 ---
 
-Zig - Crochet Helper - Wasm4
-----------------------------
+Crochet Helper
+--------------
 
 In my free time I crochet blankets, ponchos, and scarfs for my friends and
 family. I prefer to make colorful flat images for these, previously I would
@@ -67,6 +67,11 @@ excuse to use [Zig](https://ziglang.org) a programming language I love!
 
 ![](https://github.com/Gertkeno/crochet_helper/raw/master/sample.png "Crochet
 helper screenshot")
+
+---
+
+To The Core
+-----------
 
 [Zig](https://ziglang.org) has been wonderful to program personal games, and
 integrates well with [wasm4](https://wasm4.org). Which I participated in the
@@ -110,7 +115,7 @@ as a virtual machine, and what I believe are important design philosophies in my
 blog post [Game Dialogue Systems](/dialogue-systems/). When making a scripting
 language I knew we'd be throwing away valuable debugging tools, I made sure to
 keep the scope low, strict, and loud with tests/warnings as we needed new
-features
+features.
 
 <video controls loop>
 <source src="small_vessels.webm" type="video/webm">

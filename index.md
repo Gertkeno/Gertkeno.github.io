@@ -26,7 +26,7 @@ won the [IGF 2021](https://igf.com/2021) student game award!!!
 - [**itch.io**](https://gertkeno.itch.io/)
 - [**steam**](https://steamcommunity.com/id/gertman)
 - [**twitter**](https://twitter.com/gertkeno)
-- **discord** Gert#1320
+- **discord** gert_h
 - [**github**](https://github.com/Gertkeno)
 - [**bitbucket**](https://bitbucket.org/Gertkeno/)
 - [**twitch**](https://www.twitch.tv/gert_h)

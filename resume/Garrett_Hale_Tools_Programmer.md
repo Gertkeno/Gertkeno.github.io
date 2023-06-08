@@ -16,7 +16,7 @@ pagestyle: empty
 
 **_Skills_**
 
-_Language:_ C++11-20, git, Python, Lua, GNU/Linux, [Zig](https://ziglang.org/)
+_Language:_ C++11-23, git, Python, Lua, GNU/Linux, [Zig](https://ziglang.org/)
 
 _Engine:_ Unreal Engine 4, OpenGL, Unity, Godot, Roblox
 
@@ -26,7 +26,7 @@ _Engine:_ Unreal Engine 4, OpenGL, Unity, Godot, Roblox
 
 ::: Experience
 
-**Sandshark Games** (2021 - ) [Roblox](https://www.roblox.com/groups/5747787/Sand-Shark-Games#!/about)
+**Sandshark Games** (2021 - 2023) [Roblox](https://www.roblox.com/groups/5747787/Sand-Shark-Games#!/about)
 
 Luau, Unity
 
