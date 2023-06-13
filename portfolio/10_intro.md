@@ -16,8 +16,7 @@ has to offer. I spent a fair amount of time learning and helping others through
 the scripting support section of the
 [devforum](https://devforum.roblox.com/u/gertkeno/summary)!
 
-- [Get Big](https://www.roblox.com/games/9379939316/)
-- [Legends RP](https://www.roblox.com/games/9184480540/)
+I teach Roblox as a after school program with local business "My Coding Place"!
 
 ---
 
@@ -96,13 +95,15 @@ which I lead a team to create [Solario](https://solariogame.itch.io/solario).
 As of writing this RIFT is in maintenance mode and will not be receiving
 updates.
 
+[Steam Link](https://store.steampowered.com/app/39120/RIFT/)
+
 <a href="https://www.trionworlds.com/rift/en/">
 ![](https://cdn.akamai.steamstatic.com/steam/apps/39120/header.jpg?t=1610702571)</a>
 
 ---
 
-Vessels
--------
+Vessels - IGF Best Student Game
+-------------------------------
 
 **We won the [IGF 2021](https://igf.com/2021) best student game award!**
 
@@ -116,6 +117,8 @@ blog post [Game Dialogue Systems](/dialogue-systems/). When making a scripting
 language I knew we'd be throwing away valuable debugging tools, I made sure to
 keep the scope low, strict, and loud with tests/warnings as we needed new
 features.
+
+[steam Link](https://store.steampowered.com/app/1371330/vessels/)
 
 <video controls loop>
 <source src="small_vessels.webm" type="video/webm">
