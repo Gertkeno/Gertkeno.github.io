@@ -12,8 +12,11 @@
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
@@ -32,7 +35,7 @@
 class="uri">https://gerttech.com/portfolio/</a>, <a
 href="mailto:gthkeno@gmail.com" class="email">gthkeno@gmail.com</a></p>
 <p><strong><em>Skills</em></strong></p>
-<p><em>Language:</em> C++11-23, git, Python, Lua, GNU/Linux, <a
+<p><em>Language:</em> C++11-20, git, Python, Lua, GNU/Linux, <a
 href="https://ziglang.org/">Zig</a></p>
 <p><em>Engine:</em> Unreal Engine 4, OpenGL, Unity, Godot, Roblox</p>
 <hr />

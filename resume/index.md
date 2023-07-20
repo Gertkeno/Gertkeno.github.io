@@ -16,7 +16,7 @@ pagestyle: empty
 
 **_Skills_**
 
-_Language:_ C++11-23, git, Python, Lua, GNU/Linux, [Zig](https://ziglang.org/)
+_Language:_ C++11-20, git, Python, Lua, GNU/Linux, [Zig](https://ziglang.org/)
 
 _Engine:_ Unreal Engine 4, OpenGL, Unity, Godot, Roblox
 
