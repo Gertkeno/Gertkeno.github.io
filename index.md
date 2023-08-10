@@ -28,11 +28,9 @@ won the [IGF 2021](https://igf.com/2021) student game award!!!
 - [**twitter**](https://twitter.com/gertkeno)
 - **discord** gert_h
 - [**github**](https://github.com/Gertkeno)
-- [**bitbucket**](https://bitbucket.org/Gertkeno/)
 - [**twitch**](https://www.twitch.tv/gert_h)
-- [**youtube**](https://www.youtube.com/user/cptgthkeno/videos)
 - **nintendo** SW-5439-4751-0117
-- [**snapchat**](Snapchat-1915470728.jpg) gertkeno
+- <a rel="me" href="https://mastodon.gamedev.place/@gertkeno"><b>mastodon</b></a>
 :::
 
 ::: blog
