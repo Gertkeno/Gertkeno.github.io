@@ -7,6 +7,33 @@ css: ../document.css
 A Catalog of My Story in Reverse Chronological Order
 ====================================================
 
+Hextype Mechapop
+----------------
+
+I hate the mouse; keyboard for everything! Vim and tilling window managers
+or bust! We built this game as a simulacrum of that hacker-man stereotype
+mashing keys 'till the machine explodes.
+
+Again using Godot and leveraging the ever versatile input system, developing
+in under a month everything snaps into place! We have more ideas for this
+project, adding more weapons and a short campaign like that of rouge-likes, but
+for now we work on bigger things.
+
+<iframe frameborder="0" src="https://itch.io/embed/2322163?bg_color=1f0749&amp;fg_color=fe4ebc&amp;link_color=05ec18&amp;border_color=523388" width="552" height="167"><a href="https://luckyson.itch.io/hextype-mechapop">Hextype Mechapop by LUCKY SON</a></iframe>
+
+---
+
+Bun-Bun Fun Run
+---------------
+
+Built for EGADS Texas Game Jame 2023, theme "It's a trap!". This project
+provided a lovely refresher on Unreal and learning some of the changes with
+version five. A very cute and stylish physics-based platformer!
+
+<iframe frameborder="0" src="https://itch.io/embed/2280507?link_color=fb922b&amp;border_color=63c64d" width="552" height="167"><a href="https://gertkeno.itch.io/bun-bun-fun-run">Bun Bun Fun Run by Gertkeno</a></iframe>
+
+---
+
 Roblox Games
 ------------
 
@@ -41,15 +68,9 @@ Go Godot Game Jam 2022
 ----------------------
 
 First time using Godot I grouped up with my friends to make a aim training idle
-game. I like Godot's quick launch, sane defaults, and broad feature set. It's a
-game engine made by and for programmers!
+game. I like Godot's quick launch, sane defaults, and broad feature set.
 
-[Play Aim Trainer Idle Online!](https://hankik.itch.io/aim-trainer-idle)
-
-<a href="https://hankik.itch.io/aim-trainer-idle">
-![](https://img.itch.zone/aW1nLzkxMjI2NzkucG5n/315x250%23c/27JcXX.png "Aim
-Trainer Idle Screenshot/cover image")
-</a>
+<iframe frameborder="0" src="https://itch.io/embed/1562789" width="552" height="167"><a href="https://hankik.itch.io/aim-trainer-idle">Aim Trainer Idle by Hank, Gertkeno</a></iframe>
 
 ---
 
@@ -76,13 +97,9 @@ To The Core
 integrates well with [wasm4](https://wasm4.org). Which I participated in the
 wasm4 game jam and published to the core! My super cute girlfriend and I am
 programming a multiplayer game with wasm4 which will make use of the new net
-play feature!
+play feature! *This is zoop zoop!*
 
-[Play To The Core Online!](https://wasm4.org/play/to-the-core/)
-
-<a href="https://wasm4.org/play/to-the-core/">
-![](https://img.itch.zone/aW1hZ2UvMTM2NTIwMS83OTQ3MjY3LnBuZw==/347x500/2b0h1R.png "To The Core Screenshot")
-</a>
+<iframe frameborder="0" src="https://itch.io/embed/1365201" width="552" height="167"><a href="https://gertkeno.itch.io/to-the-core">TO THE CORE by Gertkeno</a></iframe>
 
 ---
 
