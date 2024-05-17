@@ -25,10 +25,7 @@ won the [IGF 2021](https://igf.com/2021) student game award!!!
 - [**linkedin**](https://www.linkedin.com/in/garrett-hale-43b907b9/)
 - [**itch.io**](https://gertkeno.itch.io/)
 - [**steam**](https://steamcommunity.com/id/gertman)
-- [**twitter**](https://twitter.com/gertkeno)
-- **discord** gert_h
 - [**github**](https://github.com/Gertkeno)
-- [**twitch**](https://www.twitch.tv/gert_h)
 - **nintendo** SW-5439-4751-0117
 - <a rel="me" href="https://mastodon.gamedev.place/@gertkeno"><b>mastodon</b></a>
 :::
