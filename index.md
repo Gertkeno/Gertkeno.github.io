@@ -42,6 +42,8 @@ won the [IGF 2021](https://igf.com/2021) student game award!!!
 ::: games
 ### Games by me
 
+- [Twin Blade Tango](https://gertkeno.itch.io/twin-blade-tango) for Texas Game
+  Jam 2024
 - [Hextype Mechapop](https://luckyson.itch.io/hextype-mechapop)
 - [BunBun Fun Run](https://gertkeno.itch.io/bun-bun-fun-run) for Texas Game Jam
   2023
