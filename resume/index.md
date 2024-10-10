@@ -2,7 +2,7 @@
 pagetitle: Garrett Hale's Resume
 author: Garrett Hale
 date: Wed 22 Jan 2020 07:16:12 PM CST
-geometry: margin=2cm
+geometry: margin=1.2cm
 urlcolor: orange
 css: pandoc.css
 pagestyle: empty
@@ -45,7 +45,7 @@ Linux, Godot, Python, Roblox
 
 **Sandshark Games** (2021 - 2023) [Roblox](https://www.roblox.com/groups/5747787/Sand-Shark-Games#!/about)
 
-Luau, Unity
+Roblox, Luau, Unity
 
 - Created Roblox experiences in a fast paced market
 - UI programming
@@ -84,14 +84,9 @@ C++, Tools, GameMaker Studio
 
 Selenium, Python, phantomjs
 
-- Automated full-stack tests improving publishing speed
-- Worked in Agile development
-
 
 **Code2College** (2017) [Company Site](https://code2college.org/)
 
 HTML, Python, Javascript
-
-- Taught Pflugerville high school students how to make a full stack website
 
 :::
