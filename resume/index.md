@@ -26,6 +26,7 @@ _Engine:_ Unreal Engine, Godot, OpenGL, Roblox, Unity
 
 ::: Experience
 
+<div>
 **LUCKYSON** (2022 - Present) [Website](https://luckyson.works/)
 
 Godot, C++, VR
@@ -33,16 +34,20 @@ Godot, C++, VR
 - Making games and experiments in Godot
 - Tools and in-editor plugins
 - Extending with C++
+</div>
 
 
+<div>
 **MyCodingPlace** (2022 - Present) [Website](https://www.mycodingplace.com/)
 
 Linux, Godot, Python, Roblox
 
 - Teaching a plethora of languages and engines
 - Setup network NAS and VPN
+</div>
 
 
+<div>
 **Sandshark Games** (2021 - 2023) [Roblox](https://www.roblox.com/groups/5747787/Sand-Shark-Games#!/about)
 
 Roblox, Luau, Unity
@@ -51,8 +56,10 @@ Roblox, Luau, Unity
 - UI programming
 - Highly evented, multiplayer architecture
 - Mobile games development
+</div>
 
 
+<div>
 **RIFT** (2020 - 2021) [Steam](https://store.steampowered.com/app/39120/RIFT/)
 
 C++, Flash, Tools
@@ -60,8 +67,10 @@ C++, Flash, Tools
 - Maintained long standing game systems
 - Created new UI through Flash
 - Server programming
+</div>
 
 
+<div>
 **VESSELS** (2019 - 2020) [Steam](https://store.steampowered.com/app/1371330/Vessels/)
 
 UE4, C++, Tools
@@ -70,23 +79,30 @@ UE4, C++, Tools
   - Virtual machine architecture with variables and conditional jumps
   - Quest tracking and Branching paths
 - Won IGF's 2021 student game award!
+</div>
 
 
+<div>
 **Flappatron** (2019) [Steam](https://store.steampowered.com/app/1009750/Flappatron/)
 
 C++, Tools, GameMaker Studio
 
 - Manual and automatic lip syncing tools, simplifying contract lip syncing work
 - Created multiple lip syncing algorithms
+</div>
 
 
+<div>
 **Venforma SDET** (2017 - 2018) [Company Site](http://www.venforma.com/)
 
 Selenium, Python, phantomjs
+</div>
 
 
+<div>
 **Code2College** (2017) [Company Site](https://code2college.org/)
 
 HTML, Python, Javascript
+</div>
 
 :::
