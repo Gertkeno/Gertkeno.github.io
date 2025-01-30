@@ -7,6 +7,40 @@ css: ../document.css
 A Catalog of My Story in Reverse Chronological Order
 ====================================================
 
+Bubble Ranch
+------------
+
+Made for [Global Game Jam 2025][GGJ25]! Focusing animation solely on the player
+character made for a lovely animation tree system blending between mixed states
+of crouching, raising the net, walking, and jumping. Godot handled it with ease,
+our team scoped this game with perfect accuracy making for a smooth jam
+experience.
+
+I show this game to my students with glee, they have fun extending the game with
+more animals and areas.
+
+<iframe frameborder="0" src="https://itch.io/embed/3276420?bg_color=3e2d5a&amp;fg_color=f9f9f9&amp;link_color=8650b2&amp;border_color=545672" width="552" height="167"><a href="https://generalred.itch.io/bubble-ranch-a-cozy-hunt">Bubble Ranch: A Cozy Hunt by Adhan Razzaque, rhulzing, ProfessionalPulido, SoundStrider, hexxagon, Gertkeno, RedPoisonDragon</a></iframe>
+
+[GGJ25]: https://globalgamejam.org/games/2025/bubble-man-bubble-land-7
+
+---
+
+
+Twin Blade Tango
+----------------
+
+Made for [Texas Game Jam 2024](https://itch.io/jam/texas-game-jam-2024) I
+grouped with old and new friends, all talented animators to produce a two-player
+cooperative game. Learned Godot's animation system like never before, and spent
+some time after the Jam to create a AI and make use of Godot's navigation
+systems too.
+
+I have re-used the Rose enemy for another game I secretly work on.
+
+<iframe frameborder="0" src="https://itch.io/embed/3006667?linkback=true&amp;bg_color=261928&amp;fg_color=fde7b9&amp;link_color=f7c274&amp;border_color=49434a" width="552" height="167"><a href="https://gertkeno.itch.io/twin-blade-tango">Twin Blade Tango by Gertkeno, Beboper</a></iframe>
+
+---
+
 Hextype Mechapop
 ----------------
 

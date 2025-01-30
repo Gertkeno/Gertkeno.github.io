@@ -1,0 +1,64 @@
+html {
+	color: #1a1a1a;
+	background-color: #fdfdfd;
+}
+
+body {
+	margin: 0 auto;
+	max-width: 36em;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	hyphens: auto;
+	overflow-wrap: break-word;
+	text-rendering: optimizeLegibility;
+	font-kerning: normal;
+}
+
+@media (max-width: 600px) {
+	body {
+		font-size: 0.9em;
+		padding: 12px;
+	}
+	h1 {
+		font-size: 1.8em;
+	}
+}
+
+@media only screen and (orientation: landscape) {
+	section {
+		column-count: 2;
+	}
+
+	body {
+		margin: 20px auto;
+		max-width: 900px;
+	}
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%; /* i hate position: absolute */
+}
+
+.slides img {
+	position: absolute
+}
+
+.slides {
+	position: relative;
+	height: 400px; /* i hate position: absolute */
+}
+
+@keyframes slide_out {
+	from {
+		/* transform: translateX(0%); */
+		opacity: 100%;
+	}
+
+	to {
+		/* transform: translateX(50%); */
+		opacity: 0%;
+	}
+}
