@@ -43,6 +43,8 @@ won the [IGF 2021](https://igf.com/2021) student game award!!!
 ::: games
 ### Games by me
 
+- [Bubble Ranch](https://generalred.itch.io/bubble-ranch-a-cozy-hunt) for Global
+  Game Jam 2025
 - [Twin Blade Tango](https://gertkeno.itch.io/twin-blade-tango) for Texas Game
   Jam 2024
 - [Hextype Mechapop](https://luckyson.itch.io/hextype-mechapop)
