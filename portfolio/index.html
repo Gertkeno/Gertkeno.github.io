@@ -8,135 +8,16 @@
   <meta name="description" content="Garrett Hale’s Fancy Portfolio" />
   <title>Portfolio</title>
   <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    /* The extra [class] is a hack that increases specificity enough to
-       override a similar rule in reveal.js */
-    ul.task-list[class]{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      font-size: inherit;
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1.6em;
-      vertical-align: middle;
-    }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+	body {
+		margin: 0 auto;
+		padding: 0;
+	}
+	img {
+		max-height: 100vh;
+	}
   </style>
-  <link rel="stylesheet" href="portfolio.css" />
 </head>
 <body>
-<h1 id="vessels">Vessels</h1>
-<p>Made in Unreal 4, <a
-href="https://store.steampowered.com/app/1371330/Vessels/">Steam</a></p>
-<ul>
-<li>Won IGF 2021 Best Student Game</li>
-<li>Dialogue engine handles 16,000 lines</li>
-</ul>
-<div class="slides">
-<p><img
-src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1371330/ss_4304b60764ce7b307b26d90d6ef13104365f5569.jpg?t=1643131691"
-title="Vessels dialogue gameplay" /> <img
-src="content/vessels_trees/ch2/Intercom.adf.png"
-title="Vessels dialogue tree visualizer" /> <img
-src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1371330/ss_1d4df773f4c28d1f75344ca67c6a828fad1ed6de.jpg?t=1643131691"
-title="Vessels walking gameplay" /></p>
-</div>
-<hr />
-<h1 id="game-jams">Game Jams</h1>
-<p>Various teams with various engines, <a
-href="https://gertkeno.itch.io/">Itch.io</a></p>
-<div class="slides">
-<p><img src="content/bubble_ranch_editor.png"
-title="Bubble Ranch in-editor screenshot" /> <img
-src="https://img.itch.zone/aW1hZ2UvMzAwNjY2Ny8xNzk4MTEyMS5qcGVn/original/p1hX1a.jpeg"
-title="Twin Blade Tango gameplay" /> <img
-src="https://img.itch.zone/aW1nLzEzNTEzMDMwLmpwZWc=/original/%2FJkGGv.jpeg"
-title="Bun Bun Fun Run gameplay ui removed" /></p>
-</div>
-<hr />
-<h1 id="rift">RIFT</h1>
-<p>Making new features in an old codebase, <a
-href="https://store.steampowered.com/app/39120/RIFT/">Steam</a></p>
-<ul>
-<li>Gameplay and UI</li>
-</ul>
-<div class="slides">
-<p><img
-src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/39120/ss_986c7d5cce68e24aa174c2b8aa25ce1801256f1e.jpg?t=1700242293"
-title="RIFT Character" /> <img
-src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/39120/ss_d959a7b220d64bed9f0d732b7b026662f735dabe.jpg?t=1700242293"
-title="RIFT opening in game" /></p>
-</div>
-<hr />
-<h1 id="flappatron">Flappatron</h1>
-<ul>
-<li><a
-href="https://store.steampowered.com/app/1009750/Flappatron/">Steam</a></li>
-<li>Automatic and Manual Lip syncing tools</li>
-</ul>
-<div class="slides">
-<p><img
-src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1009750/ss_3e1be264f6cab8f5abba4266a26d58f38767691e.jpg?t=1719566226"
-title="Flappatron gameplay 1st slide" /> <img
-src="content/flappa_sync_view.png" title="Flappatron lipsync tool" />
-<img
-src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1009750/ss_36e6710490b1937c20a073fcdc2819084095acbd.jpg?t=1719566226"
-title="Flappatron gameplay 2nd slide" /></p>
-</div>
-<hr />
-<h1 id="mycodingplace">MyCodingPlace</h1>
-<ul>
-<li><a href="https://www.mycodingplace.com/">Website</a></li>
-<li>Setup VPN and file server</li>
-<li>Teaching game programming</li>
-</ul>
-<script>
-function increment_slide(container) {
-    const slides = container.querySelectorAll("img");
-    let next_value = false;
-    for (let i = 0; i < slides.length; i++){
-        const is_shown = slides[i].style.display != "none";
-        slides[i].style.display = next_value || is_shown ? "inherit" : "none";
-
-        if (is_shown) {
-            slides[i].style.animation = "slide_out 0.25s ease-out";
-            slides[i].style.zIndex = 100;
-            slides[i].onanimationend = () => {
-                // if interrupted the next no slide is left visible.
-                slides[i].style.display = "none";
-                slides[i].style.zIndex = 10;
-                slides[i].style.animation = "";
-            }, {once : true};
-        }
-
-        if (next_value) {
-            return;
-        }
-
-        next_value = is_shown
-    }
-
-    slides[0].style.display = "inherit"
-}
-
-const containers = document.querySelectorAll(".slides");
-for (let i = 0; i < containers.length; i++) {
-    const slides = containers[i].querySelectorAll("img");
-
-    containers[i].addEventListener('click', function(e) {
-        increment_slide(containers[i]);
-    });
-
-    for (let j = 0; j < slides.length; j++) {
-        slides[j].style.display = j == 0 ? "inner-div" : "none";
-    }
-
-    setTimeout(() => {
-        setInterval(increment_slide, 5000, containers[i]);
-    }, i * 2000);
-}
-</script>
+	<center><a href="GarrettHale.pdf"><img src="GarrettHale.jpg" alt="Portfolio PDF"></a></center>
 </body>
 </html>
