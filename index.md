@@ -22,12 +22,12 @@ won the [IGF 2021](https://igf.com/2021) student game award!!!
 ### Social
 
 - [**email**](mailto:gthkeno@gmail.com) gthkeno@gmail.com
-- [**itch.io**](https://gertkeno.itch.io/)
-- [**steam**](https://steamcommunity.com/id/gertman)
-- [**github**](https://github.com/Gertkeno)
-- **nintendo** SW-5439-4751-0117
-- [**linkedin**](https://www.linkedin.com/in/garrett-hale-43b907b9/)
 - <a rel="me" href="https://mastodon.gamedev.place/@gertkeno"><b>mastodon</b></a>
+- [**itch.io**](https://gertkeno.itch.io/)
+- [**discord**](https://discordapp.com/users/122896652469010434) gert_h
+- [**github**](https://github.com/Gertkeno)
+- [**steam**](https://steamcommunity.com/id/gertman)
+- [**linkedin**](https://www.linkedin.com/in/garrett-hale-43b907b9/)
 :::
 
 ::: blog
