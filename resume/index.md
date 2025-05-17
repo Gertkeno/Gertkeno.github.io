@@ -12,13 +12,21 @@ pagestyle: empty
 
 ### Engine/Tools Developer
 
-<https://gerttech.com/portfolio/>, <gthkeno@gmail.com>
+_contact:_ <gthkeno@gmail.com>
 
-**_Skills_**
+_portfolio:_ <https://gerttech.com/portfolio/>
 
-_Language:_ C++11-20, git, Python, Lua, GNU/Linux, [Zig](https://ziglang.org/)
+<br>
 
-_Engine:_ Unreal Engine, Godot, OpenGL, Roblox, Unity
+Award-winning game and tools developer, working in popular game engines and
+in-house solutions. Always learning something new including embedded, systems,
+and VR development. Loves to teach!
+
+### Skills
+
+_Language:_ C++11-20, git, Elixir, Lua, GNU/Linux, [Zig](https://ziglang.org/)
+
+_Engine:_ Unreal, Godot, OpenGL, Roblox, Unity
 
 ---
 
@@ -27,7 +35,7 @@ _Engine:_ Unreal Engine, Godot, OpenGL, Roblox, Unity
 ::: Experience
 
 <div>
-**LUCKYSON** (2022 - Present) [Website](https://luckyson.works/)
+**LUCKYSON** (2022 - Present) [Website](https://luckyson.co/)
 
 Godot, C++, VR
 
@@ -43,7 +51,7 @@ Godot, C++, VR
 Linux, Godot, Python, Roblox
 
 - Teaching a plethora of languages and engines
-- Setup network NAS and VPN
+- Setup network NAS, VPN, and workstations
 </div>
 
 
@@ -93,16 +101,12 @@ C++, Tools, GameMaker Studio
 
 
 <div>
-**Venforma SDET** (2017 - 2018) [Company Site](http://www.venforma.com/)
-
-Selenium, Python, phantomjs
+**Venforma SDET** (2017) Selenium, PhantomJS [Company Site](http://www.venforma.com/)
 </div>
 
 
 <div>
-**Code2College** (2017) [Company Site](https://code2college.org/)
-
-HTML, Python, Javascript
+**Code2College** (2017) HTML, Python, Javascript [Company Site](https://code2college.org/)
 </div>
 
 :::
