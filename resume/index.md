@@ -2,10 +2,12 @@
 pagetitle: Garrett Hale's Resume
 author: Garrett Hale
 date: Wed 22 Jan 2020 07:16:12 PM CST
-geometry: margin=1.2cm
+geometry: margin=1.5cm
 urlcolor: orange
 css: pandoc.css
 pagestyle: empty
+fontsize: 10pt
+mainfont: NotoSerif-Medium.ttf
 ---
 
 ## Garrett Hale
@@ -22,15 +24,13 @@ Award-winning game and tools developer, working in popular game engines and
 in-house solutions. Always learning something new including embedded, systems,
 and VR development. Loves to teach!
 
-### Skills
+## Skills
 
 _Language:_ C++11-20, git, Elixir, Lua, GNU/Linux, [Zig](https://ziglang.org/)
 
 _Engine:_ Unreal, Godot, OpenGL, Roblox, Unity
 
 ---
-
-### Experience
 
 ::: Experience
 
