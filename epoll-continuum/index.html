@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Garrett Hale" />
+  <title>Epoll in Continuum</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../document.css" />
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#texas-game-jam" id="toc-texas-game-jam">Texas Game
+Jam</a></li>
+<li><a href="#first-continuum-server"
+id="toc-first-continuum-server">First Continuum Server</a></li>
+<li><a href="#now-with-websockets.zig"
+id="toc-now-with-websockets.zig">Now with Websockets.zig!</a></li>
+<li><a href="#throwing-it-all-out-for-security"
+id="toc-throwing-it-all-out-for-security">Throwing it all out for
+Security</a></li>
+<li><a href="#weighing-syscalls" id="toc-weighing-syscalls">Weighing
+Syscalls</a></li>
+<li><a href="#security-is-easy" id="toc-security-is-easy">Security is
+easy?</a></li>
+<li><a href="#websockets" id="toc-websockets">WebSockets</a></li>
+<li><a href="#oops-all-protocols" id="toc-oops-all-protocols">Oops! All
+Protocols</a></li>
+</ul>
+</nav>
+<h1 id="texas-game-jam">Texas Game Jam</h1>
+<p>This article summarizes my experience learning non-blocking network
+I/O with linux’s <a
+href="https://www.man7.org/linux/man-pages/man7/epoll.7.html"
+title="man epoll.7">epoll</a> and Zig 0.15. I started this project for
+<a href="https://itch.io/jam/texas-game-jam-2025"
+title="Itch.io: TXGJ 20205">Texas Game Jam</a>, with “Out of Time” as
+the theme I wanted to make a decaying game, where some players would
+find the world changing without full real-time multiplayer. As usual I
+want to feature playable in-browser games, this brought more
+complications that I <em>should’ve</em> known, and drove me to use
+OpenSSL through zig’s c translation layer, epoll, and implementing a
+WebSocket server.</p>
+<p>For Texas Game Jam I signed up as a mentor and judge, for fairness
+this began my first solo-jam! I opted for a simple game premise I know
+Godot can handle without any problems and used one of 4.5’s new tile map
+performance features. The main gameplay focused on a simple
+castlevania-esq platformer using two tile sets I know well, <a
+href="https://opengameart.org/content/castle-platformer"
+title="OpengameArt.org: Castle Platformer">Jetrel’s castle
+platformer</a> and <a
+href="https://opengameart.org/content/hostile-planet"
+title="OpengameArt.org: Hostile Planet">chipmunk’s hostile planet</a>.
+With a basic character controller I started work on the bulk of this
+project, the server.</p>
+<h1 id="first-continuum-server">First Continuum Server</h1>
+<p>The game plan was to use HTTP requests that result in atomic server
+operations, thinking this may double as a easy website for fun
+statistics or to see the online players count. I wanted to use <a
+href="https://ziglang.org/download/0.15.1/release-notes.html#Writergate"
+title="Zig 0.15.1 Writergate">Zig 0.15’s new io interface</a>, but made
+use of fixed readers at best, support for these non-blocking systems
+lacks.</p>
+<p>I started by using poll at first, requiring management of a pollfd
+object for every connection, and a separate pollfd for accepting new
+connections. A quirk epoll solves by keeping the poll objects inside a
+system object for repeat use on each <code>epoll_wait</code> call.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode zig"><code class="sourceCode zig"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> handleConnections(allocator<span class="op">:</span> std<span class="op">.</span>mem<span class="op">.</span>Allocator<span class="op">,</span> players<span class="op">:</span> []Player<span class="op">,</span> game_state<span class="op">:</span> <span class="op">*</span>GameState) <span class="op">!</span><span class="dt">bool</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">var</span> read_new<span class="op">:</span> <span class="dt">bool</span> <span class="op">=</span> <span class="cn">false</span>;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// creating and managing pollfd objects for each connection every read...</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> pollfds <span class="op">=</span> <span class="cf">try</span> allocator<span class="op">.</span>alloc(std<span class="op">.</span>posix<span class="op">.</span>pollfd<span class="op">,</span> players<span class="op">.</span>len);</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (players<span class="op">,</span> pollfds) <span class="op">|</span>player<span class="op">,</span> <span class="op">*</span>pollfd<span class="op">|</span> {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        pollfd<span class="op">.*</span> <span class="op">=</span> std<span class="op">.</span>posix<span class="op">.</span>pollfd{</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>fd <span class="op">=</span> player<span class="op">.</span>connection<span class="op">.</span>stream<span class="op">.</span>handle<span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>events <span class="op">=</span> std<span class="op">.</span>posix<span class="op">.</span>POLL<span class="op">.</span>IN<span class="op">,</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>revents <span class="op">=</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        };</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// returns false if nothing of note was read</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> read_fds <span class="op">=</span> <span class="cf">try</span> std<span class="op">.</span>posix<span class="op">.</span>poll(pollfds<span class="op">,</span> <span class="dv">10</span>);</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (read_fds <span class="op">==</span> <span class="dv">0</span>) {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span>;</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (read_fds <span class="op">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        std<span class="op">.</span>log<span class="op">.</span>err(<span class="st">&quot;read fds error! {}&quot;</span><span class="op">,</span> <span class="op">.</span>{std<span class="op">.</span>posix<span class="op">.</span>errno(read_fds)});</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="cn">false</span>;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">// poll returns how many fds responded, but one must check all fds as the</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co">// results are not ordered. At best an early break can be implemented.</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (players<span class="op">,</span> pollfds) <span class="op">|*</span>player<span class="op">,</span> pollfd<span class="op">|</span> {</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ((pollfd<span class="op">.</span>revents <span class="op">&amp;</span> std<span class="op">.</span>posix<span class="op">.</span>POLL<span class="op">.</span>IN) <span class="op">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">const</span> fail_mask <span class="op">=</span> std<span class="op">.</span>posix<span class="op">.</span>POLL<span class="op">.</span>HUP <span class="op">|</span> std<span class="op">.</span>posix<span class="op">.</span>POLL<span class="op">.</span>NVAL <span class="op">|</span> std<span class="op">.</span>posix<span class="op">.</span>POLL<span class="op">.</span>ERR;</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> ((pollfd<span class="op">.</span>revents <span class="op">&amp;</span> fail_mask) <span class="op">!=</span> <span class="dv">0</span>) {</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                <span class="co">// close stream later</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                player<span class="op">.</span>dropped_connection <span class="op">=</span> <span class="cn">true</span>;</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span>;</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span></code></pre></div>
+<p>I found HTTP might take too much time over using the TCP sockets
+directly, Godot reads and writes to a StreamPeerTCP similarly to Zig,
+taking and putting integers as need.</p>
+<p>Testing in debug this direct TCP worked flawlessly. Over the wire
+with some delay, it showed Godot blocking waiting for TCP responses, not
+great but I ended up with this for the jam. The worst part, web browsers
+forbid direct TCP sockets, at best websockets or the original HTTP
+server would need implementing. I could not publish a play in browser
+version of the game for the jam.</p>
+<h1 id="now-with-websockets.zig">Now with Websockets.zig!</h1>
+<p>I could add play-in-browser via reformatting my Clients to use HTTP
+requests or try out WebSockets. WebSockets promise of a raw-socket-like
+interface drew me in and a new interface to learn.</p>
+<p>In an attempt to speed this business up I opted for a library <a
+href="https://github.com/karlseguin/websocket.zig"
+title="Github: websocket.zig">websocket.zig</a>. It uses zig’s robust
+comptime to effortlessly create a server around your own defined struct,
+so long as it has a handshake and check message function. More build
+system practice with zig, but not a unique learning opportunity. The
+websocket implementation obscured to me, I didn’t learn much of it, but
+I perused <a
+href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers"
+title="MDN: Writing WebSocket Servers">MDN’s page on Writing WebSocket
+Servers</a>.</p>
+<p>Testing locally, and this time in-browser, web sockets worked! A
+little refactoring on Godot’s side ultimately allowed for non-blocking
+gameplay too. I uploaded this build again to itch, to my dismay, a dark
+force forbade it.</p>
+<h1 id="throwing-it-all-out-for-security">Throwing it all out for
+Security</h1>
+<p>Firefox promotes websockets to secure websockets if the connection
+uses HTTPS. Itch.io uses HTTPS, so I must upgrade my websockets. <a
+href="https://github.com/karlseguin/websocket.zig"
+title="Github: websocket.zig">websocket.zig</a>, however does not
+support TLS servers. Maybe they expect nginx to handle securing the
+connections but I prefer less intermediaries.</p>
+<p>Now, after dismissing my initial poll implementation, I will have to
+implement OpenSSL and WebSockets on top. If I hadn’t already tackled
+poll and made the game public I would’ve given up. A lot to chew on and
+I’ve already spent a weekend on the project.</p>
+<p>Starting again I also wanted to upgrading the non-blocking I/O. In
+using poll I saw epoll brought up often as an improvement, and I knew of
+IOUring from others talk.</p>
+<h1 id="weighing-syscalls">Weighing Syscalls</h1>
+<p>I’ve heard IOUring made a splash years back, the pitch made sense;
+ring buffer IO operations for concurrent scheduling. As I looked more
+into using it more and more forum posts brought up the identical syscall
+usage compared to poll or select, at least for naive usage. Oh my vanity
+for micro-performance optimizations in my personal projects, and I
+didn’t like how poll left me to handle pollfds growing and shrinking
+with connections, I looked over IOUring for epoll. I think this proved
+the right choice, but I hold excitement for IOUring in the future.</p>
+<p>Using <a
+href="https://www.openmymind.net/TCP-Server-In-Zig-Part-6-Epoll/"
+title="TCP Server In Zig: Epoll">Karl Seguin’s zig TCP tutorial</a> I
+effortlessly setup epoll, love having a user data pointer to manage my
+objects. That specific page of the tutorial contained all I needed to
+blast off! I created container objects to smooth out syscalls and
+translated c in zig.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode zig"><code class="sourceCode zig"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> local <span class="op">=</span> <span class="cf">try</span> std<span class="op">.</span>net<span class="op">.</span>Address<span class="op">.</span>resolveIp(<span class="st">&quot;127.0.0.1&quot;</span><span class="op">,</span> <span class="dv">33322</span>);</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">var</span> server <span class="op">=</span> <span class="cf">try</span> local<span class="op">.</span>listen(<span class="op">.</span>{</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>reuse_address <span class="op">=</span> <span class="cn">true</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>force_nonblocking <span class="op">=</span> <span class="cn">true</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>});</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">defer</span> server<span class="op">.</span>deinit();</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">// allocates epoll_events and calls epoll_create1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">var</span> epoll <span class="op">=</span> <span class="cf">try</span> EPoll<span class="op">.</span>init(allocator);</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="cf">defer</span> epoll<span class="op">.</span>deinit();</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">var</span> clientPool <span class="op">=</span> std<span class="op">.</span>heap<span class="op">.</span>MemoryPool(Client)<span class="op">.</span>init(allocator);</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="cf">defer</span> clientPool<span class="op">.</span>deinit();</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> clientPool<span class="op">.</span>preheat(<span class="dv">4</span>);</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">// adds an IN event via epoll_ctl, ptr value of 0</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span> epoll<span class="op">.</span>addListener(server<span class="op">.</span>stream<span class="op">.</span>handle<span class="op">,</span> <span class="dv">0</span>);</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (running) {</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// a &#39;[]const std.linux.epoll_event&#39; slice, sometimes zero events</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (epoll<span class="op">.</span>waitEvents()) <span class="op">|</span>event<span class="op">|</span> {</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">switch</span> (event<span class="op">.</span>data<span class="op">.</span>ptr) {</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            <span class="dv">0</span> <span class="op">=&gt;</span> { <span class="co">// listener, accept new fd</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> new_client_fd <span class="op">=</span> <span class="cf">try</span> std<span class="op">.</span>posix<span class="op">.</span>accept(server<span class="op">.</span>stream<span class="op">.</span>handle<span class="op">,</span> <span class="cn">null</span><span class="op">,</span> <span class="cn">null</span><span class="op">,</span> std<span class="op">.</span>posix<span class="op">.</span>SOCK<span class="op">.</span>NONBLOCK);</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                std<span class="op">.</span>log<span class="op">.</span>debug(<span class="st">&quot;{d}&gt; new connection&quot;</span><span class="op">,</span> <span class="op">.</span>{new_client_fd});</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> new_client_ptr<span class="op">:</span> <span class="op">*</span>Client <span class="op">=</span> <span class="cf">try</span> clientPool<span class="op">.</span>create();</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                <span class="cf">errdefer</span> clientPool<span class="op">.</span>destroy(new_client_ptr);</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                new_client_ptr<span class="op">.*</span> <span class="op">=</span> Client{</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span>fd <span class="op">=</span> new_client_fd<span class="op">,</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                };</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                <span class="co">// adds an IN/OUT event via epoll_ctl with ptr casting the client object</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span> epoll<span class="op">.</span>addSocket(new_client_fd<span class="op">,</span> new_client_ptr);</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span> <span class="op">=&gt;</span> <span class="op">|</span>nptr<span class="op">|</span> {</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                <span class="co">// just trying to see if epoll works, will add proper event</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                <span class="co">// checking later, along with SSL and WebSockets</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                <span class="at">var</span> client<span class="op">:</span> <span class="op">*</span>Client <span class="op">=</span> @ptrFromInt(nptr);</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (client<span class="op">.</span>getWriteableBytes() <span class="op">&gt;</span> <span class="dv">1</span>) {</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                    <span class="at">const</span> read_bytes<span class="op">:</span> []<span class="at">const</span> <span class="dt">u8</span> <span class="op">=</span> <span class="cf">try</span> client<span class="op">.</span>read();</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                    std<span class="op">.</span>log<span class="op">.</span>debug(<span class="st">&quot;{d}&gt; Read {d} bytes aka &#39;{any}&#39;&quot;</span><span class="op">,</span> <span class="op">.</span>{ client<span class="op">.</span>fd<span class="op">,</span> read_bytes<span class="op">.</span>len<span class="op">,</span> read_bytes });</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (client<span class="op">.</span>closed) {</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">try</span> epoll<span class="op">.</span>dropSocket(client<span class="op">.</span>fd);</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                    client<span class="op">.</span>deinit();</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>                    clientPool<span class="op">.</span>destroy(client);</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>            }<span class="op">,</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>} <span class="co">// while running</span></span></code></pre></div>
+<h1 id="security-is-easy">Security is easy?</h1>
+<p>OpenSSL boasts ever better documentation, <a
+href="https://docs.openssl.org/master/man7/ossl-guide-tls-server-block/"
+title="OpenSSL Docs: Blocking TLS server">their guide on a blocking
+server</a> helped me get started, I worried the partial reads of a
+non-blocking server breaks SSL handshakes and reads, but the context and
+ssl objects handle by errors with “want read” or “want write” in such
+cases, one responds by calling the handshake or read function again.</p>
+<p>Confirming everything works with
+<code>openssl s_client -crlf -connect localhost:33322</code>, but
+testing in-browser doesn’t appreciate my self-signed certificates, my
+server does have a certificate backed by LetsEncrypt, so I press on and
+sweat on the possibility this still doesn’t work once fully
+published.</p>
+<p>The main.zig doesn’t change much, I shoved most of the server setup
+into <code>SSLCTX.init</code>. SSL objects can operate on file
+descriptors directly, including when set non-blocking, despite what
+others may say online an intermediate mem bio is not required but may
+help for buffering partial reads.</p>
+<h1 id="websockets">WebSockets</h1>
+<p>Ironically web sockets start with a wee bit of HTTP. In the
+“Handshake”, the client must present a web socket version and challenge
+key through headers “Sec-WebSocket-Version” and “Sec-WebSocket-Key”. The
+challenge follows by appending the key and a magic string
+“258EAFA5-E914-47DA-95CA-C5AB0DC85B11” hashing the result, encoding in
+base64, and sent back in a HTTP response, thus websocketing begins. It
+feels important but we throw away the key and handshake, not a secure
+transaction, the challenge serves to prevent a server/client from
+entering an accidental websocket transaction.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode zig"><code class="sourceCode zig"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> encoder <span class="op">=</span> std<span class="op">.</span>base64<span class="op">.</span>standard<span class="op">.</span>Encoder;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> len <span class="op">=</span> <span class="at">comptime</span> encoder<span class="op">.</span>calcSize(<span class="dv">20</span>);</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">var</span> key64 <span class="op">=</span> std<span class="op">.</span>mem<span class="op">.</span>zeroes([len]<span class="dt">u8</span>); <span class="co">// storage for compelted challenge</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">// if header == Sec-WebSocket-Key ...</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> key_len <span class="op">=</span> <span class="at">comptime</span> encoder<span class="op">.</span>calcSize(<span class="dv">16</span>);</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (value<span class="op">.</span>len <span class="op">!=</span> key_len) {</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> failHandshake(<span class="st">&quot;Invalid key length&quot;</span><span class="op">,</span> writer);</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">var</span> with_magic<span class="op">:</span> [key_len <span class="op">+</span> MAGIC_V13<span class="op">.</span>len]<span class="dt">u8</span> <span class="op">=</span> <span class="cn">undefined</span>;</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    std<span class="op">.</span>mem<span class="op">.</span>copyForwards(<span class="dt">u8</span><span class="op">,</span> with_magic[<span class="dv">0</span><span class="op">..</span>key_len]<span class="op">,</span> value);</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    std<span class="op">.</span>mem<span class="op">.</span>copyForwards(<span class="dt">u8</span><span class="op">,</span> with_magic[key_len<span class="op">..</span>]<span class="op">,</span> MAGIC_V13);</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">const</span> sha1d<span class="op">:</span> [<span class="dv">20</span>]<span class="dt">u8</span> <span class="op">=</span> sha1(<span class="op">&amp;</span>with_magic);</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    _ <span class="op">=</span> encoder<span class="op">.</span>encode(<span class="op">&amp;</span>key64<span class="op">,</span> <span class="op">&amp;</span>sha1d);</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">// done with headers ...</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">// missing Sec-WebSocket-Key</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (key64[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">0</span>) {</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> failHandshake(<span class="st">&quot;No key&quot;</span><span class="op">,</span> writer);</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> writer<span class="op">.</span>writeAll(<span class="st">&quot;HTTP/1.1 101 Switching Protocols</span><span class="sc">\r\n</span><span class="st">&quot;</span>);</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> writer<span class="op">.</span>writeAll(<span class="st">&quot;Connection: Upgrade</span><span class="sc">\r\n</span><span class="st">&quot;</span>);</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span> writer<span class="op">.</span>writeAll(<span class="st">&quot;Upgrade: websocket</span><span class="sc">\r\n</span><span class="st">&quot;</span>);</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> writer<span class="op">.</span>print(</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;Sec-WebSocket-Accept: {s}</span><span class="sc">\r\n\r\n</span><span class="st">&quot;</span><span class="op">,</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>{key64}<span class="op">,</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    );</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>WebSocket packets lead with a 2 byte frame, up to an optional 8 byte
+length, clients must send a 4 byte mask. I use zig’s packed structs for
+the web socket frame, a great candidate for the feature but somehow I
+end up byte-swapping the fields, zig has tools for converting
+endian-ness such as <span class="citation"
+data-cites="byteSwap">@byteSwap</span> or std.mem.toNative I can’t
+remember why they didn’t work for me. With default values for sending
+packets, needing to set the payload length before following writes with
+the binary data.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode zig"><code class="sourceCode zig"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> WSHead <span class="op">=</span> <span class="kw">packed</span> <span class="kw">struct</span>(<span class="dt">u16</span>) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    payload_len<span class="op">:</span> u7<span class="op">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    mask<span class="op">:</span> <span class="dt">bool</span> <span class="op">=</span> <span class="cn">false</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">//</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    op<span class="op">:</span> WSOpcode <span class="op">=</span> <span class="op">.</span>binary<span class="op">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    reserved<span class="op">:</span> u3 <span class="op">=</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    fin<span class="op">:</span> <span class="dt">bool</span> <span class="op">=</span> <span class="cn">true</span><span class="op">,</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>};</span></code></pre></div>
+<p>The “mask” also appears to further confirm the client and server
+acknowledge the websocket protocol. Each client packet must include a
+u64 mask to xor’d over the entire payload. WebSocket does not require
+the server to mask payloads, so I do not :)</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode zig"><code class="sourceCode zig"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> mask_bytes <span class="op">=</span> std<span class="op">.</span>mem<span class="op">.</span>asBytes(<span class="op">&amp;</span>mask);</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">const</span> payload <span class="op">=</span> reader<span class="op">.</span>take(total_len) <span class="cf">catch</span> <span class="kw">unreachable</span>;</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (payload<span class="op">,</span> <span class="dv">0</span><span class="op">..</span>) <span class="op">|*</span>p<span class="op">,</span> i<span class="op">|</span> {</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    p<span class="op">.*</span> <span class="op">^=</span> mask_bytes[i <span class="op">%</span> <span class="dv">4</span>];</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now I can process the payload as I did when using TCP directly.</p>
+<h1 id="oops-all-protocols">Oops! All Protocols</h1>
+<p>With SSL and epoll setup I feel empowered to write more protocols. I
+add a <a href="https://geminiprotocol.net/docs/"
+title="Gemini Protocol Docs">gemini</a> server and HTTP redirector. Each
+of these modules needs a “check” function to determine when a valid
+message comes in, and how long that message measures. Then a “parse”
+function to consume the message. For example HTTP checks for double
+CRLF, where headers end, and use any found “Content-Length” header for
+the body length. Web socket checks for at least two bytes (the frame),
+then reads the frame’s payload length. If found, “parse” receives the
+message and acts on it. And <a href="https://geminiprotocol.net/docs/"
+title="Gemini Protocol Docs">gemini</a> looks for a single ending
+CRLF.</p>
+<p>To epoll each new server/protocol appears as just another file
+descriptor. I add a special value for stdin, so I can add commands such
+as ‘quit’ to close the server or game functions like resetting the
+world.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode zig"><code class="sourceCode zig"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="at">var</span> modules <span class="op">=</span> [_]Module{</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>{</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>port <span class="op">=</span> <span class="dv">33322</span><span class="op">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>check <span class="op">=</span> Module<span class="op">.</span>WebSocket<span class="op">.</span>check<span class="op">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>parse <span class="op">=</span> Module<span class="op">.</span>WebSocket<span class="op">.</span>parse<span class="op">,</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>{</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>port <span class="op">=</span> <span class="dv">8080</span><span class="op">,</span> <span class="co">// 80?</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>using_ssl <span class="op">=</span> <span class="cn">false</span><span class="op">,</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>check <span class="op">=</span> Module<span class="op">.</span>HTTPRedir<span class="op">.</span>check<span class="op">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>parse <span class="op">=</span> Module<span class="op">.</span>HTTPRedir<span class="op">.</span>parse<span class="op">,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>{</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>port <span class="op">=</span> <span class="dv">1965</span><span class="op">,</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>check <span class="op">=</span> Module<span class="op">.</span>GemCapsule<span class="op">.</span>check<span class="op">,</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>parse <span class="op">=</span> Module<span class="op">.</span>GemCapsule<span class="op">.</span>parse<span class="op">,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>};</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">// ...</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (running) {</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (epoll<span class="op">.</span>waitEvents()) <span class="op">|</span>event<span class="op">|</span> {</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (event<span class="op">.</span>data<span class="op">.</span>ptr <span class="op">==</span> <span class="dv">0</span>) { <span class="co">// stdin, read *should* be full lines</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">const</span> read_count <span class="op">=</span> <span class="cf">try</span> posix<span class="op">.</span>read(posix<span class="op">.</span>STDIN_FILENO<span class="op">,</span> stdin_buffer);</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">const</span> seg <span class="op">=</span> std<span class="op">.</span>mem<span class="op">.</span>trim(<span class="dt">u8</span><span class="op">,</span> stdin_buffer[<span class="dv">0</span><span class="op">..</span>read_count]<span class="op">,</span> <span class="op">&amp;</span>std<span class="op">.</span>ascii<span class="op">.</span>whitespace);</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (std<span class="op">.</span>mem<span class="op">.</span>eql(<span class="dt">u8</span><span class="op">,</span> seg<span class="op">,</span> <span class="st">&quot;quit&quot;</span>)) {</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>                running <span class="op">=</span> <span class="cn">false</span>;</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span> stdout<span class="op">.</span>writeAll(<span class="st">&quot;Closing server...</span><span class="sc">\n</span><span class="st">&quot;</span>);</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> <span class="cf">if</span> (event<span class="op">.</span>data<span class="op">.</span>ptr <span class="op">&lt;</span> modules<span class="op">.</span>len <span class="op">+</span> <span class="dv">1</span>) { <span class="co">// listener modules, offset by 1; stdin on ptr 0</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>            <span class="at">const</span> module <span class="op">=</span> modules[event<span class="op">.</span>data<span class="op">.</span>ptr <span class="op">-</span> <span class="dv">1</span>];</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (posix<span class="op">.</span>accept(module<span class="op">.</span>socket<span class="op">,</span> <span class="cn">null</span><span class="op">,</span> <span class="cn">null</span><span class="op">,</span> posix<span class="op">.</span>SOCK<span class="op">.</span>NONBLOCK)) <span class="op">|</span>new_client_fd<span class="op">|</span> {</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> ssl<span class="op">:</span> <span class="op">?</span>SSL<span class="op">.</span>Connection <span class="op">=</span> <span class="cf">if</span> (module<span class="op">.</span>using_ssl) <span class="cf">try</span> ctx<span class="op">.</span>newConnection() <span class="cf">else</span> <span class="cn">null</span>;</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (ssl) <span class="op">|</span>sl<span class="op">|</span> {</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>                    sl<span class="op">.</span>setFD(new_client_fd) <span class="cf">catch</span> <span class="op">|</span>err<span class="op">|</span> {</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>                        std<span class="op">.</span>log<span class="op">.</span>warn(<span class="st">&quot;setFD error &#39;{t}&#39;, closing fd#{d}&quot;</span><span class="op">,</span> <span class="op">.</span>{ err<span class="op">,</span> new_client_fd });</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>                        posix<span class="op">.</span>close(new_client_fd);</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">continue</span>;</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>                    };</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>                }</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>                <span class="co">// new connection!</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>                <span class="at">const</span> new_client_object<span class="op">:</span> <span class="op">*</span>Client <span class="op">=</span> <span class="cf">try</span> client_pool<span class="op">.</span>create();</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>                <span class="cf">errdefer</span> client_pool<span class="op">.</span>destroy(new_client_object);</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>                new_client_object<span class="op">.*</span> <span class="op">=</span> Client<span class="op">.</span>init(</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>                    ssl<span class="op">,</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>                    new_client_fd<span class="op">,</span></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>                    <span class="op">&amp;</span>game_state<span class="op">,</span></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>                    allocator<span class="op">,</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>                    module<span class="op">.</span>check<span class="op">,</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>                    module<span class="op">.</span>parse<span class="op">,</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>                );</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>                <span class="cf">try</span> epoll<span class="op">.</span>addSocket(new_client_fd<span class="op">,</span> new_client_object);</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>            } <span class="cf">else</span> <span class="op">|</span>err<span class="op">|</span> {</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>                std<span class="op">.</span>log<span class="op">.</span>err(<span class="st">&quot;Socket accept error &#39;{t}&#39;&quot;</span><span class="op">,</span> <span class="op">.</span>{err});</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> err;</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> { <span class="co">// clients</span></span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>            <span class="at">const</span> client<span class="op">:</span> <span class="op">*</span>Client <span class="op">=</span> @ptrFromInt(event<span class="op">.</span>data<span class="op">.</span>ptr);</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>            <span class="co">// ...</span></span></code></pre></div>
+</body>
+</html>
